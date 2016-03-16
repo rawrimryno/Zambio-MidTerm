@@ -1,0 +1,20 @@
+redMushroom
+Red Mushroom
+Red Mushroom Goooood, Jump higher
+0
+fireFlower
+Fire Flower
+Make stuff go boom
+1
+metalMario
+Metal Mario
+Increased defenses, decreased speed
+2
+greenMushroom
+Green Mushroom
+Full Health!
+3
+rancidMushroom
+Rancid Mushroom
+Doesn't look to appetizing...
+4

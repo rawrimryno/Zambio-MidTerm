@@ -1,0 +1,15 @@
+greenShell
+Green Shell
+Shoots straight, kills one
+redShell
+Red Shell
+Chases a target, kills one
+blueShell
+Blue Shell
+Finds the biggest zombie and detonates on him
+bulletBill
+Bullet Bill
+Kills enemies in front
+redBulletBill
+Red Bullet Bill
+Chases biggest zombie and detonates on him
