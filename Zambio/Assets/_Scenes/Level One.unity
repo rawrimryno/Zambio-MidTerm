@@ -20,10 +20,10 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.84109885, g: 0.8602941, b: 0.5123811, a: 1}
+  m_AmbientSkyColor: {r: 0.3730536, g: 0.5514706, b: 0.54408777, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.75
+  m_AmbientIntensity: 1.42
   m_AmbientMode: 3
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -16496,9 +16496,9 @@ Transform:
   - {fileID: 1489081910}
   - {fileID: 22049253}
   - {fileID: 301879470}
-  - {fileID: 777049289}
   - {fileID: 1462315238}
   - {fileID: 916568104}
+  - {fileID: 777049289}
   m_Father: {fileID: 2076624190}
   m_RootOrder: 4
 --- !u!4 &1023732939 stripped
