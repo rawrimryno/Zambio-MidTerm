@@ -10,13 +10,13 @@ public class PlayerController : MonoBehaviour
     HealthPanel UI;
     HealthPanelDisplay hpDisplay;
     // Use this when you want to increase ammo or add Powerups already applied to character
-    public int health { get; private set; }
+    public int health { get; set; }
     private int ammo;
     private List<PowerUp> myPowerUps;
-    //GameControllerSingleton gc;
+    GameControllerSingleton gc;
 
     //private bool dead = false;
-    public int score { get; private set; }
+    public int score { get; set; }
 
 
     public Inventory myInventory
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         SceneManager.LoadScene("UI", LoadSceneMode.Additive);
-        //gc = GameControllerSingleton.get();
+        gc = GameControllerSingleton.get();
         health = 20;
         score = 0;
     }
@@ -161,8 +161,10 @@ public class PlayerController : MonoBehaviour
         //SceneManager.UnloadScene("Level One");
         //SceneManager.UnloadScene("UI");
         SceneManager.LoadScene("Level One");
+        gc.init = false;
         UI.init = false;
-        health = 20;
+        setHealth(20);
+        Debug.Log("hi");
         //Game Over
     }
 }

@@ -35,7 +35,7 @@ public class HealthPanel : MonoBehaviour
         coolDownCur = 0.5f; // Zach's original
         bullet = 1;
         score = 0;
-
+        scoreTXT = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
         gc = GameControllerSingleton.get();
         //ammoIcons = new Sprite[gc.numAmmo];
 
@@ -61,9 +61,10 @@ public class HealthPanel : MonoBehaviour
     {
         if (!init)
         {
+            scoreTXT = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
             gc = GameControllerSingleton.get();
             init = true;
-            Debug.Log("got GameController in health panel");
+            //Debug.Log("got GameController in health panel");
         }
         //int i = 0;
         //if (!init)
@@ -94,9 +95,9 @@ public class HealthPanel : MonoBehaviour
             health++;
             setHearts();
         }
-        getScore();
-        getHealth();
-        
+        //getScore();
+        //getHealth();
+
     }
 
     public void coolDown()
@@ -133,7 +134,10 @@ public class HealthPanel : MonoBehaviour
 
     public void setScore()
     {
-        scoreTXT.text = "Score: " + score;
+        if (scoreTXT)
+        {
+            scoreTXT.text = "Score: " + score;
+        }
     }
 
     public void getHealth()

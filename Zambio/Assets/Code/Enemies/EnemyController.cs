@@ -47,6 +47,10 @@ public class EnemyController : MonoBehaviour
         {
             coolDown -= Time.deltaTime;
         }
+        if (!gc)
+        {
+            gc = GameControllerSingleton.get();
+        }
 
 
     }

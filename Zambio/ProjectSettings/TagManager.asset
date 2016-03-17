@@ -12,6 +12,7 @@ TagManager:
   - HealthStatusDisplay
   - PickUp
   - Spawner
+  - Score
   layers:
   - Default
   - TransparentFX

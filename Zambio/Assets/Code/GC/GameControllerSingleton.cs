@@ -20,7 +20,9 @@ public class GameControllerSingleton : ScriptableObject
     {
         get; private set;
     }
+
     public PlayerController pc;
+
     public bool init = false;
     //private MouseLook myMouse;
 
@@ -55,6 +57,8 @@ public class GameControllerSingleton : ScriptableObject
     public void initialize()
     {
         pc = FindObjectOfType<PlayerController>();
+        pc.score = 0;
+        pc.health = 20;
         //myMouse = pc.GetComponentInChildren<MouseLook>();
     }
 
@@ -65,6 +69,11 @@ public class GameControllerSingleton : ScriptableObject
         {
             initialize();
             init = true;
+        }
+
+        if (!pc)
+        {
+            pc = FindObjectOfType<PlayerController>();
         }
         // Debug.Log("GCS Updating");
     }

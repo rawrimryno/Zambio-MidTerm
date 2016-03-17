@@ -730,7 +730,7 @@ GameObject:
   - 114: {fileID: 382498277}
   m_Layer: 5
   m_Name: WarningTop
-  m_TagString: Untagged
+  m_TagString: Score
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -906,6 +906,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 316ee384ef1d5054eb1302b1ecbb7e4d, type: 3}
   - {fileID: 21300000, guid: 57e16d6dc883ae848830e3c165bbd86b, type: 3}
   bullet: 1
+  init: 0
 --- !u!1 &441571694
 GameObject:
   m_ObjectHideFlags: 0
