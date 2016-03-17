@@ -7,6 +7,7 @@ public class PlayerShoot : MonoBehaviour {
     public float bulletSpeed;
     public float rateOfFire;
     private float timer;
+    private float initRoF;
     private Rigidbody projectile;
     private int ammoNum;
     private HealthPanel UI;
@@ -28,7 +29,7 @@ public class PlayerShoot : MonoBehaviour {
             rateOfFire = 1.0f;
         }
         
-        timer = rateOfFire;
+        initRoF = timer = rateOfFire;
         projectile = ammo[0].GetComponent<Rigidbody>();
         gc = GameControllerSingleton.get();
 	}
@@ -59,6 +60,27 @@ public class PlayerShoot : MonoBehaviour {
             clone = Instantiate(projectile, (transform.position), transform.rotation) as Rigidbody;
             clone.name = projectile.name;
             clone.velocity = transform.TransformDirection((Vector3.forward) * bulletSpeed);
+            switch (ammoNum)
+            {
+                case 0:
+                    timer = initRoF;
+                    break;
+                case 1:
+                    timer = initRoF * 3f;
+                    break;
+                case 2:
+                    timer = initRoF * 4f;
+                    break;
+                case 3:
+                    timer = initRoF * 5f;
+                    break;
+                case 4:
+                    timer = initRoF * 7f;
+                    break;
+                default:
+                    timer = initRoF;
+                    break;
+            }
             rateOfFire = timer;
         }
         else

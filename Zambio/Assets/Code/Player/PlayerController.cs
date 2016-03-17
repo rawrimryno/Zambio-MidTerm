@@ -157,6 +157,11 @@ public class PlayerController : MonoBehaviour
     }
     void deathSequence()
     {
+        gc.init = false;
+        //SceneManager.UnloadScene("UI");
+        //SceneManager.UnloadScene("Level One");
+        //SceneManager.LoadScene("Level One");
+        gc.initialize();
         Debug.Log("GAME OVER");
         //Game Over
         //gc.Pause();

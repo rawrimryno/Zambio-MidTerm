@@ -21,6 +21,8 @@ public class GameControllerSingleton : ScriptableObject
         get; private set;
     }
     public PlayerController pc;
+    public bool init = false;
+    private MouseLook myMouse;
 
     // Use this for initialization
 
@@ -46,12 +48,23 @@ public class GameControllerSingleton : ScriptableObject
         ammoData = new Dictionary<string, AmmoDesc>();
         ammoByID = new Dictionary<int, AmmoDesc>();
 
+        
+    }
+
+    public void initialize()
+    {
         pc = FindObjectOfType<PlayerController>();
+        myMouse = pc.GetComponentInChildren<MouseLook>();
     }
 
     // Update is called once per frame
     public void Update()
     {
+        if (!init)
+        {
+            initialize();
+            init = true;
+        }
         // Debug.Log("GCS Updating");
     }
 

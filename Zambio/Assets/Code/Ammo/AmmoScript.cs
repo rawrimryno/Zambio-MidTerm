@@ -52,11 +52,8 @@ public class AmmoScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.gameObject.name == "bulletBill" || this.gameObject.name == "redBulletBill")
+        if (this.gameObject.name != "bulletBill" && this.gameObject.name != "redBulletBill")
         {
-
-        }
-        else {
             transform.Rotate(0, spinFactor, 0);
         }
         age += Time.deltaTime;
