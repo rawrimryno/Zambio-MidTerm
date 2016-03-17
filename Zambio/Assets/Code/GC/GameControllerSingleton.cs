@@ -22,7 +22,7 @@ public class GameControllerSingleton : ScriptableObject
     }
     public PlayerController pc;
     public bool init = false;
-    private MouseLook myMouse;
+    //private MouseLook myMouse;
 
     // Use this for initialization
 
@@ -38,7 +38,8 @@ public class GameControllerSingleton : ScriptableObject
 
     void Awake()
     {
-
+        CursorLockMode cursorLock = CursorLockMode.Confined;
+        Cursor.lockState = cursorLock;
     }
 
     void Start()
@@ -54,7 +55,7 @@ public class GameControllerSingleton : ScriptableObject
     public void initialize()
     {
         pc = FindObjectOfType<PlayerController>();
-        myMouse = pc.GetComponentInChildren<MouseLook>();
+        //myMouse = pc.GetComponentInChildren<MouseLook>();
     }
 
     // Update is called once per frame

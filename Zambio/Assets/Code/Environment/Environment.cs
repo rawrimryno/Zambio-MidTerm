@@ -27,9 +27,9 @@ public class Environment : MonoBehaviour
     private float initTime = 6;  // This is what time it is when our game starts
                                  //  This shouldn't change, but make it public to tweak
 
-    private int numDays = 100;
+    //private int numDays = 100;
     private float dt;
-    private Quaternion initSunRotation, finalSunRotation;
+    private Quaternion initSunRotation/*, finalSunRotation*/;
     private Vector3 SunRotationAxis;
 
 
@@ -39,7 +39,7 @@ public class Environment : MonoBehaviour
     void Start()
     {
         initSunRotation = Quaternion.Euler(0f,60f,0f);
-        finalSunRotation = Quaternion.Euler(new Vector3(359.9f, 60f, 0f));
+        //finalSunRotation = Quaternion.Euler(new Vector3(359.9f, 60f, 0f));
 
         SunRotationAxis = initSunRotation * Vector3.right;
         Sun = GetComponentInChildren<Light>();

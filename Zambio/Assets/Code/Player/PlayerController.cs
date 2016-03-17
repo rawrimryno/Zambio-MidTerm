@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public int health { get; private set; }
     private int ammo;
     private List<PowerUp> myPowerUps;
-    GameControllerSingleton gc;
+    //GameControllerSingleton gc;
 
     //private bool dead = false;
     public int score { get; private set; }
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         SceneManager.LoadScene("UI", LoadSceneMode.Additive);
-        gc = GameControllerSingleton.get();
+        //gc = GameControllerSingleton.get();
         health = 20;
         score = 0;
     }
@@ -159,12 +159,10 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("GAME OVER");
         //SceneManager.UnloadScene("Level One");
-        SceneManager.LoadScene("Inventory");
-        Debug.Log(SceneManager.sceneCount);
         //SceneManager.UnloadScene("UI");
         SceneManager.LoadScene("Level One");
-        gc.init = false;
-        gc.initialize();
+        UI.init = false;
+        health = 20;
         //Game Over
     }
 }

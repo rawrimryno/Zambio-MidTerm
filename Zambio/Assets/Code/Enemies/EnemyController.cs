@@ -105,7 +105,7 @@ public class EnemyController : MonoBehaviour
     {
         if (enemyNav)
         {
-            enemyNav.target = gc.pc.transform;
+            enemyNav.target = GameObject.FindGameObjectWithTag("Player").transform;
         }
     }
 

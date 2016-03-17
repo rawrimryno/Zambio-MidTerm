@@ -26,7 +26,7 @@ public class HealthPanel : MonoBehaviour
 
     private float coolDownCur;
 
-    //private bool init = false;
+    public bool init = false;
 
     void Start()
     {
@@ -59,6 +59,12 @@ public class HealthPanel : MonoBehaviour
 
     void Update()
     {
+        if (!init)
+        {
+            gc = GameControllerSingleton.get();
+            init = true;
+            Debug.Log("got GameController in health panel");
+        }
         //int i = 0;
         //if (!init)
         //{
@@ -88,6 +94,8 @@ public class HealthPanel : MonoBehaviour
             health++;
             setHearts();
         }
+        getScore();
+        getHealth();
         
     }
 

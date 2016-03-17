@@ -11,14 +11,14 @@ public class PlayerShoot : MonoBehaviour {
     private Rigidbody projectile;
     private int ammoNum;
     private HealthPanel UI;
-    private HealthPanelDisplay hpDisplay;
+    //private HealthPanelDisplay hpDisplay;
     private GameControllerSingleton gc;
     private bool ammoInit = false;
 
 	// Use this for initialization
 	void Start () {
         UI = GameObject.FindGameObjectWithTag("HealthPanel").GetComponent<HealthPanel>();
-        hpDisplay = GameObject.FindGameObjectWithTag("HealthStatusDisplay").GetComponent<HealthPanelDisplay>();
+        //hpDisplay = GameObject.FindGameObjectWithTag("HealthStatusDisplay").GetComponent<HealthPanelDisplay>();
         ammoNum = UI.bullet;
         if (bulletSpeed == 0)
         {

@@ -4,7 +4,7 @@ using System;
 
 public class AmmoScript : MonoBehaviour
 {
-    private Rigidbody rb;
+    //private Rigidbody rb;
     public int hitCounts;
     private int hitsLeft;
     private int ID;
@@ -23,7 +23,7 @@ public class AmmoScript : MonoBehaviour
     // Good to place calcs that are independent from other game objects here
     void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         if (Math.Abs(spinFactor) <= 0)
         {
             spinFactor = 15f;

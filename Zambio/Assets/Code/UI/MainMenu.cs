@@ -76,4 +76,11 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
+    public void onDestroy()
+    {
+        cursorLock = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+
 }

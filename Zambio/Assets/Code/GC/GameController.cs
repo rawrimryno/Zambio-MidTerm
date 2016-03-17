@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
     public GameObject[] ammoPrefab;
     public GameObject[] powerUpPrefab;
 
-    private bool UIenabled = true;
+    //private bool UIenabled = true;
 
     void Awake()
     {
@@ -29,7 +29,8 @@ public class GameController : MonoBehaviour
     {
         gc = GameControllerSingleton.get();
 
-        gc.loadTexts(powerUpFile, ammoFile, AmmoSpriteList, PowerUpSpriteList, ammoPrefab, powerUpPrefab);
+        if (gc.powerUpByID.Count == 0) //Zach Edit - Partly solves deathsequence
+            gc.loadTexts(powerUpFile, ammoFile, AmmoSpriteList, PowerUpSpriteList, ammoPrefab, powerUpPrefab);
     }
 
     // Update is called once per frame
