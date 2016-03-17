@@ -164,6 +164,7 @@ public class PlayerController : MonoBehaviour
         gc.init = false;
         UI.init = false;
         setHealth(20);
+        Cursor.lockState = CursorLockMode.None;
         Debug.Log("hi");
         //Game Over
     }

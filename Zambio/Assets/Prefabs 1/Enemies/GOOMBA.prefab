@@ -6317,7 +6317,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 124206}
   m_Enabled: 1
   m_Radius: 0.4
-  m_Speed: 5
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -6362,7 +6362,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Speed
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: hitTime

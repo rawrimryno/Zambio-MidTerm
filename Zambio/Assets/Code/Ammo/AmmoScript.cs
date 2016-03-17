@@ -9,6 +9,7 @@ public class AmmoScript : MonoBehaviour
     private int hitsLeft;
     private int ID;
     public float speed;
+    bool init = false;
 
     public float spinFactor;
 
@@ -23,11 +24,6 @@ public class AmmoScript : MonoBehaviour
     // Good to place calcs that are independent from other game objects here
     void Awake()
     {
-        //rb = GetComponent<Rigidbody>();
-        if (Math.Abs(spinFactor) <= 0)
-        {
-            spinFactor = 15f;
-        }
 
         if (this.gameObject.name == "redShell")
         {
@@ -37,12 +33,17 @@ public class AmmoScript : MonoBehaviour
             acquireEnemy();
         }
         hitsLeft = hitCounts;
-        gc = GameControllerSingleton.get();
     }
 
     // Use this for initialization
     void Start()
     {
+        if (!init)
+        {
+            gc = GameControllerSingleton.get();
+
+        }
+
         if ( lifetime <= 0)
         {
             lifetime = 5;
