@@ -37,10 +37,7 @@ public class EnemyController : MonoBehaviour
         gc = GameControllerSingleton.get();
         enemyNav = GetComponent<NavAgentGoToTransform>();
         rb = GetComponent<Rigidbody>();
-        if (gc.init)
-        {
-            acquirePlayer();
-        }
+        acquirePlayer();
     }
 
     // Update is called once per frame

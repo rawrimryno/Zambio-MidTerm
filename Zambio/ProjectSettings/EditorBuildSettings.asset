@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/Level One.unity
   - enabled: 1
     path: Assets/_Scenes/UI.unity
+  - enabled: 1
+    path: Assets/_Scenes/Inventory.unity
