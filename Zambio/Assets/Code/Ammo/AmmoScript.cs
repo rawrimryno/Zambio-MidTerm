@@ -11,6 +11,7 @@ public class AmmoScript : MonoBehaviour
     public float speed;
     bool init = false;
 
+
     public float spinFactor;
 
     NavMeshAgent meshAgent;
@@ -19,6 +20,7 @@ public class AmmoScript : MonoBehaviour
     public float age=0, lifetime=4;
 
     GameControllerSingleton gc;
+    SpawnerController sc;
 
     // Called at the same time if it is in a sceneload, for all objects being loaded
     // Good to place calcs that are independent from other game objects here
@@ -41,7 +43,7 @@ public class AmmoScript : MonoBehaviour
         if (!init)
         {
             gc = GameControllerSingleton.get();
-
+            sc = gc.sc;
         }
 
         if ( lifetime <= 0)
@@ -88,6 +90,7 @@ public class AmmoScript : MonoBehaviour
 
             // Points for now
             gc.pc.adjustScore(10);
+            gc.sc.registerDeadEnemy();
             cInfo.gameObject.SetActive(false);
             Destroy(cInfo.gameObject);
         }

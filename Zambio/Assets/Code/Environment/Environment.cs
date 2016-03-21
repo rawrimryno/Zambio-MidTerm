@@ -31,6 +31,10 @@ public class Environment : MonoBehaviour
     private float dt;
     private Quaternion initSunRotation/*, finalSunRotation*/;
     private Vector3 SunRotationAxis;
+    float SunSpeed;
+    float normInitTime;
+    float dtInHours;
+    float percentDay;
 
 
 
@@ -38,7 +42,7 @@ public class Environment : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        initSunRotation = Quaternion.Euler(0f,60f,0f);
+        initSunRotation = Quaternion.Euler(0f, 60f, 0f);
         //finalSunRotation = Quaternion.Euler(new Vector3(359.9f, 60f, 0f));
 
         SunRotationAxis = initSunRotation * Vector3.right;
@@ -54,45 +58,43 @@ public class Environment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float SunSpeed;
-        float normInitTime;
-        float dtInHours;
-        float percentDay;
-        // This controls the Rotation of the Light Source,
-        // Gives the appearance of rising and sitting
-        dt = Time.time % DayLength;        // 0 -> dayLength
-        SunSpeed = 360f / DayLength;       // 1 Cycle/dayLength
-        percentDay = dt / DayLength;       // (0 -> DayLength)/DayLength
-        dtInHours = percentDay * 24f;      // (0 -> 1) * 24 should resemble hours now
-        normInitTime = initTime / 24f * DayLength;  // initTime is in hours, make it percent apply to dayDuration
-        //Debug.Log("<b>dtInHours : " + dtInHours + "</b>");
-        // This rotates our sun
-        Sun.transform.rotation = Quaternion.AngleAxis(SunSpeed * (dt - normInitTime), SunRotationAxis);
+        if (Sun != null)
+        {
+            // This controls the Rotation of the Light Source,
+            // Gives the appearance of rising and sitting
+            dt = Time.time % DayLength;        // 0 -> dayLength
+            SunSpeed = 360f / DayLength;       // 1 Cycle/dayLength
+            percentDay = dt / DayLength;       // (0 -> DayLength)/DayLength
+            dtInHours = percentDay * 24f;      // (0 -> 1) * 24 should resemble hours now
+            normInitTime = initTime / 24f * DayLength;  // initTime is in hours, make it percent apply to dayDuration
+                                                        //Debug.Log("<b>dtInHours : " + dtInHours + "</b>");
+                                                        // This rotates our sun
+            Sun.transform.rotation = Quaternion.AngleAxis(SunSpeed * (dt - normInitTime), SunRotationAxis);
 
-        if (dt < DawnStart / 24f * DayLength)
-        {
-            // This if makes sure we don't do anything until 6am, sound like my life
-            // Considered FSM, but this more of a cycle than a varying statemachine
-            // Open for suggestions.
-            Night(dtInHours);
+            if (dt < DawnStart / 24f * DayLength)
+            {
+                // This if makes sure we don't do anything until 6am, sound like my life
+                // Considered FSM, but this more of a cycle than a varying statemachine
+                // Open for suggestions.
+                Night(dtInHours);
+            }
+            else if (dt < DayStart / 24f * DayLength)
+            {
+                Dawn(dtInHours);
+            }
+            else if (dt < DuskStart / 24f * DayLength)
+            {
+                Day(dtInHours);
+            }
+            else if (dt < NightStart / 24f * DayLength)
+            {
+                Dusk(dtInHours);
+            }
+            else
+            {
+                Night(dtInHours);
+            }
         }
-        else if (dt < DayStart / 24f * DayLength)
-        {
-            Dawn(dtInHours);
-        }
-        else if (dt < DuskStart / 24f * DayLength)
-        {
-            Day(dtInHours);
-        }
-        else if (dt < NightStart / 24f * DayLength)
-        {
-            Dusk(dtInHours);
-        }
-        else
-        {
-            Night(dtInHours);
-        }
-
     }
 
     // These handle aesthetics of Time Periods

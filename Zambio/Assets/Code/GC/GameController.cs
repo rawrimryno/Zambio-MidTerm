@@ -8,7 +8,6 @@ using System.Text;
 // Worker GameController
 public class GameController : MonoBehaviour
 {
-    GameData data;
     GameControllerSingleton gc;
 
     public TextAsset powerUpFile, ammoFile;
@@ -17,11 +16,12 @@ public class GameController : MonoBehaviour
     public GameObject[] ammoPrefab;
     public GameObject[] powerUpPrefab;
 
+
+
     //private bool UIenabled = true;
 
     void Awake()
     {
-
     }
 
     // Use this for initialization
@@ -29,14 +29,22 @@ public class GameController : MonoBehaviour
     {
         gc = GameControllerSingleton.get();
 
-        if (gc.powerUpByID.Count == 0) //Zach Edit - Partly solves deathsequence
+
+        //if (gc.powerUpByID.Count == 0) //Zach Edit - Partly solves deathsequence
             gc.loadTexts(powerUpFile, ammoFile, AmmoSpriteList, PowerUpSpriteList, ammoPrefab, powerUpPrefab);
     }
 
     // Update is called once per frame
     void Update()
     {
+        var spawnController = GetComponent<SpawnerController>();
+
         gc.Update();
+
+        if ( !gc.sc)
+        {
+            gc.RegisterSpawner(ref spawnController);
+        }
         // UI Toggle
         // UI should already be loaded through player controller -Ryan
         //if (Input.GetButtonDown("toggleUI"))
@@ -53,21 +61,4 @@ public class GameController : MonoBehaviour
         //    }
         //}
     }
-}
-[Serializable]
-class GameData
-{
-    public float PlayedTime { get; private set; }
-    public float RoundTime { get; private set; }
-    public int Round { get; private set; }
-    public enum GameState
-    {
-        STATE_STORY,             // We are doing some story stuff
-        STATE_DEMO,              // We are in Demo mode
-        STATE_WAVE_IN_PROGRESS,  // There is a wave in progress
-        STATE_CHILL              // We are between waves, no enemies to worry about
-                                 // More States
-    };
-    // FSM to handle with game flow
-    public GameState State { get; private set; }
 }

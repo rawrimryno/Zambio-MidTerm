@@ -8,6 +8,8 @@ using System;
 public class GameControllerSingleton : ScriptableObject
 {
     private static GameControllerSingleton _instance;
+    public SpawnerController sc;
+    public StateMachine sm;
 
     //public Dictionary<string, PowerUpDesc> powerUpData;
     public Dictionary<string, PowerUpDesc> powerUpData;
@@ -32,8 +34,12 @@ public class GameControllerSingleton : ScriptableObject
     {
         if (_instance == null)
         {
-            _instance = ScriptableObject.CreateInstance<GameControllerSingleton>();
-            _instance.Start();
+            _instance = FindObjectOfType<GameControllerSingleton>();
+            if (_instance == null)
+            {
+                _instance = ScriptableObject.CreateInstance<GameControllerSingleton>();
+                _instance.Start();
+            }
         }
         return _instance;
     }
@@ -49,9 +55,7 @@ public class GameControllerSingleton : ScriptableObject
         powerUpData = new Dictionary<string, PowerUpDesc>();
         powerUpByID = new Dictionary<int, PowerUpDesc>();
         ammoData = new Dictionary<string, AmmoDesc>();
-        ammoByID = new Dictionary<int, AmmoDesc>();
-
-        
+        ammoByID = new Dictionary<int, AmmoDesc>();      
     }
 
     public void initialize()
@@ -74,6 +78,14 @@ public class GameControllerSingleton : ScriptableObject
         if (!pc)
         {
             pc = FindObjectOfType<PlayerController>();
+        }
+        if ( !sc)
+        {
+            sc = FindObjectOfType<SpawnerController>();
+        }
+        if ( !sm)
+        {
+            sm = FindObjectOfType<StateMachine>();
         }
         // Debug.Log("GCS Updating");
     }
@@ -169,5 +181,9 @@ public class GameControllerSingleton : ScriptableObject
             Debug.Log("getAmmoSpriteByID failed for " + ammoID);
         }
         return rSprite;
+    }
+    public void RegisterSpawner(ref SpawnerController spawner)
+    {
+        sc = spawner;
     }
 }

@@ -53,7 +53,7 @@ public class PlayerShoot : MonoBehaviour {
         }
 
         ammoNum = UI.bullet-1;
-        if (Input.GetButtonDown("Fire1") && rateOfFire <= 0 && Time.timeScale != 0f)
+        if ((Input.GetButtonDown("Fire1")|| (Input.GetAxis("XboxTriggers") == 1) ) && rateOfFire <= 0 && Time.timeScale != 0f)
         {
             Rigidbody clone;
             projectile = ammo[ammoNum].GetComponent<Rigidbody>();
