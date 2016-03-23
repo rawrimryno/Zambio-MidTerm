@@ -44,7 +44,7 @@ public class SpawnerController : MonoBehaviour
         }
         else
         {
-            enemiesThisLevel = 10;
+            enemiesThisLevel = 10; 
         }
     }
 
