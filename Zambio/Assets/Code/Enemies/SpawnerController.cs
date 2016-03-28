@@ -12,6 +12,8 @@ public class SpawnerController : MonoBehaviour
     public int currEnemies { get; private set; }
     public int deadEnemies { get; private set; }
 
+    public int enemiesLeft { get; private set; }
+    public bool spawning = true;
     public bool switchState = false;
 
     GameControllerSingleton gc;
@@ -28,11 +30,14 @@ public class SpawnerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (deadEnemies != 0 && deadEnemies >= currEnemies + sceneEnemies)
+        // Has the player finished killing?
+        if ( spawning && enemiesLeft <= 0)
         {
             deadEnemies = 0;
             sceneEnemies = 0;
             switchState = true;
+            spawning = false;
+            enemiesLeft = 0;
         }
     }
 
@@ -44,7 +49,7 @@ public class SpawnerController : MonoBehaviour
         }
         else
         {
-            enemiesThisLevel = 10; 
+            enemiesThisLevel = 20; 
         }
     }
 
@@ -54,14 +59,17 @@ public class SpawnerController : MonoBehaviour
         if (currEnemies < maxEnemiesOnScreen && currEnemies < enemiesThisLevel)
         {
             status = true;
+            spawning = true;
         }
         currEnemies++;
+        enemiesLeft++;
         return status;
     }
 
     public void registerDeadEnemy()
     {
         deadEnemies++;
+        enemiesLeft--;
     }
 
 }

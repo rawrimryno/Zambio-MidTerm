@@ -8,10 +8,12 @@ public class WaitForChillTimeToEnd : IState
     public float waitTime;
     public float minWaitTime, maxWaitTime, defWaitTime = 5.0f;
     GameControllerSingleton gc;
+    SpawnerController sc;
 
     public override void OnStart()
     {
         gc = GameControllerSingleton.get();
+        sc = FindObjectOfType<SpawnerController>();
         waited = 0.0f;
         if (waitTime < minWaitTime || waitTime > maxWaitTime)
         {
@@ -25,7 +27,8 @@ public class WaitForChillTimeToEnd : IState
         if ( waited > waitTime || Input.GetKeyDown(KeyCode.F1))
         {
             this.nextState = this.futureState;
-            gc.sc.getEnemiesThisLevel();
+            sc.enabled = true;
+            sc.getEnemiesThisLevel();
         }
     }
 }
