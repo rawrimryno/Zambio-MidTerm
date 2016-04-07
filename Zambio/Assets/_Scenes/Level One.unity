@@ -14,7 +14,7 @@ SceneSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
@@ -36,7 +36,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 423857610}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -208,6 +208,10 @@ MonoBehaviour:
   initDayColor: {r: 0.84705883, g: 0.9098039, b: 0.07058824, a: 0}
   initDuskColor: {r: 0.7137255, g: 0.3882353, b: 0.14117648, a: 0}
   initNightColor: {r: 0.3137255, g: 0.09411765, b: 0.3372549, a: 0}
+  initDawnFog: {r: 0.903, g: 0.6927096, b: 0.22837369, a: 0}
+  initDayFog: {r: 0.08239622, g: 0.7224346, b: 0.9338235, a: 0}
+  initDuskFog: {r: 0.8602941, g: 0.3819409, b: 0.044279836, a: 0}
+  initNightFog: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &63225776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +278,7 @@ MonoBehaviour:
   enemiesThisLevel: 50
   levelMultiple: 10
   sceneEnemies: 0
+  spawning: 1
   switchState: 0
 --- !u!4 &94949695 stripped
 Transform:

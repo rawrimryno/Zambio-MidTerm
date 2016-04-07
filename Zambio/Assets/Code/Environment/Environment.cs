@@ -24,6 +24,11 @@ public class Environment : MonoBehaviour
     public Color initDuskColor;// = new Color(144, 96, 144);
     public Color initNightColor;// = new Color (90,60,90);
 
+    public Color initDawnFog;
+    public Color initDayFog;
+    public Color initDuskFog;
+    public Color initNightFog;
+
     private float initTime = 6;  // This is what time it is when our game starts
                                  //  This shouldn't change, but make it public to tweak
 
@@ -102,6 +107,7 @@ public class Environment : MonoBehaviour
     {
         changeIntensity(time, DawnStart, DayStart, initDawnIntensity, initDayIntensity);
         changeColor(time, DawnStart, DayStart, initDawnColor, initDayColor);
+        changeFog(time, DawnStart, DayStart, initDawnFog, initDayFog);
 
         //changeColorofSomethingToResemble(DawnColorsInWorldView);
         // Debug.Log("Dawn");
@@ -110,6 +116,8 @@ public class Environment : MonoBehaviour
     {
         changeIntensity(time, DayStart, DuskStart, initDayIntensity, initDuskIntensity);
         changeColor(time, DayStart, DuskStart, initDayColor, initDuskColor);
+        changeFog(time, DayStart, DuskStart, initDayFog, initDuskFog);
+
 
         //Debug.Log("Day");
     }
@@ -117,6 +125,8 @@ public class Environment : MonoBehaviour
     {
         changeIntensity(time, DuskStart, NightStart, initDuskIntensity, initNightIntensity);
         changeColor(time, DuskStart, NightStart, initDuskColor, initNightColor);
+        changeFog(time, DuskStart, NightStart, initDuskFog, initNightFog);
+
         // Trying out the mark-down stuff
         //Debug.Log("<b>Dusk</b>");
     }
@@ -124,9 +134,27 @@ public class Environment : MonoBehaviour
     {
         changeIntensity(time, NightStart, DawnStart, initNightIntensity, initDawnIntensity);
         changeColor(time, NightStart, DawnStart, initNightColor, initDawnColor);
+        changeFog(time, NightStart, DawnStart, initNightFog, initDawnFog);
+
         //Debug.Log("<i>Night</i>");
     }
 
+    void changeFog(float time, float initTime, float finalTime, Color initFog, Color finalFog)
+    {
+        if (time < initTime)
+        {
+            time += 24;
+        }
+        if (finalTime < initTime)
+        {
+            finalTime += 24;
+        }
+        float duration = Math.Abs(finalTime - initTime);
+        float perCentTime = (time - initTime) / duration;
+
+        RenderSettings.fogColor = Color.Lerp(initFog, finalFog, perCentTime);
+
+    }
 
     void changeIntensity(float time, float initTime, float finalTime, float initIntensity, float finalIntensity)
     {
@@ -156,7 +184,9 @@ public class Environment : MonoBehaviour
         }
         float duration = Math.Abs(finalTime - initTime);
         float percentTime = (time - initTime) / duration;
+
         Sun.color = Color.Lerp(initColor, finalColor, percentTime);
     }
+
 
 }

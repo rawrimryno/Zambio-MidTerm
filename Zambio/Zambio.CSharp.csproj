@@ -75,6 +75,8 @@
     <Compile Include="Assets\Code\GC\StateMachine\StateMachine.cs" />
     <Compile Include="Assets\Code\GC\StateMachine\WaitForChillTimeToEnd.cs" />
     <Compile Include="Assets\Code\NavAgent\NavAgentGoToTransform.cs" />
+    <Compile Include="Assets\Code\Observer\Observer.cs" />
+    <Compile Include="Assets\Code\Observer\Subject.cs" />
     <Compile Include="Assets\Code\Player\Inventory.cs" />
     <Compile Include="Assets\Code\Player\MouseLook.cs" />
     <Compile Include="Assets\Code\Player\PlayerController.cs" />

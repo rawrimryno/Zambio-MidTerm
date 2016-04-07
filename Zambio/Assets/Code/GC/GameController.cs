@@ -16,12 +16,15 @@ public class GameController : MonoBehaviour
     public GameObject[] ammoPrefab;
     public GameObject[] powerUpPrefab;
 
+    SpawnerController spawnController;
+
 
 
     //private bool UIenabled = true;
 
     void Awake()
     {
+        spawnController = GetComponent<SpawnerController>();
     }
 
     // Use this for initialization
@@ -37,7 +40,10 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var spawnController = GetComponent<SpawnerController>();
+        if (!spawnController) {
+            spawnController = GetComponent<SpawnerController>();
+
+        }
 
         gc.Update();
 

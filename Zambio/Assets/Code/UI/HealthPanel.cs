@@ -15,6 +15,7 @@ public class HealthPanel : MonoBehaviour
     public Text scoreTXT;
     public Image[] ammo;
 
+    UIHealthObserver healthObserver;
 
     // For Heart Change
     GameControllerSingleton gc;
@@ -27,6 +28,11 @@ public class HealthPanel : MonoBehaviour
     private float coolDownCur;
 
     public bool init = false;
+
+    void Awake()
+    {
+        healthObserver = new UIHealthObserver();
+    }
 
     void Start()
     {
@@ -55,6 +61,7 @@ public class HealthPanel : MonoBehaviour
         //}
 
 
+
     }
 
     void Update()
@@ -64,6 +71,11 @@ public class HealthPanel : MonoBehaviour
             scoreTXT = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
             gc = GameControllerSingleton.get();
             init = true;
+
+            // Register Model to Oberver and then assign observer 
+            healthObserver.healthSubject = gc.pc.healthModel;
+            gc.pc.healthModel.Attach(healthObserver);
+            healthObserver.healthPanel = this;
             //Debug.Log("got GameController in health panel");
         }
         //int i = 0;
@@ -128,6 +140,7 @@ public class HealthPanel : MonoBehaviour
     public void getScore()
     {
         score = gc.pc.score;
+        
         setScore();
         //Debug.Log("ScorePanel is Getting Score " + score);
     }
@@ -142,9 +155,54 @@ public class HealthPanel : MonoBehaviour
 
     public void getHealth()
     {
-        health = gc.pc.health;
+        //health = gc.pc.health;  ** Health should be updated through Observer
         setHearts();
         //Debug.Log("HealthPanel is Getting Health " + health);
+    }
+    public void setHearts( int health )
+    {
+        if (health < 0)
+        {
+            health = 0;
+        }
+        if (health > 20)
+        {
+            health = 20;
+        }
+
+        int fullHeart = health / 4;
+        int partHeart = health % 4;
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (i <= fullHeart - 1)
+            {
+                hearts[i].sprite = heartIcons[3];
+                hearts[i].color = Color.red;
+            }
+            else if (i == fullHeart && partHeart > 0)
+            {
+                switch (partHeart)
+                {
+                    case 1:
+                        hearts[i].sprite = heartIcons[0];
+                        break;
+                    case 2:
+                        hearts[i].sprite = heartIcons[1];
+                        break;
+                    case 3:
+                        hearts[i].sprite = heartIcons[2];
+                        break;
+                    default:
+                        break;
+                }
+                hearts[i].color = Color.red;
+            }
+            else
+            {
+                hearts[i].color = Color.clear;
+            }
+        }
     }
     public void setHearts()
     {

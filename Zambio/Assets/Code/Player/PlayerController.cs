@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     private List<PowerUp> myPowerUps;
     GameControllerSingleton gc;
 
+    // Pattern Practice
+    public HealthSubject healthModel;
+
     //private bool dead = false;
     public int score { get; set; }
 
@@ -30,6 +33,11 @@ public class PlayerController : MonoBehaviour
         gc = GameControllerSingleton.get();
         health = 20;
         score = 0;
+
+        // Health Model
+        healthModel = new HealthSubject();
+        healthModel.SetState(health);
+
     }
     // Use this for initialization
     void Start()
@@ -39,6 +47,9 @@ public class PlayerController : MonoBehaviour
         ammo = UI.bullet;
         myInventory = GetComponent<Inventory>();
         myPowerUps = new List<PowerUp>();
+
+        // Health Observer Registration
+
     }
 
     // Update is called once per frame
@@ -119,6 +130,8 @@ public class PlayerController : MonoBehaviour
                 myPowerUps.Add(thisPowerUp);
             }
 
+          
+
             tColl.gameObject.SetActive(false);
             Destroy(tColl.gameObject);
         }
@@ -127,7 +140,9 @@ public class PlayerController : MonoBehaviour
     private void setHealth(int amt)
     {
         health = amt;
-        UI.getHealth();
+        healthModel.SetState(amt);
+        //UI.setHearts(); 
+        healthModel.Notify();
         if (health < 1)
         {
             deathSequence();
@@ -146,7 +161,10 @@ public class PlayerController : MonoBehaviour
     {
         //Debug.Log("Adjusting Health by " + amt);
         health += amt;
-        UI.getHealth();
+        //UI.getHealth();
+        //UI.setHearts(); 
+        healthModel.SetState(health);
+        healthModel.Notify();
         if ( health < 1)
         {
             health = 0;
