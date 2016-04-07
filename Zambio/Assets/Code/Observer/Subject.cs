@@ -3,7 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 public abstract class Subject {
-    protected List<Observer> observers;
+    private List<Observer> observers;
+
+    public Subject()
+    {
+        observers = new List<Observer>();
+    }
 
     public void Notify()
     {
@@ -27,10 +32,12 @@ public abstract class Subject {
 }
 public class HealthSubject : Subject
 {
-    public HealthSubject()
-    {
-        observers = new List<Observer>();
-    }
+    //public HealthSubject()
+    //{
+    //    observers = new List<Observer>();
+    //}
+
+
     private int health;
     public int GetState() {
         return health;
@@ -38,5 +45,18 @@ public class HealthSubject : Subject
     public void SetState( int inH )
     {
         health = inH;
+    }
+}
+
+public class AmmoSubject : Subject
+{
+    private AmmoContents ammo;
+    public AmmoContents GetState()
+    {
+        return ammo;
+    }
+    public void SetState( AmmoContents inAmmo)
+    {
+        ammo = inAmmo;
     }
 }
