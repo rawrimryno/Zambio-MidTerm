@@ -7,16 +7,17 @@ public class SpawnerController : MonoBehaviour
 
     public int enemiesThisLevel;
     public int levelMultiple = 10;
-    public int sceneEnemies;
-
-    public int currEnemies { get; private set; }
-    public int deadEnemies { get; private set; }
 
     public int enemiesLeft { get; private set; }
+    public int enemiesKilled { get; private set; }
     public bool spawning = true;
     public bool switchState = false;
 
     GameControllerSingleton gc;
+
+    public SpawnSubject spawnSubject;
+
+    private bool oInit = false; // observer's initial broadcast
 
     // Use this for initialization
     void Start()
@@ -25,16 +26,23 @@ public class SpawnerController : MonoBehaviour
         var temp = this;
         gc.RegisterSpawner(ref temp);
         getEnemiesThisLevel();
+        spawnSubject = new SpawnSubject();
+        spawnSubject.SetState(this);
+        enemiesLeft = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Has the player finished killing?
-        if ( spawning && enemiesLeft <= 0)
+        // All init observers should be attached
+        if ( !oInit)
         {
-            deadEnemies = 0;
-            sceneEnemies = 0;
+            spawnSubject.Notify();
+        }
+
+        // Has the player finished killing?
+        if ( spawning && enemiesLeft == -1 )
+        {
             switchState = true;
             spawning = false;
             enemiesLeft = 0;
@@ -56,20 +64,22 @@ public class SpawnerController : MonoBehaviour
     public bool canSpawn()
     {
         bool status = false;
-        if (currEnemies < maxEnemiesOnScreen && currEnemies < enemiesThisLevel)
+        if (enemiesLeft+enemiesKilled > enemiesThisLevel)
         {
             status = true;
             spawning = true;
         }
-        currEnemies++;
-        enemiesLeft++;
         return status;
     }
 
     public void registerDeadEnemy()
     {
-        deadEnemies++;
         enemiesLeft--;
+    }
+
+    public void registerNewEnemy()
+    {
+        enemiesLeft++;
     }
 
 }

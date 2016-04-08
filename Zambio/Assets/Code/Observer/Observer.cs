@@ -6,6 +6,19 @@ public abstract class Observer {
     public abstract void update();
 }
 
+public class SpawnControllerObserver : Observer
+{
+    public bool canSpawn = false;
+    public SpawnSubject spawnSubject;
+    public SpawnerController spawnController;
+
+    public override void update()
+    {
+        spawnController = spawnSubject.GetState();
+        canSpawn = spawnController.canSpawn();
+    }
+}
+
 public class UIAmmoObserver : Observer
 {
     public AmmoSubject ammoSubject;
