@@ -13,7 +13,7 @@ public class KillingEnemies : IState {
         gc = GameControllerSingleton.get();
         sm = GetComponentInParent<StateMachine>();
         spawnO = new SpawnControllerObserver();
-        gc.sc.spawnSubject.Attach(spawnO);
+        FindObjectOfType<SpawnerController>().spawnSubject.Attach(spawnO);
 
         //sc = FindObjectOfType<SpawnerController>();
         //sc.enabled = true;
@@ -22,7 +22,7 @@ public class KillingEnemies : IState {
     public override void OnUpdate()
     {
         // Change state Conditions
-        if ( Input.GetKeyDown(KeyCode.F1) ) // spawnO is null in here
+        if ( spawnO.spawnSubject.GetState().switchState || Input.GetKeyDown(KeyCode.F1) ) // spawnO is null in here
         {
             spawnO.spawnController.enabled = false;
             spawnO.spawnController.switchState = false;

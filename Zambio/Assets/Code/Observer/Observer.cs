@@ -8,14 +8,20 @@ public abstract class Observer {
 
 public class SpawnControllerObserver : Observer
 {
-    public bool canSpawn = false;
+    //public bool canSpawn = false;
     public SpawnSubject spawnSubject;
-    public SpawnerController spawnController;
+    public SpawnerController spawnController; // For registerNewEnemy
+
+    public SpawnControllerObserver()
+    {
+        //spawnSubject = new SpawnSubject();
+        //spawnController = new SpawnerController();
+    }
 
     public override void update()
     {
         spawnController = spawnSubject.GetState();
-        canSpawn = spawnController.canSpawn();
+        //spawner.canSpawn = spawnSubject.GetState().canSpawn();
     }
 }
 

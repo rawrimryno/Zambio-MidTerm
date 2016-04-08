@@ -34,22 +34,32 @@ public abstract class Subject {
 
 public class SpawnSubject : Subject
 {
-    private SpawnerController spawnerController;
+    private SpawnerController state;
+    private GameControllerSingleton gc;
+
+    //public SpawnSubject():base()
+    //{
+    //    gc = GameControllerSingleton.get();
+    //    state = gc.sc;
+    //}
 
     public bool Attach(SpawnControllerObserver observer)
     {
         observers.Add(observer);
         observer.spawnSubject = this;
+        observer.update();
+        //observer.spawnController 
         return observers.Contains(observer);
     }
 
     public SpawnerController GetState()
     {
-        return spawnerController;
+        return state;
     }
     public void SetState( SpawnerController inSpawner)
     {
-        spawnerController = inSpawner;
+        //state = new SpawnerController();
+        state = inSpawner;
     }
 }
 public class HealthSubject : Subject

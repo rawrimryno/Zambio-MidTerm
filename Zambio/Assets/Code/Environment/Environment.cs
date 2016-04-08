@@ -54,6 +54,9 @@ public class Environment : MonoBehaviour
         Sun = GetComponentInChildren<Light>();
         Sun.intensity = initDawnIntensity;
 
+        RenderSettings.fog = true;
+
+
         if (DayLength == 0)
         {
             DayLength = 120;

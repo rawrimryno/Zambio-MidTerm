@@ -6,10 +6,10 @@ public class EnemySpawner : MonoBehaviour {
     public float rate;
     //public float level;
     //public SpawnerController master;
-
     SpawnControllerObserver spawnObserver;
 
     public bool registered=false;
+    public bool canSpawn = false;
 
     void Start()
     {
@@ -18,9 +18,9 @@ public class EnemySpawner : MonoBehaviour {
 
         //master = FindObjectOfType<SpawnerController>();
         //level = master.enemiesThisLevel / master.levelMultiple;
-
-        InvokeRepeating("Spawn",1,rate);   
     }
+
+
 
     void Update()
     {
@@ -29,6 +29,7 @@ public class EnemySpawner : MonoBehaviour {
             if (FindObjectOfType<SpawnerController>().spawnSubject.Attach(spawnObserver))
             {
                 registered = true;
+                InvokeRepeating("Spawn", 1, rate);
             }
         }
     }
@@ -36,10 +37,11 @@ public class EnemySpawner : MonoBehaviour {
     void Spawn()
     {
         float rand = Random.Range(2, 5) * Mathf.Pow(-1,Random.Range(2, 5));
-        if ( spawnObserver.canSpawn )
+        canSpawn = spawnObserver.spawnSubject.GetState().canSpawn();
+        if ( canSpawn )
         {
             Instantiate(Enemy, new Vector3(transform.position.x + rand, transform.position.y, transform.position.z + rand), transform.rotation);
-            spawnObserver.spawnController.registerNewEnemy();
+            spawnObserver.spawnSubject.GetState().registerNewEnemy();
         }
     }
 }
