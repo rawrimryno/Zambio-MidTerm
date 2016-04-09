@@ -3663,6 +3663,84 @@ ModelImporter:
     4300150: pasted__group21
     4300152: polySurface115
     4300154: polySurface116
+    6400000: group19
+    6400002: group21
+    6400004: pasted__group21
+    6400006: polySurface100
+    6400008: polySurface101
+    6400010: polySurface102
+    6400012: polySurface103
+    6400014: polySurface104
+    6400016: polySurface105
+    6400018: polySurface106
+    6400020: polySurface107
+    6400022: polySurface108
+    6400024: polySurface109
+    6400026: polySurface110
+    6400028: polySurface111
+    6400030: polySurface112
+    6400032: polySurface113
+    6400034: polySurface114
+    6400036: polySurface115
+    6400038: polySurface116
+    6400040: polySurface42
+    6400042: polySurface43
+    6400044: polySurface44
+    6400046: polySurface45
+    6400048: polySurface46
+    6400050: polySurface47
+    6400052: polySurface48
+    6400054: polySurface49
+    6400056: polySurface50
+    6400058: polySurface51
+    6400060: polySurface52
+    6400062: polySurface53
+    6400064: polySurface54
+    6400066: polySurface55
+    6400068: polySurface56
+    6400070: polySurface57
+    6400072: polySurface58
+    6400074: polySurface59
+    6400076: polySurface60
+    6400078: polySurface61
+    6400080: polySurface62
+    6400082: polySurface63
+    6400084: polySurface64
+    6400086: polySurface65
+    6400088: polySurface66
+    6400090: polySurface67
+    6400092: polySurface68
+    6400094: polySurface69
+    6400096: polySurface70
+    6400098: polySurface71
+    6400100: polySurface72
+    6400102: polySurface73
+    6400104: polySurface74
+    6400106: polySurface75
+    6400108: polySurface76
+    6400110: polySurface77
+    6400112: polySurface78
+    6400114: polySurface79
+    6400116: polySurface80
+    6400118: polySurface81
+    6400120: polySurface82
+    6400122: polySurface83
+    6400124: polySurface84
+    6400126: polySurface85
+    6400128: polySurface86
+    6400130: polySurface87
+    6400132: polySurface88
+    6400134: polySurface89
+    6400136: polySurface90
+    6400138: polySurface91
+    6400140: polySurface92
+    6400142: polySurface93
+    6400144: polySurface94
+    6400146: polySurface95
+    6400148: polySurface96
+    6400150: polySurface97
+    6400152: polySurface98
+    6400154: polySurface99
   materials:
     importMaterials: 1
     materialName: 0
@@ -3689,7 +3767,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
