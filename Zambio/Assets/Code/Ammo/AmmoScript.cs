@@ -120,6 +120,7 @@ public class AmmoScript : MonoBehaviour
     {
         System.Random rand = new System.Random();
         int itemType = rand.Next(0, 100);
+        bool metal = false;
         if (itemType < 50)
         {
             //make ammo
@@ -166,9 +167,17 @@ public class AmmoScript : MonoBehaviour
             else if (itemType <= 100)
             {
                 gc.powerUpByID.TryGetValue(4, out prefab);
+                metal = true;
 
             }
-            Instantiate(prefab.prefab, transform.position, transform.rotation);
+            if (metal == false)
+            {
+                Instantiate(prefab.prefab, transform.position, transform.rotation);
+            }else
+            {
+
+                Instantiate(prefab.prefab, transform.position + new Vector3(0, 3, 0), transform.rotation);
+            }
         }
         Destroy(gameObject);
     }
