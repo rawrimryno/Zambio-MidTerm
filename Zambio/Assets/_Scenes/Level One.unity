@@ -1477,9 +1477,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.77
-  m_Height: 5.53
+  m_Height: 18.13
   m_Direction: 1
-  m_Center: {x: 0, y: 1.87, z: -0.29}
+  m_Center: {x: 0, y: -0.01, z: -0.29}
 --- !u!1001 &339203425
 Prefab:
   m_ObjectHideFlags: 0
@@ -8564,9 +8564,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.77
-  m_Height: 5.53
+  m_Height: 18.13
   m_Direction: 1
-  m_Center: {x: 0, y: 1.87, z: -0.29}
+  m_Center: {x: 0, y: -0.01, z: -0.29}
 --- !u!1 &423857609
 GameObject:
   m_ObjectHideFlags: 0
@@ -16207,9 +16207,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.77
-  m_Height: 5.53
+  m_Height: 18.13
   m_Direction: 1
-  m_Center: {x: 0, y: 1.87, z: -0.29}
+  m_Center: {x: 0, y: -0.01, z: -0.29}
 --- !u!1 &758447117
 GameObject:
   m_ObjectHideFlags: 0
@@ -16685,9 +16685,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.77
-  m_Height: 5.53
+  m_Height: 18.13
   m_Direction: 1
-  m_Center: {x: 0, y: 1.87, z: -0.29}
+  m_Center: {x: 0, y: -0.01, z: -0.29}
 --- !u!1 &988505775
 GameObject:
   m_ObjectHideFlags: 0
@@ -24741,9 +24741,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.77
-  m_Height: 5.53
+  m_Height: 18.13
   m_Direction: 1
-  m_Center: {x: 0, y: 1.87, z: -0.29}
+  m_Center: {x: 0, y: -0.01, z: -0.29}
 --- !u!1001 &1246246331
 Prefab:
   m_ObjectHideFlags: 0
@@ -25138,9 +25138,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.77
-  m_Height: 5.53
+  m_Height: 18.13
   m_Direction: 1
-  m_Center: {x: 0, y: 1.87, z: -0.29}
+  m_Center: {x: 0, y: -0.01, z: -0.29}
 --- !u!1 &1355088155
 GameObject:
   m_ObjectHideFlags: 0
@@ -25470,9 +25470,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.77
-  m_Height: 5.53
+  m_Height: 18.13
   m_Direction: 1
-  m_Center: {x: 0, y: 1.87, z: -0.29}
+  m_Center: {x: 0, y: -0.01, z: -0.29}
 --- !u!1001 &1391397642
 Prefab:
   m_ObjectHideFlags: 0
@@ -33801,9 +33801,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.77
-  m_Height: 5.53
+  m_Height: 18.13
   m_Direction: 1
-  m_Center: {x: 0, y: 1.87, z: -0.29}
+  m_Center: {x: 0, y: -0.01, z: -0.29}
 --- !u!1 &1606258810 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 191142, guid: a868523fc8b24e449931a4eae4cd435c, type: 2}
@@ -33818,9 +33818,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.77
-  m_Height: 5.53
+  m_Height: 18.13
   m_Direction: 1
-  m_Center: {x: 0, y: 1.87, z: -0.29}
+  m_Center: {x: 0, y: -0.01, z: -0.29}
 --- !u!1001 &1630796602
 Prefab:
   m_ObjectHideFlags: 0
@@ -33881,9 +33881,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.77
-  m_Height: 5.53
+  m_Height: 18.13
   m_Direction: 1
-  m_Center: {x: 0, y: 1.87, z: -0.29}
+  m_Center: {x: 0, y: -0.01, z: -0.29}
 --- !u!1 &1671323521
 GameObject:
   m_ObjectHideFlags: 0
@@ -34105,9 +34105,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.77
-  m_Height: 5.53
+  m_Height: 18.13
   m_Direction: 1
-  m_Center: {x: 0, y: 1.87, z: -0.29}
+  m_Center: {x: 0, y: -0.01, z: -0.29}
 --- !u!1001 &1720946544
 Prefab:
   m_ObjectHideFlags: 0
@@ -41446,9 +41446,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.77
-  m_Height: 5.53
+  m_Height: 18.13
   m_Direction: 1
-  m_Center: {x: 0, y: 1.87, z: -0.29}
+  m_Center: {x: 0, y: -0.01, z: -0.29}
 --- !u!4 &1761323927 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400020, guid: 81cf75bee96dc4e2999eea32078faf61, type: 3}
@@ -56171,9 +56171,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.77
-  m_Height: 5.53
+  m_Height: 18.13
   m_Direction: 1
-  m_Center: {x: 0, y: 1.87, z: -0.29}
+  m_Center: {x: 0, y: -0.01, z: -0.29}
 --- !u!4 &1991929449
 Transform:
   m_ObjectHideFlags: 0
