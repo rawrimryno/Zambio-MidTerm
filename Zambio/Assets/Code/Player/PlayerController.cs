@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
             if (health + thisPowerUp.numQtrHearts < 20)
             {
                 setHealth(health + thisPowerUp.numQtrHearts);
-                UI.getHealth();
+                //UI.getHealth();
             }
             else if (health + thisPowerUp.numQtrHearts <= 0) // Rancid Mushroom
             {
