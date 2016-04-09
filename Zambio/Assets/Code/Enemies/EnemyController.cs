@@ -13,7 +13,9 @@ public class EnemyController : MonoBehaviour
 
     public float pipeHeight = 5;
 
+    public int health;
     public int damage;
+    public int value;
     public float hitTime;  // time for one hit
     private float coolDown=0;
 
@@ -28,6 +30,14 @@ public class EnemyController : MonoBehaviour
         if (hitTime <= 0)
         {
             hitTime = 2.0f;
+        }
+        if (health <= 0)
+        {
+            health = 1;
+        }
+        if (value <= 0)
+        {
+            value = 10;
         }
     }
 

@@ -92,8 +92,8 @@ public class PlayerShoot : MonoBehaviour {
                     timer = initRoF;
                     break;
             }
-            Debug.Log(ammo[ammoNum].name + " has "+ammoObserver.ammoSubject.GetState().returnAmmo(ammoNum)+" ammo.");
             ammoObserver.ammoSubject.GetState().setAmmo(ammoNum, ammoObserver.ammoSubject.GetState().returnAmmo(ammoNum)-1);
+            Debug.Log(ammo[ammoNum].name + " has " + ammoObserver.ammoSubject.GetState().returnAmmo(ammoNum) + " ammo.");
             rateOfFire = timer;
         }
         else

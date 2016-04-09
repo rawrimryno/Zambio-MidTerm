@@ -6,10 +6,12 @@ public class AmmoScript : MonoBehaviour
 {
     //private Rigidbody rb;
     public int hitCounts;
+    public int damage;
     private int hitsLeft;
     private int ID;
     public float speed;
     bool init = false;
+    private Inventory inventory;
 
 
     public float spinFactor;
@@ -35,6 +37,11 @@ public class AmmoScript : MonoBehaviour
             acquireEnemy();
         }
         hitsLeft = hitCounts;
+
+        if (damage <= 0)
+        {
+            damage = 1;
+        }
     }
 
     // Use this for initialization
@@ -44,6 +51,7 @@ public class AmmoScript : MonoBehaviour
         {
             gc = GameControllerSingleton.get();
             sc = gc.sc;
+            inventory = gc.pc.myInventory;
         }
 
         if ( lifetime <= 0)
@@ -76,6 +84,8 @@ public class AmmoScript : MonoBehaviour
 
     void OnCollisionEnter(Collision cInfo)
     {
+        EnemyController enemy = cInfo.gameObject.GetComponent<EnemyController>();
+
         if (cInfo.transform.CompareTag("Enemy"))
         {
             if (--hitsLeft < 1)
@@ -88,11 +98,16 @@ public class AmmoScript : MonoBehaviour
                 acquireEnemy();
             }
 
-            // Points for now
-            gc.pc.adjustScore(10);
-            gc.sc.registerDeadEnemy();
-            cInfo.gameObject.SetActive(false);
-            Destroy(cInfo.gameObject);
+            enemy.health -= damage;
+
+            if (enemy.health <= 0)
+            {
+                // Points for now
+                gc.pc.adjustScore(enemy.value);
+                gc.sc.registerDeadEnemy();
+                cInfo.gameObject.SetActive(false);
+                Destroy(cInfo.gameObject);
+            }
         }
     }
 
@@ -103,6 +118,58 @@ public class AmmoScript : MonoBehaviour
 
     void deathSequence()
     {
+        System.Random rand = new System.Random();
+        int itemType = rand.Next(0, 100);
+        if (itemType < 50)
+        {
+            //make ammo
+            if (itemType < 25)
+            {
+                inventory.ammoContents.setAmmo(0, inventory.ammoContents.returnAmmo(0) + 5);
+            }else if (itemType < 37)
+            {
+                inventory.ammoContents.setAmmo(1, inventory.ammoContents.returnAmmo(1) + 5);
+            }else if (itemType < 44)
+            {
+                inventory.ammoContents.setAmmo(2, inventory.ammoContents.returnAmmo(2) + 5);
+            }else if (itemType < 48)
+            {
+                inventory.ammoContents.setAmmo(3, inventory.ammoContents.returnAmmo(3) + 5);
+            }else if (itemType < 50)
+            {
+                inventory.ammoContents.setAmmo(4, inventory.ammoContents.returnAmmo(4) + 5);
+            }
+        }
+        else
+        {
+            PowerUpDesc prefab = new PowerUpDesc();
+            //instatiate powerup or mushroom
+            if (itemType < 65)
+            {
+                gc.powerUpByID.TryGetValue(2, out prefab);
+      
+            }else if (itemType < 78)
+            {
+                gc.powerUpByID.TryGetValue(0, out prefab);
+
+            }
+            else if (itemType < 80)
+            {
+                gc.powerUpByID.TryGetValue(1, out prefab);
+
+            }
+            else if (itemType < 90)
+            {
+                gc.powerUpByID.TryGetValue(3, out prefab);
+
+            }
+            else if (itemType <= 100)
+            {
+                gc.powerUpByID.TryGetValue(4, out prefab);
+
+            }
+            Instantiate(prefab.prefab, transform.position, transform.rotation);
+        }
         Destroy(gameObject);
     }
 }
