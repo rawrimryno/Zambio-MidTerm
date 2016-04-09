@@ -86,7 +86,7 @@ public class AmmoSubject : Subject
 
     void Awake()
     {
-        ammo = new AmmoContents();
+       //ammo = new AmmoContents();
     }
     public AmmoContents GetState()
     {
@@ -95,5 +95,14 @@ public class AmmoSubject : Subject
     public void SetState( AmmoContents inAmmo)
     {
         ammo = inAmmo;
+    }
+
+    public bool Attach(UIAmmoObserver observer)
+    {
+        observers.Add(observer);
+        observer.ammoSubject = this;
+        observer.update();
+        //observer.spawnController 
+        return observers.Contains(observer);
     }
 }
