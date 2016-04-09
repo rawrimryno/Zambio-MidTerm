@@ -172,11 +172,11 @@ public class AmmoScript : MonoBehaviour
             }
             if (metal == false)
             {
-                Instantiate(prefab.prefab, transform.position, transform.rotation);
+                Instantiate(prefab.prefab, transform.position, new Quaternion(0, 0, 0, 0));
             }else
             {
 
-                Instantiate(prefab.prefab, transform.position + new Vector3(0, 3, 0), transform.rotation);
+                Instantiate(prefab.prefab, transform.position + new Vector3(0, 3, 0), new Quaternion(0,0,0,0));
             }
         }
         Destroy(gameObject);
