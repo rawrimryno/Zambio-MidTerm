@@ -16451,7 +16451,7 @@ Prefab:
   m_IsPrefabParent: 0
 --- !u!4 &923877937 stripped
 Transform:
-  m_PrefabParentObject: {fileID: 475764, guid: fa428430eef86fe4ca99c5c8bb4eb64a, type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 923877936}
 --- !u!1 &988505775
 GameObject:
@@ -55446,8 +55446,8 @@ Transform:
   m_PrefabParentObject: {fileID: 478504, guid: a01beabb998eda345973391aca41e425, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1059435265}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 200, y: 9.39, z: 75}
+  m_LocalRotation: {x: 0, y: 0.9994273, z: 0, w: 0.033839606}
+  m_LocalPosition: {x: 213.34021, y: 9.39, z: 295.00256}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1735602124}
