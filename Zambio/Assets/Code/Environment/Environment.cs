@@ -29,6 +29,8 @@ public class Environment : MonoBehaviour
     public Color initDuskFog;
     public Color initNightFog;
 
+    public float SunAngle = 0;
+
     private float initTime = 6;  // This is what time it is when our game starts
                                  //  This shouldn't change, but make it public to tweak
 
