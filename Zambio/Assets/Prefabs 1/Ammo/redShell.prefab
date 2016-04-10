@@ -377,13 +377,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dcedbc8fa6f42a47a45017e790e0a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitCounts: 0
-  damage: 0
+  hitCounts: 3
+  damage: 1
   speed: 0
-  maxRedForceDistance: 2
   spinFactor: 0
+  redAccelMultiplier: 30
   age: 0
-  lifetime: 4
+  lifetime: 6
 --- !u!135 &13511262
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -402,7 +402,7 @@ NavMeshAgent:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133732}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Speed: 20
   m_Acceleration: 50

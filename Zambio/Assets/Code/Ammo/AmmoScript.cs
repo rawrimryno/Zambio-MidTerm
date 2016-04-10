@@ -11,10 +11,10 @@ public class AmmoScript : MonoBehaviour
     bool init = false;
     private Inventory inventory;
     Rigidbody rb;
-    public float maxRedForceDistance = 2;
 
 
     public float spinFactor;
+    public float redAccelMultiplier = 7;
 
     NavMeshAgent meshAgent;
     NavAgentGoToTransform navAgent;
@@ -74,13 +74,16 @@ public class AmmoScript : MonoBehaviour
         age += Time.deltaTime;
         if (age >= lifetime)
         {
-            deathSequence();
+            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
 
 
         if ( gameObject.name == "redShell" && navAgent.target != null )
         {
-            rb.AddForce(gameObject.transform.position - navAgent.target.position);
+            Vector3 dir = new Vector3();
+            dir = navAgent.target.position+navAgent.GetComponent<Rigidbody>().velocity*Time.deltaTime - transform.position;
+            rb.AddForce(redAccelMultiplier * dir/dir.magnitude);  
         }
     }
 
@@ -100,8 +103,8 @@ public class AmmoScript : MonoBehaviour
         {
             if (--hitsLeft < 1)
             {
-                this.gameObject.SetActive(false);
-                deathSequence();
+                gameObject.SetActive(false);
+                Destroy(gameObject);
             }
             else if (gameObject.name == "redShell")
             {
@@ -117,6 +120,8 @@ public class AmmoScript : MonoBehaviour
                 gc.sc.registerDeadEnemy();
                 cInfo.gameObject.SetActive(false);
                 Destroy(cInfo.gameObject);
+                randomDrop();
+
             }
         }
     }
@@ -144,7 +149,7 @@ public class AmmoScript : MonoBehaviour
         navAgent.target = eList[best].transform;
     }
 
-    void deathSequence()
+    void randomDrop()
     {
         System.Random rand = new System.Random();
         int itemType = rand.Next(0, 100);
@@ -213,6 +218,5 @@ public class AmmoScript : MonoBehaviour
                 Instantiate(prefab.prefab, transform.position + new Vector3(0, 3, 0), new Quaternion(0, 0, 0, 0));
             }
         }
-        Destroy(gameObject);
     }
 }

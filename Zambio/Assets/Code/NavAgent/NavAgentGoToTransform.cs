@@ -18,7 +18,7 @@ public class NavAgentGoToTransform : MonoBehaviour
     {
         if (target != null)
         {
-            if ( true )
+            if ( gameObject.name != "redShell" )
             {
                 agent.SetDestination(target.position);
                 transform.LookAt(target);
