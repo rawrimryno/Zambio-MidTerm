@@ -55,7 +55,8 @@ public class GameControllerSingleton : ScriptableObject
         powerUpData = new Dictionary<string, PowerUpDesc>();
         powerUpByID = new Dictionary<int, PowerUpDesc>();
         ammoData = new Dictionary<string, AmmoDesc>();
-        ammoByID = new Dictionary<int, AmmoDesc>();      
+        ammoByID = new Dictionary<int, AmmoDesc>();
+        sm = FindObjectOfType<StateMachine>();
     }
 
     public void initialize()
@@ -83,10 +84,10 @@ public class GameControllerSingleton : ScriptableObject
         {
             sc = FindObjectOfType<SpawnerController>();
         }
-        if ( !sm)
-        {
-            sm = FindObjectOfType<StateMachine>();
-        }
+        //if ( !sm)
+        //{
+        //    sm = FindObjectOfType<StateMachine>();
+        //}
         // Debug.Log("GCS Updating");
     }
 

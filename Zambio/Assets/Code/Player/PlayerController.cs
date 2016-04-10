@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     HealthPanelDisplay hpDisplay;
     // Use this when you want to increase ammo or add Powerups already applied to character
     public int health { get; set; }
+    //describes ammo type not ammount
     private int ammo;
     private List<PowerUp> myPowerUps;
     GameControllerSingleton gc;

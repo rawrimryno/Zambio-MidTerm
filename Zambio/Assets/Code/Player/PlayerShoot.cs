@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerShoot : MonoBehaviour {
 
     public GameObject[] ammo;
     public float bulletSpeed;
     public float rateOfFire;
+    public UIAmmoObserver ammoObserver;
     private float timer;
     private float initRoF;
     private Rigidbody projectile;
@@ -14,9 +15,10 @@ public class PlayerShoot : MonoBehaviour {
     //private HealthPanelDisplay hpDisplay;
     private GameControllerSingleton gc;
     private bool ammoInit = false;
+    private bool observerRegistered = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         UI = GameObject.FindGameObjectWithTag("HealthPanel").GetComponent<HealthPanel>();
         //hpDisplay = GameObject.FindGameObjectWithTag("HealthStatusDisplay").GetComponent<HealthPanelDisplay>();
         ammoNum = UI.bullet;
@@ -32,10 +34,19 @@ public class PlayerShoot : MonoBehaviour {
         initRoF = timer = rateOfFire;
         projectile = ammo[0].GetComponent<Rigidbody>();
         gc = GameControllerSingleton.get();
-	}
+        ammoObserver = new UIAmmoObserver();
+    }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (!observerRegistered)
+        {
+            if (FindObjectOfType<Inventory>().ammoContents.ammoSubject.Attach(ammoObserver))
+            {
+                observerRegistered = true;
+            }
+        }
 
         if ( !ammoInit)
         {
@@ -53,7 +64,7 @@ public class PlayerShoot : MonoBehaviour {
         }
 
         ammoNum = UI.bullet-1;
-        if ((Input.GetButtonDown("Fire1")|| (Input.GetAxis("XboxTriggers") == 1) ) && rateOfFire <= 0 && Time.timeScale != 0f)
+        if ((Input.GetButtonDown("Fire1") || (Input.GetAxis("XboxTriggers") == 1)) && rateOfFire <= 0 && Time.timeScale != 0f && ammoObserver.ammoSubject.GetState().returnAmmo(ammoNum) > 0)
         {
             Rigidbody clone;
             projectile = ammo[ammoNum].GetComponent<Rigidbody>();
@@ -81,11 +92,13 @@ public class PlayerShoot : MonoBehaviour {
                     timer = initRoF;
                     break;
             }
+            ammoObserver.ammoSubject.GetState().setAmmo(ammoNum, ammoObserver.ammoSubject.GetState().returnAmmo(ammoNum) - 1);
+            Debug.Log(ammo[ammoNum].name + " has " + ammoObserver.ammoSubject.GetState().returnAmmo(ammoNum) + " ammo.");
             rateOfFire = timer;
         }
         else
         {
             rateOfFire -= Time.deltaTime;
         }
-	}
+    }
 }

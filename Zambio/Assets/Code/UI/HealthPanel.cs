@@ -6,28 +6,24 @@ using System;
 public class HealthPanel : MonoBehaviour
 {
 
-    public RectTransform coolDownBar;
-    public float coolDownBase;
+    UIHealthObserver healthObserver;
+    GameControllerSingleton gc;
+    public bool init = false;
+
     public Image[] hearts;
     public Sprite[] heartIcons;
     public int health;
+
     public int score;
     public Text scoreTXT;
+
     public Image[] ammo;
-
-    UIHealthObserver healthObserver;
-
-    // For Heart Change
-    GameControllerSingleton gc;
-
-
     public Sprite[] ammoIcons;
-
     public int bullet;
 
+    public RectTransform[] crossHairs;
+    private float coolDownBase;
     private float coolDownCur;
-
-    public bool init = false;
 
     void Awake()
     {
@@ -36,9 +32,7 @@ public class HealthPanel : MonoBehaviour
 
     void Start()
     {
-        coolDownCur = coolDownBase;
         changeAmmo(1);
-        coolDownCur = 0.5f; // Zach's original
         bullet = 1;
         score = 0;
         scoreTXT = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
@@ -53,51 +47,22 @@ public class HealthPanel : MonoBehaviour
             gc = GameControllerSingleton.get();
             init = true;
 
-            // Register Model to Oberver and then assign observer 
             healthObserver.healthSubject = gc.pc.healthModel;
             gc.pc.healthModel.Attach(healthObserver);
             healthObserver.healthPanel = this;
-            //Debug.Log("got GameController in health panel");
         }
 
         if (Input.GetButtonDown("Fire1"))
         {
-            coolDown();
+            
         }
 
-    }
-
-    public void coolDown()
-    {
-
-        if (coolDownCur == coolDownBase)
-        {
-            coolDownCur = 0f;
-            coolDownBar.localScale = new Vector3(0, 0, 1);
-            InvokeRepeating("coolDownScaler", 0, 0.01f);
-        }
-
-    }
-
-    private void coolDownScaler() //Visual Aid
-    {
-        if (coolDownCur < coolDownBase)
-        {
-            coolDownCur++;
-            coolDownBar.localScale = new Vector3((float)coolDownCur / coolDownBase, (float)coolDownCur / coolDownBase, 1);
-        }
-        else
-        {
-            CancelInvoke("coolDownScaler");
-        }
     }
 
     public void getScore()
     {
         score = gc.pc.score;
-        
         setScore();
-        //Debug.Log("ScorePanel is Getting Score " + score);
     }
 
     public void setScore()
@@ -110,12 +75,10 @@ public class HealthPanel : MonoBehaviour
 
     public void getHealth()
     {
-        //health = gc.pc.health;  ** Health should be updated through Observer
         setHearts();
-        //Debug.Log("HealthPanel is Getting Health " + health);
     }
 
-    public void setHearts( int health )
+    public void setHearts(int health)
     {
         if (health < 0)
         {
@@ -211,64 +174,57 @@ public class HealthPanel : MonoBehaviour
 
     public void changeAmmo(int ammoType)
     {
-        //if (!IsInvoking("coolDownScaler")) //Remove To Have A Blast
+
+        bullet = ammoType;
+
+        if (bullet < 1)
         {
+            bullet = 5;
+        }
+        if (bullet > 5)
+        {
+            bullet = 1;
+        }
 
-            coolDownCur = coolDownBase;
-            coolDownBar.localScale = new Vector3((float)coolDownCur / coolDownBase, (float)coolDownCur / coolDownBase, 1);
-
-            bullet = ammoType;
-
-            if (bullet < 1)
-            {
-                bullet = 5;
-            }
-            if (bullet > 5)
-            {
-                bullet = 1;
-            }
-
-            switch (bullet)
-            {
-                case 1:
-                    ammo[0].sprite = ammoIcons[4];
-                    ammo[1].sprite = ammoIcons[3];
-                    ammo[2].sprite = ammoIcons[2];
-                    ammo[3].sprite = ammoIcons[1];
-                    ammo[4].sprite = ammoIcons[0];
-                    break;
-                case 2:
-                    ammo[0].sprite = ammoIcons[3];
-                    ammo[1].sprite = ammoIcons[2];
-                    ammo[2].sprite = ammoIcons[1];
-                    ammo[3].sprite = ammoIcons[0];
-                    ammo[4].sprite = ammoIcons[4];
-                    break;
-                case 3:
-                    ammo[0].sprite = ammoIcons[2];
-                    ammo[1].sprite = ammoIcons[1];
-                    ammo[2].sprite = ammoIcons[0];
-                    ammo[3].sprite = ammoIcons[4];
-                    ammo[4].sprite = ammoIcons[3];
-                    break;
-                case 4:
-                    ammo[0].sprite = ammoIcons[1];
-                    ammo[1].sprite = ammoIcons[0];
-                    ammo[2].sprite = ammoIcons[4];
-                    ammo[3].sprite = ammoIcons[3];
-                    ammo[4].sprite = ammoIcons[2];
-                    break;
-                case 5:
-                    ammo[0].sprite = ammoIcons[0];
-                    ammo[1].sprite = ammoIcons[4];
-                    ammo[2].sprite = ammoIcons[3];
-                    ammo[3].sprite = ammoIcons[2];
-                    ammo[4].sprite = ammoIcons[1];
-                    break;
-                default:
-                    break;
-            }
-
+        switch (bullet)
+        {
+            case 1:
+                ammo[0].sprite = ammoIcons[4];
+                ammo[1].sprite = ammoIcons[3];
+                ammo[2].sprite = ammoIcons[2];
+                ammo[3].sprite = ammoIcons[1];
+                ammo[4].sprite = ammoIcons[0];
+                break;
+            case 2:
+                ammo[0].sprite = ammoIcons[3];
+                ammo[1].sprite = ammoIcons[2];
+                ammo[2].sprite = ammoIcons[1];
+                ammo[3].sprite = ammoIcons[0];
+                ammo[4].sprite = ammoIcons[4];
+                break;
+            case 3:
+                ammo[0].sprite = ammoIcons[2];
+                ammo[1].sprite = ammoIcons[1];
+                ammo[2].sprite = ammoIcons[0];
+                ammo[3].sprite = ammoIcons[4];
+                ammo[4].sprite = ammoIcons[3];
+                break;
+            case 4:
+                ammo[0].sprite = ammoIcons[1];
+                ammo[1].sprite = ammoIcons[0];
+                ammo[2].sprite = ammoIcons[4];
+                ammo[3].sprite = ammoIcons[3];
+                ammo[4].sprite = ammoIcons[2];
+                break;
+            case 5:
+                ammo[0].sprite = ammoIcons[0];
+                ammo[1].sprite = ammoIcons[4];
+                ammo[2].sprite = ammoIcons[3];
+                ammo[3].sprite = ammoIcons[2];
+                ammo[4].sprite = ammoIcons[1];
+                break;
+            default:
+                break;
         }
 
     }

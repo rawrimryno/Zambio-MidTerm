@@ -53,11 +53,35 @@ public class AmmoContents
     public int blueShells { get; private set; }
     public int bulletBill { get; private set; }
     public int redBulletBill { get; private set; }
+    public AmmoSubject ammoSubject = new AmmoSubject();
+
+    public int returnAmmo(int ammoNum)
+    {
+        switch (ammoNum)
+        {
+            case 0:
+                return greenShells;
+            case 1:
+                return redShells;
+            case 2:
+                return blueShells;
+            case 3:
+                return bulletBill;
+            case 4:
+                return redBulletBill;
+            default:
+                return 0;
+        }
+    }
 
     public AmmoContents()
     {
-        greenShells = redShells = blueShells = 0;
+        //ammoSubject.Attach(FindObjectOfType<PlayerShoot>().ammoObserver);
+        greenShells = 30;
+        redShells = blueShells = 0;
         bulletBill = redBulletBill = 0;
+        ammoSubject.SetState(this);
+        ammoSubject.Notify();
     }
 
     // For System Wide Use
@@ -65,22 +89,24 @@ public class AmmoContents
     // int numGreenShells = myAmmo.greenShells;
     // setAmmo( ammoTypes.GREEN, --numGreenShells);
 
-    public void setAmmo(ammoTypes type, int num)
+    public void setAmmo(int type, int num)
     {
         switch (type)
         {
-            case ammoTypes.GREEN:
+            case 0:
                 greenShells = num; break;
-            case ammoTypes.RED:
+            case 1:
                 redShells = num; break;
-            case ammoTypes.BLUE:
+            case 2:
                 blueShells = num; break;
-            case ammoTypes.BULLET:
+            case 3:
                 bulletBill = num; break;
-            case ammoTypes.REDBULLET:
+            case 4:
                 redBulletBill = num; break;
             default: break;
         }
+        ammoSubject.SetState(this);
+        ammoSubject.Notify();
     }
 }
 
@@ -101,21 +127,25 @@ public class AmmoDesc
         ID = id;
         return true;
     }
+
     public bool setSName(string stringName)
     {
         sName = stringName;
         return true;
     }
+
     public bool setDName(string displayName)
     {
         dName = displayName;
         return true;
     }
+
     public bool setDesc(string description)
     {
         desc = description;
         return true;
     }
+
     public bool setSprite(int id, Sprite ammoSprite)
     {
         bool result = false;
@@ -150,6 +180,5 @@ public class AmmoDesc
     {
         sprite = null;
     }
-
 
 }

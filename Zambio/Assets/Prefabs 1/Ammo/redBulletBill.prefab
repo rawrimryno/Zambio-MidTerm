@@ -652,6 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitCounts: 10
+  damage: 0
   speed: 120
   spinFactor: 0
   age: 0

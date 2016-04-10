@@ -42,66 +42,66 @@ public class MainMenu : MonoBehaviour {
             onPause();
         }
 
-        if (Input.GetAxis("Vertical") > 0 && mainMenu.activeInHierarchy)
-        {
-            mainBTN++;
-            if (mainBTN > 1)
-                mainBTN = 0;
-        }
-        if (Input.GetAxis("Vertical") < 0 && mainMenu.activeInHierarchy)
-        {
-            mainBTN--;
-            if (mainBTN < 0)
-                mainBTN = 1;
-        }
-        if (Input.GetButtonDown("Submit") && mainMenu.activeInHierarchy)
-        {
-            switch (mainBTN)
-            {
-                case 0:
-                    onPlay();
-                    break;
-                case 1:
-                    onQuit();
-                    break;
-                default:
-                    break;
-            }
-            mainBTN = -1;
-        }
+        //if (Input.GetAxis("Vertical") > 0 && mainMenu.activeInHierarchy)
+        //{
+        //    mainBTN++;
+        //    if (mainBTN > 1)
+        //        mainBTN = 0;
+        //}
+        //if (Input.GetAxis("Vertical") < 0 && mainMenu.activeInHierarchy)
+        //{
+        //    mainBTN--;
+        //    if (mainBTN < 0)
+        //        mainBTN = 1;
+        //}
+        //if (Input.GetButtonDown("Submit") && mainMenu.activeInHierarchy)
+        //{
+        //    switch (mainBTN)
+        //    {
+        //        case 0:
+        //            onPlay();
+        //            break;
+        //        case 1:
+        //            onQuit();
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //    mainBTN = -1;
+        //}
 
-        if (Input.GetAxis("Mouse Y") > 0 && pauseMenu.activeInHierarchy)
-        {
-            pauseBTN++;
-            if (pauseBTN > 2)
-                pauseBTN = 0;
-            //print("pmBTN: " + pauseBTN);
-        }
-        if (Input.GetAxis("Mouse Y") < 0 && pauseMenu.activeInHierarchy)
-        {
-            pauseBTN--;
-            if (pauseBTN < 0)
-                pauseBTN = 2;
-            //print("pmBTN: " + pauseBTN);
-        }
-        if (Input.GetButtonDown("Submit") && pauseMenu.activeInHierarchy)
-        {
-            switch (pauseBTN)
-            {
-                case 0:
-                    onMenu();
-                    break;
-                case 1:
-                    onPause();
-                    break;
-                case 2:
-                    onQuit();
-                    break;
-                default:
-                    break;
-            }
-            pauseBTN = -1;
-        }
+        //if (Input.GetAxis("Mouse Y") > 0 && pauseMenu.activeInHierarchy)
+        //{
+        //    pauseBTN++;
+        //    if (pauseBTN > 2)
+        //        pauseBTN = 0;
+        //    //print("pmBTN: " + pauseBTN);
+        //}
+        //if (Input.GetAxis("Mouse Y") < 0 && pauseMenu.activeInHierarchy)
+        //{
+        //    pauseBTN--;
+        //    if (pauseBTN < 0)
+        //        pauseBTN = 2;
+        //    //print("pmBTN: " + pauseBTN);
+        //}
+        //if (Input.GetButtonDown("Submit") && pauseMenu.activeInHierarchy)
+        //{
+        //    switch (pauseBTN)
+        //    {
+        //        case 0:
+        //            onMenu();
+        //            break;
+        //        case 1:
+        //            onPause();
+        //            break;
+        //        case 2:
+        //            onQuit();
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //    pauseBTN = -1;
+        //}
 
         //Debug Code
         if (Input.GetKeyUp("p"))
@@ -112,11 +112,14 @@ public class MainMenu : MonoBehaviour {
 
     void OnApplicationFocus(bool focusStatus)
     {
-        focus = focusStatus;
-        if (focus)
-            focusLock = false;
-        else
-            focusLock = true;
+        if(Time.timeScale != 0.0f)
+        {
+            focus = focusStatus;
+            if (focus)
+                focusLock = false;
+            else
+                focusLock = true;
+        } 
     }
 
     public void onPlay()

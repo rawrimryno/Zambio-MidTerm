@@ -5,25 +5,29 @@ using System;
 public class KillingEnemies : IState {
     GameControllerSingleton gc;
     StateMachine sm;
-    SpawnerController sc;
+    public SpawnControllerObserver spawnO;
+
 
     public override void OnStart()
     {
         gc = GameControllerSingleton.get();
         sm = GetComponentInParent<StateMachine>();
-        sc = FindObjectOfType<SpawnerController>();
-        sc.enabled = true;
+        spawnO = new SpawnControllerObserver();
+        FindObjectOfType<SpawnerController>().spawnSubject.Attach(spawnO);
+
+        //sc = FindObjectOfType<SpawnerController>();
+        //sc.enabled = true;
     }
 
     public override void OnUpdate()
     {
-        if ( sc.switchState || Input.GetKeyDown(KeyCode.F1) )
+        // Change state Conditions
+        if ( spawnO.spawnSubject.GetState().switchState || Input.GetKeyDown(KeyCode.F1) ) // spawnO is null in here
         {
-            sc.enabled = false;
-            this.nextState = this.futureState;
+            spawnO.spawnController.enabled = false;
+            spawnO.spawnController.switchState = false;
             sm.Round++;
-            sc.switchState = false;
-
+            this.nextState = this.futureState;
         }
     }
 

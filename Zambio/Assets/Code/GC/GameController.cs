@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (!spawnController) {
             spawnController = GetComponent<SpawnerController>();
 
@@ -51,20 +52,6 @@ public class GameController : MonoBehaviour
         {
             gc.RegisterSpawner(ref spawnController);
         }
-        // UI Toggle
-        // UI should already be loaded through player controller -Ryan
-        //if (Input.GetButtonDown("toggleUI"))
-        //{
-        //    if (UIenabled)
-        //    {
-        //        SceneManager.UnloadScene("UI");
-        //        UIenabled = false;
-        //    }
-        //    else
-        //    {
-        //        SceneManager.LoadScene("UI", LoadSceneMode.Additive);
-        //        UIenabled = true;
-        //    }
-        //}
+        
     }
 }
