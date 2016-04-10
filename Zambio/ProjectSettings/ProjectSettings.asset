@@ -45,7 +45,7 @@ PlayerSettings:
   Prepare IOS For Recording: 0
   submitAnalytics: 1
   usePlayerLog: 1
-  bakeCollisionMeshes: 0
+  bakeCollisionMeshes: 1
   forceSingleInstance: 0
   resizableWindow: 0
   useMacAppStoreValidation: 0
@@ -111,7 +111,7 @@ PlayerSettings:
   CreateWallpaper: 0
   APKExpansionFiles: 0
   preloadShaders: 0
-  StripUnusedMeshComponents: 0
+  StripUnusedMeshComponents: 1
   VertexChannelCompressionMask:
     serializedVersion: 2
     m_Bits: 238
@@ -168,7 +168,7 @@ PlayerSettings:
     height: 180
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
-  resolutionDialogBanner: {fileID: 2800000, guid: 06c26a38f43aae34fa55c5d27ca6c6be,
+  resolutionDialogBanner: {fileID: 2800000, guid: d7810fc74a4b54d4f97322a0a031846d,
     type: 3}
   m_BuildTargetIcons:
   - m_BuildTarget: 
@@ -177,36 +177,6 @@ PlayerSettings:
       m_Icon: {fileID: 2800000, guid: 7305f48b2172aeb40ba4ae5dbf776ff7, type: 3}
       m_Width: 128
       m_Height: 128
-  - m_BuildTarget: Standalone
-    m_Icons:
-    - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 7305f48b2172aeb40ba4ae5dbf776ff7, type: 3}
-      m_Width: 1024
-      m_Height: 1024
-    - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 7305f48b2172aeb40ba4ae5dbf776ff7, type: 3}
-      m_Width: 512
-      m_Height: 512
-    - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 7305f48b2172aeb40ba4ae5dbf776ff7, type: 3}
-      m_Width: 256
-      m_Height: 256
-    - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 7305f48b2172aeb40ba4ae5dbf776ff7, type: 3}
-      m_Width: 128
-      m_Height: 128
-    - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 7305f48b2172aeb40ba4ae5dbf776ff7, type: 3}
-      m_Width: 48
-      m_Height: 48
-    - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 7305f48b2172aeb40ba4ae5dbf776ff7, type: 3}
-      m_Width: 32
-      m_Height: 32
-    - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 7305f48b2172aeb40ba4ae5dbf776ff7, type: 3}
-      m_Width: 16
-      m_Height: 16
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs:
   - m_BuildTarget: MacStandaloneSupport

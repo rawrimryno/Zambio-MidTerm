@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public abstract class Subject {
-    protected List<Observer> observers;
+    private List<Observer> observers;
 
     public Subject()
     {
@@ -21,45 +21,13 @@ public abstract class Subject {
         }
     }
 
-    public virtual bool Attach(Observer observer)
+    public void Attach(Observer observer)
     {
         observers.Add(observer);
-        return observers.Contains(observer);
     }
     public void Detach(Observer observer)
     {
         observers.Remove(observer);
-    }
-}
-
-public class SpawnSubject : Subject
-{
-    private SpawnerController state;
-    private GameControllerSingleton gc;
-
-    //public SpawnSubject():base()
-    //{
-    //    gc = GameControllerSingleton.get();
-    //    state = gc.sc;
-    //}
-
-    public bool Attach(SpawnControllerObserver observer)
-    {
-        observers.Add(observer);
-        observer.spawnSubject = this;
-        observer.update();
-        //observer.spawnController 
-        return observers.Contains(observer);
-    }
-
-    public SpawnerController GetState()
-    {
-        return state;
-    }
-    public void SetState( SpawnerController inSpawner)
-    {
-        //state = new SpawnerController();
-        state = inSpawner;
     }
 }
 public class HealthSubject : Subject
@@ -83,11 +51,6 @@ public class HealthSubject : Subject
 public class AmmoSubject : Subject
 {
     private AmmoContents ammo;
-
-    void Awake()
-    {
-        ammo = new AmmoContents();
-    }
     public AmmoContents GetState()
     {
         return ammo;

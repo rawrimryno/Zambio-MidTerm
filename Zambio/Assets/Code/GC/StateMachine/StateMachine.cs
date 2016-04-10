@@ -8,6 +8,7 @@ public class StateMachine : MonoBehaviour {
 
     public void SetState(IState newState)
     {
+
         currentState.enabled = false;
         currentState = newState;
         currentState.OnStart();

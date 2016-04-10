@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
             if (health + thisPowerUp.numQtrHearts < 20)
             {
                 setHealth(health + thisPowerUp.numQtrHearts);
-                UI.getHealth();
+                //UI.getHealth();
             }
             else if (health + thisPowerUp.numQtrHearts <= 0) // Rancid Mushroom
             {
@@ -173,9 +173,8 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    void deathSequence()
+    public void deathSequence()
     {
-        Debug.Log("GAME OVER");
         //SceneManager.UnloadScene("Level One");
         //SceneManager.UnloadScene("UI");
         SceneManager.LoadScene("Level One");
@@ -183,7 +182,6 @@ public class PlayerController : MonoBehaviour
         UI.init = false;
         setHealth(20);
         Cursor.lockState = CursorLockMode.None;
-        Debug.Log("hi");
         //Game Over
     }
 }

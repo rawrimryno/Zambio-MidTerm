@@ -43,25 +43,6 @@ public class HealthPanel : MonoBehaviour
         score = 0;
         scoreTXT = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
         gc = GameControllerSingleton.get();
-        //ammoIcons = new Sprite[gc.numAmmo];
-
-        //if (!init)
-        //{
-        //    int i = 0;
-        //    Sprite tempSpr;
-        //    while (i < gc.numAmmo)
-        //    {
-        //        tempSpr = gc.getAmmoSpriteByID(i);
-        //        ammo[i].sprite = tempSpr;
-        //        //ammo[i].sprite = ammoIcons[0];
-        //        i++;
-        //    }
-        //    init = true;
-
-        //}
-
-
-
     }
 
     void Update()
@@ -78,37 +59,11 @@ public class HealthPanel : MonoBehaviour
             healthObserver.healthPanel = this;
             //Debug.Log("got GameController in health panel");
         }
-        //int i = 0;
-        //if (!init)
-        //{
-        //    Sprite tempSpr;
-        //    while (i < gc.numAmmo)
-        //    {
-        //        tempSpr = gc.getAmmoSpriteByID(i);
-        //        ammoIcons[i++] = tempSpr;
-        //    }
-        //    init = true;
-
-        //}
 
         if (Input.GetButtonDown("Fire1"))
         {
             coolDown();
         }
-
-        //Debug Code 
-        if (Input.GetKeyDown("z"))
-        {
-            health--;
-            setHearts();
-        }
-        if (Input.GetKeyDown("x"))
-        {
-            health++;
-            setHearts();
-        }
-        //getScore();
-        //getHealth();
 
     }
 
@@ -159,6 +114,7 @@ public class HealthPanel : MonoBehaviour
         setHearts();
         //Debug.Log("HealthPanel is Getting Health " + health);
     }
+
     public void setHearts( int health )
     {
         if (health < 0)
@@ -204,6 +160,7 @@ public class HealthPanel : MonoBehaviour
             }
         }
     }
+
     public void setHearts()
     {
 
@@ -254,7 +211,6 @@ public class HealthPanel : MonoBehaviour
 
     public void changeAmmo(int ammoType)
     {
-        //Sprite test = gc.getAmmoSpriteByID(0);
         //if (!IsInvoking("coolDownScaler")) //Remove To Have A Blast
         {
 
