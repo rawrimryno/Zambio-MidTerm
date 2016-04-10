@@ -26,7 +26,7 @@ public class EnemySpawner : MonoBehaviour {
     {
         if ( !registered )
         {
-            if (FindObjectOfType<SpawnerController>().spawnSubject.Attach(spawnObserver))
+            if (FindObjectOfType<SpawnerController>().spawnSubject.Attach(spawnObserver))   
             {
                 registered = true;
                 InvokeRepeating("Spawn", 1, rate);

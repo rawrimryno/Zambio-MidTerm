@@ -85,8 +85,9 @@ public class AmmoContents
     public AmmoContents()
     {
         //ammoSubject.Attach(FindObjectOfType<PlayerShoot>().ammoObserver);
-        greenShells = 30; 
-        redShells = blueShells = 0;
+        greenShells = 30;
+        redShells = 10;
+        blueShells = 0;
         bulletBill = redBulletBill = 0;
         ammoSubject.SetState(this);
         ammoSubject.Notify();

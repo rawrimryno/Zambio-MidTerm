@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 
 public class AmmoScript : MonoBehaviour
 {
@@ -12,29 +10,37 @@ public class AmmoScript : MonoBehaviour
     public float speed;
     bool init = false;
     private Inventory inventory;
+    Rigidbody rb;
 
 
     public float spinFactor;
+    public float redAccelMultiplier = 7;
 
     NavMeshAgent meshAgent;
     NavAgentGoToTransform navAgent;
 
-    public float age=0, lifetime=4;
+    public float age = 0, lifetime = 4;
 
     GameControllerSingleton gc;
-    SpawnerController sc;
+    //SpawnerController sc;
 
     // Called at the same time if it is in a sceneload, for all objects being loaded
     // Good to place calcs that are independent from other game objects here
     void Awake()
     {
+    }
 
-        if (this.gameObject.name == "redShell")
+    // Use this for initialization
+    void Start()
+    {
+        if (gameObject.name == "redShell")
         {
             meshAgent = GetComponent<NavMeshAgent>();
             navAgent = GetComponent<NavAgentGoToTransform>();
+            rb = GetComponent<Rigidbody>();
             meshAgent.speed = speed;
             acquireEnemy();
+            Debug.Log("RedShell Stupid Check");
         }
         hitsLeft = hitCounts;
 
@@ -42,19 +48,8 @@ public class AmmoScript : MonoBehaviour
         {
             damage = 1;
         }
-    }
 
-    // Use this for initialization
-    void Start()
-    {
-        if (!init)
-        {
-            gc = GameControllerSingleton.get();
-            sc = gc.sc;
-            inventory = gc.pc.myInventory;
-        }
-
-        if ( lifetime <= 0)
+        if (lifetime <= 0)
         {
             lifetime = 5;
         }
@@ -63,14 +58,32 @@ public class AmmoScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!init)
+        {
+            gc = GameControllerSingleton.get();
+            //inventory = FindObjectOfType<Inventory>();
+            inventory = gc.pc.myInventory;
+            init = true;
+            Debug.Log("Inventory probably didn't set, don't forget to work on it.");
+        }
         if (this.gameObject.name != "bulletBill" && this.gameObject.name != "redBulletBill")
         {
-            transform.Rotate(0, spinFactor, 0);
+            // Remove deltaTime to bring back spinning during pause
+            transform.Rotate(0, spinFactor*Time.deltaTime, 0);
         }
         age += Time.deltaTime;
         if (age >= lifetime)
         {
-            deathSequence();
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+
+
+        if ( gameObject.name == "redShell" && navAgent.target != null )
+        {
+            Vector3 dir = new Vector3();
+            dir = navAgent.target.position+navAgent.GetComponent<Rigidbody>().velocity*Time.deltaTime - transform.position;
+            rb.AddForce(redAccelMultiplier * dir/dir.magnitude);  
         }
     }
 
@@ -90,10 +103,10 @@ public class AmmoScript : MonoBehaviour
         {
             if (--hitsLeft < 1)
             {
-                this.gameObject.SetActive(false);
-                deathSequence();
+                gameObject.SetActive(false);
+                Destroy(gameObject);
             }
-            else if (cInfo.gameObject.name == "redShell")
+            else if (gameObject.name == "redShell")
             {
                 acquireEnemy();
             }
@@ -107,16 +120,36 @@ public class AmmoScript : MonoBehaviour
                 gc.sc.registerDeadEnemy();
                 cInfo.gameObject.SetActive(false);
                 Destroy(cInfo.gameObject);
+                randomDrop();
+
             }
         }
     }
 
     void acquireEnemy()
     {
-        navAgent.target = FindObjectOfType<EnemyController>().transform;
+        int best = 0;
+        float closest = 10000f;
+        float dist;
+        EnemyController[] eList;
+        eList = FindObjectsOfType<EnemyController>();
+        if ( eList.Length < 1)
+        {
+            return;
+        }
+        for (int i = 0; i < eList.Length; i++)
+        {
+            dist = Vector3.Distance(transform.position, eList[i].transform.position);
+            if (dist < closest)
+            {
+                best = i;
+                closest = dist;
+            }
+        }
+        navAgent.target = eList[best].transform;
     }
 
-    void deathSequence()
+    void randomDrop()
     {
         System.Random rand = new System.Random();
         int itemType = rand.Next(0, 100);
@@ -127,16 +160,20 @@ public class AmmoScript : MonoBehaviour
             if (itemType < 25)
             {
                 inventory.ammoContents.setAmmo(0, inventory.ammoContents.returnAmmo(0) + 5);
-            }else if (itemType < 37)
+            }
+            else if (itemType < 37)
             {
                 inventory.ammoContents.setAmmo(1, inventory.ammoContents.returnAmmo(1) + 5);
-            }else if (itemType < 44)
+            }
+            else if (itemType < 44)
             {
                 inventory.ammoContents.setAmmo(2, inventory.ammoContents.returnAmmo(2) + 5);
-            }else if (itemType < 48)
+            }
+            else if (itemType < 48)
             {
                 inventory.ammoContents.setAmmo(3, inventory.ammoContents.returnAmmo(3) + 5);
-            }else if (itemType < 50)
+            }
+            else if (itemType < 50)
             {
                 inventory.ammoContents.setAmmo(4, inventory.ammoContents.returnAmmo(4) + 5);
             }
@@ -148,8 +185,9 @@ public class AmmoScript : MonoBehaviour
             if (itemType < 65)
             {
                 gc.powerUpByID.TryGetValue(2, out prefab);
-      
-            }else if (itemType < 78)
+
+            }
+            else if (itemType < 78)
             {
                 gc.powerUpByID.TryGetValue(0, out prefab);
 
@@ -172,13 +210,13 @@ public class AmmoScript : MonoBehaviour
             }
             if (metal == false)
             {
-                Instantiate(prefab.prefab, transform.position, transform.rotation);
-            }else
+                Instantiate(prefab.prefab, transform.position, new Quaternion(0, 0, 0, 0));
+            }
+            else
             {
 
-                Instantiate(prefab.prefab, transform.position + new Vector3(0, 3, 0), transform.rotation);
+                Instantiate(prefab.prefab, transform.position + new Vector3(0, 3, 0), new Quaternion(0, 0, 0, 0));
             }
         }
-        Destroy(gameObject);
     }
 }
