@@ -58,14 +58,14 @@ public class PlayerController : MonoBehaviour
     {
         ammo = UI.bullet;
 
-        if (Input.GetButtonDown("PreviousAmmo"))
+        if (Input.GetButtonDown("PreviousAmmo") || Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             if (ammo - 1 < 1)
                 ammo = 6;
             UI.changeAmmo(--ammo);
             hpDisplay.setTextToAmmoName();
         }
-        if (Input.GetButtonDown("NextAmmo"))
+        if (Input.GetButtonDown("NextAmmo") || Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             if (ammo + 1 > 5)
                 ammo = 0;

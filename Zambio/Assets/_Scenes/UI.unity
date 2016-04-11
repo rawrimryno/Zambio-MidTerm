@@ -643,7 +643,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -75, y: -75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &382498275
@@ -819,6 +819,8 @@ MonoBehaviour:
   health: 20
   score: 0
   scoreTXT: {fileID: 382498277}
+  round: 0
+  roundTXT: {fileID: 492754973}
   ammo:
   - {fileID: 1500502050}
   - {fileID: 842117286}
@@ -831,8 +833,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4a061b5fec2072f4e9923173954c94a8, type: 3}
   - {fileID: 21300000, guid: 316ee384ef1d5054eb1302b1ecbb7e4d, type: 3}
   - {fileID: 21300000, guid: 57e16d6dc883ae848830e3c165bbd86b, type: 3}
+  ammoTXT: {fileID: 1700475967}
   bullet: 1
-  crossHairs: []
+  crossHairs:
+  - {fileID: 267037107}
+  - {fileID: 560921042}
+  - {fileID: 1432321713}
+  - {fileID: 1597654082}
 --- !u!1 &441571694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,7 +1251,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -75, y: -75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &578285695
@@ -2723,7 +2730,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -75, y: -75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1489645590
@@ -3146,7 +3153,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000076293945}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -75, y: -75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1669097799
@@ -3345,12 +3352,12 @@ MonoBehaviour:
     m_MinSize: 10
     m_MaxSize: 38
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 55
+  m_Text: 30
 --- !u!222 &1700475968
 CanvasRenderer:
   m_ObjectHideFlags: 0

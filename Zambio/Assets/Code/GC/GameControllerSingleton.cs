@@ -84,11 +84,10 @@ public class GameControllerSingleton : ScriptableObject
         {
             sc = FindObjectOfType<SpawnerController>();
         }
-        //if ( !sm)
-        //{
-        //    sm = FindObjectOfType<StateMachine>();
-        //}
-        // Debug.Log("GCS Updating");
+        if ( !sm)
+        {
+            sm = FindObjectOfType<StateMachine>();
+        }
     }
 
     public string getAmmoDisplayNamefromID(int ammoID)

@@ -7,6 +7,8 @@ public class HealthPanel : MonoBehaviour
 {
 
     UIHealthObserver healthObserver;
+    UIAmmoObserver ammoObserver;
+    StateMachine sm;
     GameControllerSingleton gc;
     public bool init = false;
 
@@ -17,17 +19,24 @@ public class HealthPanel : MonoBehaviour
     public int score;
     public Text scoreTXT;
 
+    public int round;
+    public Text roundTXT;
+
     public Image[] ammo;
     public Sprite[] ammoIcons;
+    public Text ammoTXT;
     public int bullet;
+    private int bulletCount;
 
     public RectTransform[] crossHairs;
-    private float coolDownBase;
+    private float coolDownBase = 5;
     private float coolDownCur;
 
     void Awake()
     {
         healthObserver = new UIHealthObserver();
+        ammoObserver = new UIAmmoObserver();
+        sm = GetComponentInParent<StateMachine>();
     }
 
     void Start()
@@ -35,26 +44,44 @@ public class HealthPanel : MonoBehaviour
         changeAmmo(1);
         bullet = 1;
         score = 0;
+        round = 0;
         scoreTXT = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
         gc = GameControllerSingleton.get();
     }
 
     void Update()
     {
+        
         if (!init)
         {
             scoreTXT = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
             gc = GameControllerSingleton.get();
             init = true;
 
+            FindObjectOfType<Inventory>().ammoContents.ammoSubject.Attach(ammoObserver);
+            sm = FindObjectOfType<StateMachine>(); //GetComponentInParent<StateMachine>();
+
             healthObserver.healthSubject = gc.pc.healthModel;
             gc.pc.healthModel.Attach(healthObserver);
             healthObserver.healthPanel = this;
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if(bulletCount != ammoObserver.ammoSubject.GetState().returnAmmo(bullet - 1)) //Check for ammo pickup or switch ammo type
         {
-            
+            bulletCount = ammoObserver.ammoSubject.GetState().returnAmmo(bullet - 1);
+            ammoCount(bulletCount);
+            //coolDownBase = ;
+        }
+
+        if ((Input.GetButtonDown("Fire1") || (Input.GetAxis("XboxTriggers") == 1)) && ammoObserver.ammoSubject.GetState().returnAmmo(bullet - 1) > 0 && Time.timeScale == 1 && !IsInvoking("coolDownBar")) //CoolDown Animation
+        {
+            coolDown(coolDownBase);
+        }
+
+        if(round != sm.Round) //Checks and Updates Round Number if needed
+        {
+            round = sm.Round;
+            roundTXT.text = "Round " + round;
         }
 
     }
@@ -227,6 +254,54 @@ public class HealthPanel : MonoBehaviour
                 break;
         }
 
+    }
+
+    public void ammoCount(int amount)
+    {
+        if(amount == 0)
+        {
+            ammoTXT.text = "0";
+            ammoTXT.color = Color.red;
+        }
+        else if(amount > 99)
+        {
+            ammoTXT.text = "99";
+            ammoTXT.color = Color.cyan;
+        }
+        else
+        {
+            ammoTXT.text = amount.ToString();
+            ammoTXT.color = Color.green;
+        }
+    }
+
+    public void coolDown(float length)
+    {
+        crossHairs[0].Translate(-6, 6, 0);
+        crossHairs[1].Translate(6, 6, 0);
+        crossHairs[2].Translate(-6, -6, 0);
+        crossHairs[3].Translate(6, -6, 0);
+        coolDownCur = 100;
+        InvokeRepeating("coolDownBar", 0, length / 100);
+        //print("begin coolDownBar");
+    }
+
+    private void coolDownBar()
+    {
+        if(coolDownCur > 0)
+        {
+            crossHairs[0].Translate(0.06f, -0.06f, 0);
+            crossHairs[1].Translate(-0.06f, -0.06f, 0);
+            crossHairs[2].Translate(0.06f, 0.06f, 0);
+            crossHairs[3].Translate(-0.06f, 0.06f, 0);
+            //print("coolDown");
+        }
+        else
+        {
+            //print("end coolDown");
+            CancelInvoke("coolDownBar");
+        }
+        coolDownCur--;
     }
 
 }
