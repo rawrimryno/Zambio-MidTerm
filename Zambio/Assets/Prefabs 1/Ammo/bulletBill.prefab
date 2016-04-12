@@ -987,9 +987,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dcedbc8fa6f42a47a45017e790e0a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitCounts: 5
+  hitCounts: 6
+  damage: 0
   speed: 75
   spinFactor: 0
+  redAccelMultiplier: 7
   age: 0
   lifetime: 4
 --- !u!135 &13592112

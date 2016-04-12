@@ -96,7 +96,7 @@ public class AmmoScript : MonoBehaviour
 
             Vector3 dir = new Vector3();
             dir = navAgent.target.position + navAgent.GetComponent<Rigidbody>().velocity * Time.deltaTime - transform.position;
-            rb.AddForce(3*rb.mass*redAccelMultiplier * dir / dir.magnitude);
+            rb.velocity = (/*3*rb.mass**/redAccelMultiplier * dir / dir.magnitude);
         }
     }
 
