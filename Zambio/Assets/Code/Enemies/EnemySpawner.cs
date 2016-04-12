@@ -9,7 +9,6 @@ public class EnemySpawner : MonoBehaviour {
     SpawnControllerObserver spawnObserver;
 
     public bool registered=false;
-    public bool canSpawn = false;
 
     void Start()
     {
@@ -37,8 +36,7 @@ public class EnemySpawner : MonoBehaviour {
     void Spawn()
     {
         float rand = Random.Range(2, 5) * Mathf.Pow(-1,Random.Range(2, 5));
-        canSpawn = spawnObserver.spawnSubject.GetState().canSpawn();
-        if ( canSpawn )
+        if (spawnObserver.spawnSubject.GetState().canSpawn())
         {
             Instantiate(Enemy, new Vector3(transform.position.x + rand, transform.position.y, transform.position.z + rand), transform.rotation);
             spawnObserver.spawnSubject.GetState().registerNewEnemy();

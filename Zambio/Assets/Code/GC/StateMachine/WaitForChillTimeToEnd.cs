@@ -15,6 +15,7 @@ public class WaitForChillTimeToEnd : IState
         gc = GameControllerSingleton.get();
         sc = FindObjectOfType<SpawnerController>();
         waited = 0.0f;
+        sc.spawning = false;
         if (waitTime < minWaitTime || waitTime > maxWaitTime)
         {
             waitTime = defWaitTime;
@@ -27,8 +28,10 @@ public class WaitForChillTimeToEnd : IState
         if ( waited > waitTime || Input.GetKeyDown(KeyCode.F1))
         {
             this.nextState = this.futureState;
-            sc.enabled = true;
-            sc.getEnemiesThisLevel();
+            sc.enemiesSpawned = 0;
+            sc.enemiesKilled = 0;
+            //sc.enabled = true;
+            //sc.getEnemiesThisLevel();
         }
     }
 }

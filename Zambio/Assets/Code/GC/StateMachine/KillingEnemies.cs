@@ -14,7 +14,10 @@ public class KillingEnemies : IState {
         sm = GetComponentInParent<StateMachine>();
         spawnO = new SpawnControllerObserver();
         FindObjectOfType<SpawnerController>().spawnSubject.Attach(spawnO);
-
+        spawnO.spawnSubject.GetState().enemiesKilled = 0;
+        spawnO.spawnSubject.GetState().enabled = true;
+        spawnO.spawnSubject.GetState().spawning = true;
+        spawnO.spawnSubject.GetState().getEnemiesThisLevel();
         //sc = FindObjectOfType<SpawnerController>();
         //sc.enabled = true;
     }
