@@ -10,7 +10,7 @@ public class SpawnerController : MonoBehaviour
 
     public int enemiesLeft;
     public int enemiesSpawned;
-    public int enemiesKilled { get; private set; }
+    public int enemiesKilled { get; set; }
     public bool spawning = true;
     public bool switchState = false;
 
@@ -29,7 +29,6 @@ public class SpawnerController : MonoBehaviour
         spawnSubject = new SpawnSubject();
         spawnSubject.SetState(this);
         getEnemiesThisLevel();
-        enemiesLeft = enemiesThisLevel;
         Debug.Log("Stupid Check");
         enemiesSpawned = 0;
     }
@@ -47,27 +46,16 @@ public class SpawnerController : MonoBehaviour
         if ( spawning && enemiesKilled == enemiesThisLevel )
         {
             switchState = true;
-            //spawning = false;
-            enemiesLeft = 0;
+            spawning = false;
+            //enemiesLeft = 0;
             spawnSubject.Notify();
         }
     }
 
     public void getEnemiesThisLevel()
     {
-        //if (!gc.sm)
-        //{
-        //    enemiesThisLevel = gc.sm.Round * levelMultiple;
-        //    if (enemiesThisLevel < 1)
-        //    {
-        //        enemiesThisLevel = 20;
-        //    }
-        //}
-        //else
-        //{
-        //    enemiesThisLevel = 20; 
-        //}
         enemiesThisLevel = 5*(FindObjectOfType<StateMachine>().Round);
+        enemiesLeft = enemiesThisLevel;
     }
 
     public bool canSpawn()
@@ -75,17 +63,11 @@ public class SpawnerController : MonoBehaviour
         bool status = false;
 
         getEnemiesThisLevel();
-        enemiesLeft = enemiesThisLevel;
 
         if (enemiesSpawned < enemiesThisLevel)
         {
             status = true;
             spawning = true;
-        }
-        else
-        {
-            spawning = false;
-            enemiesKilled = 0;
         }
         return status;
     }
@@ -93,7 +75,6 @@ public class SpawnerController : MonoBehaviour
     public void registerDeadEnemy()
     {
         enemiesKilled++;
-        enemiesLeft--;
     }
 
     public void registerNewEnemy()
