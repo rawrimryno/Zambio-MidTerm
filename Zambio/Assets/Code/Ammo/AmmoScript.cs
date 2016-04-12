@@ -24,6 +24,10 @@ public class AmmoScript : MonoBehaviour
     GameControllerSingleton gc;
     //SpawnerController sc;
 
+    float startTime = 0;
+    float tripLength = 0;
+    Transform startTransform;
+
     // Called at the same time if it is in a sceneload, for all objects being loaded
     // Good to place calcs that are independent from other game objects here
     void Awake()
@@ -40,7 +44,8 @@ public class AmmoScript : MonoBehaviour
             rb = GetComponent<Rigidbody>();
             meshAgent.speed = speed;
             acquireEnemy();
-            Debug.Log("RedShell Stupid Check");
+
+            //Debug.Log("RedShell Stupid Check");
         }
         hitsLeft = hitCounts;
 
@@ -69,7 +74,7 @@ public class AmmoScript : MonoBehaviour
         if (this.gameObject.name != "bulletBill" && this.gameObject.name != "redBulletBill")
         {
             // Remove deltaTime to bring back spinning during pause
-            transform.Rotate(0, spinFactor*Time.deltaTime, 0);
+            transform.Rotate(0, spinFactor * Time.deltaTime, 0);
         }
         age += Time.deltaTime;
         if (age >= lifetime)
@@ -79,11 +84,19 @@ public class AmmoScript : MonoBehaviour
         }
 
 
-        if ( gameObject.name == "redShell" && navAgent.target != null )
+        if (gameObject.name == "redShell")
         {
-            Vector3 dir = new Vector3();
-            dir = navAgent.target.position+navAgent.GetComponent<Rigidbody>().velocity*Time.deltaTime - transform.position;
-            rb.AddForce(redAccelMultiplier * dir/dir.magnitude);  
+            if (navAgent.target == null)
+            {
+                acquireEnemy();
+            }
+            //float distCovered = (Time.time - startTime) * speed;
+            //float fracTrip = distCovered / tripLength;
+            //transform.position = Vector3.Lerp(startTransform.position, navAgent.target.transform.position, fracTrip);
+
+            //Vector3 dir = new Vector3();
+            //dir = navAgent.target.position+navAgent.GetComponent<Rigidbody>().velocity*Time.deltaTime - transform.position;
+            //rb.AddForce(redAccelMultiplier * dir/dir.magnitude);  
         }
     }
 
@@ -94,7 +107,18 @@ public class AmmoScript : MonoBehaviour
     {
         if (gameObject.name == "redShell")
         {
-            acquireEnemy();
+            if (navAgent.target == null)
+            {
+                acquireEnemy();
+            }
+            Vector3 dir = new Vector3();
+            //if ( navAgent.target.)
+            dir = navAgent.target.position + navAgent.GetComponent<Rigidbody>().velocity * Time.deltaTime - transform.position;
+            rb.AddForce(redAccelMultiplier * dir / dir.magnitude);
+            if ( dir.magnitude < 1)
+            {
+                rb.AddForce(dir*redAccelMultiplier);
+            }
         }
     }
 
@@ -128,7 +152,7 @@ public class AmmoScript : MonoBehaviour
             }
         }
     }
-
+    // Computational Complexity : O(numEnemiesInGame^2)
     void acquireEnemy()
     {
         int best = 0;
@@ -136,7 +160,7 @@ public class AmmoScript : MonoBehaviour
         float dist;
         EnemyController[] eList;
         eList = FindObjectsOfType<EnemyController>();
-        if ( eList.Length < 1)
+        if (eList.Length < 1)
         {
             return;
         }
@@ -150,6 +174,9 @@ public class AmmoScript : MonoBehaviour
             }
         }
         navAgent.target = eList[best].transform;
+        startTime = Time.time;
+        tripLength = Vector3.Distance(navAgent.target.position, transform.position);
+        startTransform = transform;
     }
 
     void randomDrop()
@@ -223,7 +250,7 @@ public class AmmoScript : MonoBehaviour
                     Instantiate(prefab.prefab, transform.position + new Vector3(0, 3, 0), new Quaternion(0, 0, 0, 0));
                 }
             }
-            
+
         }
     }
 }
