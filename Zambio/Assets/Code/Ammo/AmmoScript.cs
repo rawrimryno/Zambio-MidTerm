@@ -92,7 +92,10 @@ public class AmmoScript : MonoBehaviour
     // 
     void FixedUpdate()
     {
-
+        if (gameObject.name == "redShell")
+        {
+            acquireEnemy();
+        }
     }
 
     void OnCollisionEnter(Collision cInfo)
@@ -152,7 +155,8 @@ public class AmmoScript : MonoBehaviour
     void randomDrop()
     {
         System.Random rand = new System.Random();
-        int itemType = rand.Next(0, 100);
+        //150 so 2/3 of the time it will drop a a randomdrop;
+        int itemType = rand.Next(0, 150);
         bool metal = false;
         if (itemType < 50)
         {
@@ -208,15 +212,18 @@ public class AmmoScript : MonoBehaviour
                 metal = true;
 
             }
-            if (metal == false)
+            if (itemType <= 100)
             {
-                Instantiate(prefab.prefab, transform.position, new Quaternion(0, 0, 0, 0));
+                if (metal == false)
+                {
+                    Instantiate(prefab.prefab, transform.position, new Quaternion(0, 0, 0, 0));
+                }
+                else
+                {
+                    Instantiate(prefab.prefab, transform.position + new Vector3(0, 3, 0), new Quaternion(0, 0, 0, 0));
+                }
             }
-            else
-            {
-
-                Instantiate(prefab.prefab, transform.position + new Vector3(0, 3, 0), new Quaternion(0, 0, 0, 0));
-            }
+            
         }
     }
 }

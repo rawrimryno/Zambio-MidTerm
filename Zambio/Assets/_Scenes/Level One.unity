@@ -230,7 +230,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 470290, guid: e48dc84ac6446224aa8467fa9f3fb604, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 470290, guid: e48dc84ac6446224aa8467fa9f3fb604, type: 2}
       propertyPath: m_LocalScale.x
@@ -339,7 +339,7 @@ MonoBehaviour:
   - {fileID: 179436, guid: 0f1624507265f3c4c8780e747ce52eac, type: 2}
   powerUpPrefab:
   - {fileID: 167416, guid: e7738d8629b489442ab9e64c6cb54401, type: 2}
-  - {fileID: 133552, guid: e2b4aa9c7f5e4324bb0b026a8a74665c, type: 2}
+  - {fileID: 133552, guid: e48dc84ac6446224aa8467fa9f3fb604, type: 2}
   - {fileID: 196212, guid: 22b75b3e3a2054840a07abd362b60eb2, type: 2}
   - {fileID: 169544, guid: 75c5ef8a24691fc4a9b4e92f4ed4cfe1, type: 2}
   - {fileID: 101564, guid: 49e2a256c1a217140a2481394d4a9ef5, type: 2}
@@ -23905,7 +23905,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 403298, guid: 22b75b3e3a2054840a07abd362b60eb2, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 196212, guid: 22b75b3e3a2054840a07abd362b60eb2, type: 2}
       propertyPath: m_Name
@@ -24779,14 +24779,6 @@ Prefab:
     - target: {fileID: 167416, guid: e7738d8629b489442ab9e64c6cb54401, type: 2}
       propertyPath: m_Name
       value: redMushroom (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 12297230, guid: e7738d8629b489442ab9e64c6cb54401, type: 2}
-      propertyPath: m_Color.rgba
-      value: 1616631551
-      objectReference: {fileID: 0}
-    - target: {fileID: 12297230, guid: e7738d8629b489442ab9e64c6cb54401, type: 2}
-      propertyPath: m_Size
-      value: 2.76
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e7738d8629b489442ab9e64c6cb54401, type: 2}
@@ -33976,7 +33968,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 459938, guid: e7738d8629b489442ab9e64c6cb54401, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 167416, guid: e7738d8629b489442ab9e64c6cb54401, type: 2}
       propertyPath: m_Name
@@ -48657,7 +48649,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 403298, guid: 22b75b3e3a2054840a07abd362b60eb2, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22b75b3e3a2054840a07abd362b60eb2, type: 2}
@@ -48699,19 +48691,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 470290, guid: e48dc84ac6446224aa8467fa9f3fb604, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 133552, guid: e48dc84ac6446224aa8467fa9f3fb604, type: 2}
       propertyPath: m_Name
       value: greenMushroom (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 12287624, guid: e48dc84ac6446224aa8467fa9f3fb604, type: 2}
-      propertyPath: m_Color.rgba
-      value: 4291227231
-      objectReference: {fileID: 0}
-    - target: {fileID: 12287624, guid: e48dc84ac6446224aa8467fa9f3fb604, type: 2}
-      propertyPath: m_Size
-      value: 2.63
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e48dc84ac6446224aa8467fa9f3fb604, type: 2}

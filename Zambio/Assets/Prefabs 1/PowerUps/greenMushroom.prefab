@@ -144,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.2247314, y: 1.7850939, z: -6.290756}
+  m_LocalPosition: {x: 147.92638, y: 11.06, z: 288.8897}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 491106}
@@ -346,8 +346,8 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4278255379
-  m_Size: 1.31
+    rgba: 4291227231
+  m_Size: 2.63
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
