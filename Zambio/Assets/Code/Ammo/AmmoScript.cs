@@ -19,7 +19,7 @@ public class AmmoScript : MonoBehaviour
     NavMeshAgent meshAgent;
     NavAgentGoToTransform navAgent;
 
-    public float age = 0, lifetime = 4;
+    public float age = 0, lifetime = 5;
 
     GameControllerSingleton gc;
     //SpawnerController sc;
@@ -37,6 +37,11 @@ public class AmmoScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (lifetime <= 0)
+        {
+            lifetime = 5;
+        }
+
         if (gameObject.name == "redShell")
         {
             meshAgent = GetComponent<NavMeshAgent>();
@@ -44,6 +49,7 @@ public class AmmoScript : MonoBehaviour
             rb = GetComponent<Rigidbody>();
             meshAgent.speed = speed;
             acquireEnemy();
+            lifetime = 999;
 
             //Debug.Log("RedShell Stupid Check");
         }
@@ -52,11 +58,6 @@ public class AmmoScript : MonoBehaviour
         if (damage <= 0)
         {
             damage = 1;
-        }
-
-        if (lifetime <= 0)
-        {
-            lifetime = 5;
         }
     }
 
@@ -69,7 +70,7 @@ public class AmmoScript : MonoBehaviour
             //inventory = FindObjectOfType<Inventory>();
             inventory = gc.pc.myInventory;
             init = true;
-            Debug.Log("Inventory probably didn't set, don't forget to work on it.");
+            //Debug.Log("Inventory probably didn't set, don't forget to work on it.");
         }
         if (this.gameObject.name != "bulletBill" && this.gameObject.name != "redBulletBill")
         {
@@ -83,20 +84,19 @@ public class AmmoScript : MonoBehaviour
             Destroy(gameObject);
         }
 
-
         if (gameObject.name == "redShell")
         {
             if (navAgent.target == null)
             {
                 acquireEnemy();
             }
-            //float distCovered = (Time.time - startTime) * speed;
-            //float fracTrip = distCovered / tripLength;
-            //transform.position = Vector3.Lerp(startTransform.position, navAgent.target.transform.position, fracTrip);
+            float distCovered = (Time.time - startTime) * speed;
+            float fracTrip = distCovered / tripLength;
+            transform.position = Vector3.Lerp(startTransform.position, navAgent.target.transform.position, fracTrip);
 
-            //Vector3 dir = new Vector3();
-            //dir = navAgent.target.position+navAgent.GetComponent<Rigidbody>().velocity*Time.deltaTime - transform.position;
-            //rb.AddForce(redAccelMultiplier * dir/dir.magnitude);  
+            Vector3 dir = new Vector3();
+            dir = navAgent.target.position + navAgent.GetComponent<Rigidbody>().velocity * Time.deltaTime - transform.position;
+            rb.AddForce(3*rb.mass*redAccelMultiplier * dir / dir.magnitude);
         }
     }
 
@@ -105,21 +105,21 @@ public class AmmoScript : MonoBehaviour
     // 
     void FixedUpdate()
     {
-        if (gameObject.name == "redShell")
-        {
-            if (navAgent.target == null)
-            {
-                acquireEnemy();
-            }
-            Vector3 dir = new Vector3();
-            //if ( navAgent.target.)
-            dir = navAgent.target.position + navAgent.GetComponent<Rigidbody>().velocity * Time.deltaTime - transform.position;
-            rb.AddForce(redAccelMultiplier * dir / dir.magnitude);
-            if ( dir.magnitude < 1)
-            {
-                rb.AddForce(dir*redAccelMultiplier);
-            }
-        }
+        //if (gameObject.name == "redShell")
+        //{
+        //    if (navAgent.target == null)
+        //    {
+        //        acquireEnemy();
+        //    }
+        //    Vector3 dir = new Vector3();
+        //    //if ( navAgent.target.)
+        //    dir = navAgent.target.position + navAgent.GetComponent<Rigidbody>().velocity * Time.deltaTime - transform.position;
+        //    rb.AddForce(redAccelMultiplier * dir / dir.magnitude);
+        //    if ( dir.magnitude < 1)
+        //    {
+        //        rb.AddForce(dir*redAccelMultiplier);
+        //    }
+        //}
     }
 
     void OnCollisionEnter(Collision cInfo)
@@ -176,7 +176,7 @@ public class AmmoScript : MonoBehaviour
         navAgent.target = eList[best].transform;
         startTime = Time.time;
         tripLength = Vector3.Distance(navAgent.target.position, transform.position);
-        startTransform = transform;
+        startTransform = this.transform;
     }
 
     void randomDrop()
