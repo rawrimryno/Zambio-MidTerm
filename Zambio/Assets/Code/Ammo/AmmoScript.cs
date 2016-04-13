@@ -92,6 +92,7 @@ public class AmmoScript : MonoBehaviour
             }
             float distCovered = (Time.time - startTime) * speed;
             float fracTrip = distCovered / tripLength;
+
             transform.position = Vector3.Lerp(startTransform.position, navAgent.target.transform.position, fracTrip);
 
             Vector3 dir = new Vector3();
@@ -155,8 +156,9 @@ public class AmmoScript : MonoBehaviour
     // Computational Complexity : O(numEnemiesInGame^2)
     void acquireEnemy()
     {
+        const float maxDist = 10000f;
         int best = 0;
-        float closest = 10000f;
+        float closest = maxDist;
         float dist;
         EnemyController[] eList;
         eList = FindObjectsOfType<EnemyController>();
@@ -173,6 +175,11 @@ public class AmmoScript : MonoBehaviour
                 closest = dist;
             }
         }
+        if ( closest == maxDist )
+        {
+            Destroy(gameObject);
+        }
+
         navAgent.target = eList[best].transform;
         startTime = Time.time;
         tripLength = Vector3.Distance(navAgent.target.position, transform.position);

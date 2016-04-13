@@ -6424,7 +6424,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pipeHeight: 5
+  health: 3
   damage: 1
+  value: 0
   hitTime: 0
 --- !u!114 &11495220
 MonoBehaviour:

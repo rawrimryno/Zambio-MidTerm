@@ -24,6 +24,7 @@ public class KillingEnemies : IState {
     {
         if (!oInit)
         {
+            OnStart();
             spawnO = new SpawnControllerObserver();
             gc.sc.spawnSubject.Attach(spawnO);
             spawnO.spawnSubject.GetState().initSpawner();

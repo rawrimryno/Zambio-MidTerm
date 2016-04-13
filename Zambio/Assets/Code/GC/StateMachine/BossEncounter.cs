@@ -11,11 +11,11 @@ public class BossEncounter : IState {
         Instantiate(Boss, spawnLocation.transform.position, spawnLocation.transform.rotation);
 	
 	}
-	
-	// Update is called once per frame
-	public override void OnUpdate () {
+
+    // Update is called once per frame
+    public override void OnUpdate() {
         // Check if Boss Has been Killed
         // true : this.nextState = this.futureState, where future state is hasWon
-	
+
 	}
 }

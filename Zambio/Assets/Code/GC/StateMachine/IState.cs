@@ -10,14 +10,12 @@ public abstract class IState : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         nextState = this;
-        OnStart();
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        OnUpdate();
-	}
+        this.OnUpdate();
+    }
     public abstract void OnStart();
     public abstract void OnUpdate();
 }

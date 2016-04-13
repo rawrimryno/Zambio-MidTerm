@@ -3904,7 +3904,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pipeHeight: 5
+  health: 4
   damage: 2
+  value: 0
   hitTime: 3
 --- !u!136 &13656788
 CapsuleCollider:
