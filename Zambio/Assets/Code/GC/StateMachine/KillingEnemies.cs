@@ -6,7 +6,9 @@ public class KillingEnemies : IState {
     GameControllerSingleton gc;
     StateMachine sm;
     public SpawnControllerObserver spawnO;
+    public int bossWave = 10;
     bool oInit = false;
+    public IState bossState;
 
     public override void OnStart()
     {
@@ -35,6 +37,10 @@ public class KillingEnemies : IState {
             // 
             spawnO.spawnSubject.GetState().endRound = false;
             sm.Round++;
+            if (sm.Round == bossWave)
+            {
+                this.futureState = bossState;
+            }
             this.nextState = this.futureState;
         }
     }

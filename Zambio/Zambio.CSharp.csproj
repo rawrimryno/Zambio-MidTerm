@@ -58,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -84,10 +78,12 @@
     <Compile Include="Assets\Code\FileWriter\FileWriter.cs" />
     <Compile Include="Assets\Code\GC\GameController.cs" />
     <Compile Include="Assets\Code\GC\GameControllerSingleton.cs" />
+    <Compile Include="Assets\Code\GC\StateMachine\BossEncounter.cs" />
     <Compile Include="Assets\Code\GC\StateMachine\IState.cs" />
     <Compile Include="Assets\Code\GC\StateMachine\KillingEnemies.cs" />
     <Compile Include="Assets\Code\GC\StateMachine\StateMachine.cs" />
     <Compile Include="Assets\Code\GC\StateMachine\WaitForChillTimeToEnd.cs" />
+    <Compile Include="Assets\Code\GC\StateMachine\hasWon.cs" />
     <Compile Include="Assets\Code\NavAgent\NavAgentGoToTransform.cs" />
     <Compile Include="Assets\Code\Observer\Observer.cs" />
     <Compile Include="Assets\Code\Observer\Subject.cs" />
