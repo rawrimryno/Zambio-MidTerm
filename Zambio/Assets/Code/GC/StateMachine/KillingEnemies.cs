@@ -6,29 +6,34 @@ public class KillingEnemies : IState {
     GameControllerSingleton gc;
     StateMachine sm;
     public SpawnControllerObserver spawnO;
-
+    bool oInit = false;
 
     public override void OnStart()
     {
         gc = GameControllerSingleton.get();
         sm = GetComponentInParent<StateMachine>();
-        spawnO = new SpawnControllerObserver();
-        FindObjectOfType<SpawnerController>().spawnSubject.Attach(spawnO);
-        spawnO.spawnSubject.GetState().enemiesKilled = 0;
-        spawnO.spawnSubject.GetState().enabled = true;
-        spawnO.spawnSubject.GetState().spawning = true;
-        spawnO.spawnSubject.GetState().getEnemiesThisLevel();
-        //sc = FindObjectOfType<SpawnerController>();
-        //sc.enabled = true;
+        if ( oInit )
+        {
+            spawnO.spawnSubject.GetState().initSpawner();
+        }
     }
 
     public override void OnUpdate()
     {
-        // Change state Conditions
-        if ( spawnO.spawnSubject.GetState().switchState || Input.GetKeyDown(KeyCode.F1) ) // spawnO is null in here
+        if (!oInit)
         {
-            spawnO.spawnController.enabled = false;
-            spawnO.spawnController.switchState = false;
+            spawnO = new SpawnControllerObserver();
+            gc.sc.spawnSubject.Attach(spawnO);
+            spawnO.spawnSubject.GetState().initSpawner();
+            oInit = true;
+        }
+        // Change state Conditions
+        if ( spawnO.spawnSubject.GetState().endRound || Input.GetKeyDown(KeyCode.F1) ) // spawnO is null in here
+        {
+            // Finished Killing:
+            // Increment Round, Set Switch Condition to false
+            // 
+            spawnO.spawnSubject.GetState().endRound = false;
             sm.Round++;
             this.nextState = this.futureState;
         }

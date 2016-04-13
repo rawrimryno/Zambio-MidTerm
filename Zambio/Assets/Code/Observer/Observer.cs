@@ -10,7 +10,7 @@ public class SpawnControllerObserver : Observer
 {
     //public bool canSpawn = false;
     public SpawnSubject spawnSubject;
-    public SpawnerController spawnController; // For registerNewEnemy
+    private SpawnerController spawnController; // For registerNewEnemy
 
     public SpawnControllerObserver()
     {

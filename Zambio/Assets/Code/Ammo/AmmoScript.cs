@@ -140,7 +140,7 @@ public class AmmoScript : MonoBehaviour
 
             enemy.health -= damage;
 
-            if (enemy.health <= 0)
+            if (cInfo.gameObject.activeInHierarchy && enemy.health <= 0)
             {
                 // Points for now
                 gc.pc.adjustScore(enemy.value);

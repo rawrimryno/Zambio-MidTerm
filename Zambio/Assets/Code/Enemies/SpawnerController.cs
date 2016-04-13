@@ -8,11 +8,11 @@ public class SpawnerController : MonoBehaviour
     public int enemiesThisLevel;
     public int levelMultiple = 10;
 
-    public int enemiesLeft;
+    //public int enemiesLeft;
     public int enemiesSpawned;
-    public int enemiesKilled { get; set; }
-    public bool spawning = true;
-    public bool switchState = false;
+    public int enemiesKilled;
+    public bool spawning;
+    public bool endRound;
 
     GameControllerSingleton gc;
 
@@ -28,26 +28,28 @@ public class SpawnerController : MonoBehaviour
         gc.RegisterSpawner(ref temp);
         spawnSubject = new SpawnSubject();
         spawnSubject.SetState(this);
-        getEnemiesThisLevel();
+        initSpawner();
+        //getEnemiesThisLevel();
         Debug.Log("Stupid Check");
-        enemiesSpawned = 0;
+        //enemiesSpawned = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         // All init observers should be attached
-        if ( !oInit)
+        if ( !oInit )
         {
             spawnSubject.Notify();
+            oInit = true;
         }
 
-        // Has the player finished killing?
-        if ( spawning && enemiesKilled == enemiesThisLevel )
+        // Increment Round Condition
+        if ( spawning && enemiesKilled >= enemiesThisLevel )
         {
-            switchState = true;
+            //Set conditions for observer on State Machine to switch and disable anymore spawning
+            endRound = true;
             spawning = false;
-            //enemiesLeft = 0;
             spawnSubject.Notify();
         }
     }
@@ -55,21 +57,34 @@ public class SpawnerController : MonoBehaviour
     public void getEnemiesThisLevel()
     {
         enemiesThisLevel = 5*(FindObjectOfType<StateMachine>().Round);
-        enemiesLeft = enemiesThisLevel;
+        //enemiesLeft = enemiesThisLevel;
     }
 
+    // SpawnerController::canSpawn()
+    // ret type:  bool
+    // Let's a EnemySpawner know if it can spawn an enemy
     public bool canSpawn()
     {
         bool status = false;
 
-        getEnemiesThisLevel();
+        //getEnemiesThisLevel();
 
-        if (enemiesSpawned < enemiesThisLevel)
+        if (spawning && enemiesSpawned < enemiesThisLevel)
         {
             status = true;
-            spawning = true;
+            //spawning = true;
         }
         return status;
+    }
+
+    public void initSpawner()
+    {
+        enemiesSpawned = 0;
+        endRound = false;
+        getEnemiesThisLevel();
+        enemiesKilled = 0;
+        spawning = true;
+
     }
 
     public void registerDeadEnemy()

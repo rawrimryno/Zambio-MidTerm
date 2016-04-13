@@ -371,10 +371,10 @@ MonoBehaviour:
   maxEnemiesOnScreen: 50
   enemiesThisLevel: 50
   levelMultiple: 10
-  enemiesLeft: 0
   enemiesSpawned: 0
+  enemiesKilled: 0
   spawning: 1
-  switchState: 0
+  endRound: 0
 --- !u!4 &94949695 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 569efeff2bd344b0eaf074340d1d0fb5, type: 3}
@@ -33774,8 +33774,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1671323522}
   - 114: {fileID: 1671323523}
-  - 114: {fileID: 1671323525}
-  - 114: {fileID: 1671323524}
   m_Layer: 0
   m_Name: _GameStateMachine
   m_TagString: Untagged
@@ -33809,38 +33807,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: {fileID: 1167460043}
   Round: 1
---- !u!114 &1671323524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1671323521}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77b6ebea84f58c64398754eac1f3dcc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateGameObject: {fileID: 0}
-  nextState: {fileID: 0}
-  futureState: {fileID: 1167460043}
-  waitTime: 0
-  minWaitTime: 0
-  maxWaitTime: 0
-  defWaitTime: 5
---- !u!114 &1671323525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1671323521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3046dbc9f6eae2428e8ef64922dfac6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateGameObject: {fileID: 0}
-  nextState: {fileID: 0}
-  futureState: {fileID: 1406149173}
 --- !u!1 &1672863371
 GameObject:
   m_ObjectHideFlags: 0
