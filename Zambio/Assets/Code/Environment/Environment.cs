@@ -7,10 +7,10 @@ public class Environment : MonoBehaviour
 
     private Light Sun;
     public int DayLength = 120; // Seconds per Day
-    private int DawnStart = 4;
-    private int DayStart = 8;
-    private int DuskStart = 16;
-    private int NightStart = 20;
+    private int DawnStart = 6;
+    private int DayStart = 9;
+    private int DuskStart = 15;
+    private int NightStart = 18;
 
     private static float staticIntensity = 0.6f;
 
@@ -40,7 +40,7 @@ public class Environment : MonoBehaviour
     private Vector3 SunRotationAxis;
     float SunSpeed;
     float normInitTime;
-    float dtInHours;
+    public float dtInHours; // Public for Observational Purposes from inside Unity
     float percentDay;
 
 
@@ -72,31 +72,31 @@ public class Environment : MonoBehaviour
         {
             // This controls the Rotation of the Light Source,
             // Gives the appearance of rising and sitting
-            dt = Time.time % DayLength;        // 0 -> dayLength
+            dt = Time.time % DayLength ;        // 0 -> dayLength
             SunSpeed = 360f / DayLength;       // 1 Cycle/dayLength
             percentDay = dt / DayLength;       // (0 -> DayLength)/DayLength
-            dtInHours = percentDay * 24f;      // (0 -> 1) * 24 should resemble hours now
             normInitTime = initTime / 24f * DayLength;  // initTime is in hours, make it percent apply to dayDuration
                                                         //Debug.Log("<b>dtInHours : " + dtInHours + "</b>");
                                                         // This rotates our sun
+            dtInHours = percentDay * 24f;      // (0 -> 1) * 24 should resemble hours now
             Sun.transform.rotation = Quaternion.AngleAxis(SunSpeed * (dt - normInitTime), SunRotationAxis);
 
-            if (dt < DawnStart / 24f * DayLength)
+            if (dtInHours < DawnStart)
             {
                 // This if makes sure we don't do anything until 6am, sound like my life
                 // Considered FSM, but this more of a cycle than a varying statemachine
                 // Open for suggestions.
                 Night(dtInHours);
             }
-            else if (dt < DayStart / 24f * DayLength)
+            else if (dtInHours < DayStart)
             {
                 Dawn(dtInHours);
             }
-            else if (dt < DuskStart / 24f * DayLength)
+            else if (dtInHours < DuskStart)
             {
                 Day(dtInHours);
             }
-            else if (dt < NightStart / 24f * DayLength)
+            else if (dtInHours < NightStart)
             {
                 Dusk(dtInHours);
             }

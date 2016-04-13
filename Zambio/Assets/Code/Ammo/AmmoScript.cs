@@ -179,8 +179,11 @@ public class AmmoScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
         navAgent.target = eList[best].transform;
+        if (navAgent.target.name == "ChompNoRIP")
+        {
+            navAgent.target = navAgent.target.GetComponent<HeadLocation>().headTransform;
+        }
         startTime = Time.time;
         tripLength = Vector3.Distance(navAgent.target.position, transform.position);
         startTransform = this.transform;
