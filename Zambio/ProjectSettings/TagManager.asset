@@ -13,6 +13,7 @@ TagManager:
   - PickUp
   - Spawner
   - Score
+  - chompHead
   layers:
   - Default
   - TransparentFX

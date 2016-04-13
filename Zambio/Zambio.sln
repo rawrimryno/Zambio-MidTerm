@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zambio.CSharp.Plugins", "Zambio.CSharp.Plugins.csproj", "{ECFA394E-DB1A-AC50-DF10-52C7E8AE3A6D}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zambio.CSharp", "Zambio.CSharp.csproj", "{687186D6-3771-8B74-64EB-09265BCBB7D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zambio.CSharp.Editor", "Zambio.CSharp.Editor.csproj", "{70142757-1DC9-CEE2-A686-5E250C3637B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +13,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECFA394E-DB1A-AC50-DF10-52C7E8AE3A6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECFA394E-DB1A-AC50-DF10-52C7E8AE3A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECFA394E-DB1A-AC50-DF10-52C7E8AE3A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECFA394E-DB1A-AC50-DF10-52C7E8AE3A6D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{687186D6-3771-8B74-64EB-09265BCBB7D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{687186D6-3771-8B74-64EB-09265BCBB7D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{687186D6-3771-8B74-64EB-09265BCBB7D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{687186D6-3771-8B74-64EB-09265BCBB7D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70142757-1DC9-CEE2-A686-5E250C3637B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70142757-1DC9-CEE2-A686-5E250C3637B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70142757-1DC9-CEE2-A686-5E250C3637B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70142757-1DC9-CEE2-A686-5E250C3637B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
