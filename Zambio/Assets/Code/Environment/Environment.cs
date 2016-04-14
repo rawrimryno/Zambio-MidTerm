@@ -7,10 +7,10 @@ public class Environment : MonoBehaviour
 
     private Light Sun;
     public int DayLength = 120; // Seconds per Day
-    private int DawnStart = 6;
-    private int DayStart = 9;
-    private int DuskStart = 15;
-    private int NightStart = 18;
+    public int DawnStart = 6;
+    public int DayStart = 9;
+    public int DuskStart = 15;
+    public int NightStart = 18;
 
     private static float staticIntensity = 0.6f;
 
@@ -158,6 +158,7 @@ public class Environment : MonoBehaviour
         float perCentTime = (time - initTime) / duration;
 
         RenderSettings.fogColor = Color.Lerp(initFog, finalFog, perCentTime);
+        RenderSettings.ambientSkyColor = RenderSettings.fogColor;
 
     }
 
@@ -191,6 +192,7 @@ public class Environment : MonoBehaviour
         float percentTime = (time - initTime) / duration;
 
         Sun.color = Color.Lerp(initColor, finalColor, percentTime);
+        RenderSettings.ambientGroundColor = Sun.color;
     }
 
 
