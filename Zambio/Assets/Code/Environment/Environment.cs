@@ -13,6 +13,9 @@ public class Environment : MonoBehaviour
     public int NightStart = 18;
 
     private static float staticIntensity = 0.6f;
+    public float nightFogDens = 0.04f;
+    public float dayFogDens = 0.01f;
+    public float midFogDens = 0.03f;
 
     public float initDawnIntensity = staticIntensity;  // FinalNightIntensity
     public float initDayIntensity = 0.8f;  // FinalDawnIntensity
@@ -42,7 +45,7 @@ public class Environment : MonoBehaviour
     float normInitTime;
     public float dtInHours; // Public for Observational Purposes from inside Unity
     float percentDay;
-
+    public FogMode OurFogMode = FogMode.Exponential;
 
 
 
@@ -57,6 +60,7 @@ public class Environment : MonoBehaviour
         Sun.intensity = initDawnIntensity;
 
         RenderSettings.fog = true;
+        RenderSettings.fogMode = OurFogMode;
 
 
         if (DayLength == 0)
@@ -68,6 +72,10 @@ public class Environment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if ( RenderSettings.fogMode != OurFogMode)
+        {
+            RenderSettings.fogMode = OurFogMode;
+        }
         if (Sun != null)
         {
             // This controls the Rotation of the Light Source,
@@ -112,7 +120,7 @@ public class Environment : MonoBehaviour
     {
         changeIntensity(time, DawnStart, DayStart, initDawnIntensity, initDayIntensity);
         changeColor(time, DawnStart, DayStart, initDawnColor, initDayColor);
-        changeFog(time, DawnStart, DayStart, initDawnFog, initDayFog);
+        changeFog(time, DawnStart, DayStart, initDawnFog, initDayFog, midFogDens, dayFogDens);
 
         //changeColorofSomethingToResemble(DawnColorsInWorldView);
         // Debug.Log("Dawn");
@@ -121,7 +129,7 @@ public class Environment : MonoBehaviour
     {
         changeIntensity(time, DayStart, DuskStart, initDayIntensity, initDuskIntensity);
         changeColor(time, DayStart, DuskStart, initDayColor, initDuskColor);
-        changeFog(time, DayStart, DuskStart, initDayFog, initDuskFog);
+        changeFog(time, DayStart, DuskStart, initDayFog, initDuskFog, dayFogDens, midFogDens);
 
 
         //Debug.Log("Day");
@@ -130,7 +138,7 @@ public class Environment : MonoBehaviour
     {
         changeIntensity(time, DuskStart, NightStart, initDuskIntensity, initNightIntensity);
         changeColor(time, DuskStart, NightStart, initDuskColor, initNightColor);
-        changeFog(time, DuskStart, NightStart, initDuskFog, initNightFog);
+        changeFog(time, DuskStart, NightStart, initDuskFog, initNightFog, midFogDens, nightFogDens);
 
         // Trying out the mark-down stuff
         //Debug.Log("<b>Dusk</b>");
@@ -139,12 +147,12 @@ public class Environment : MonoBehaviour
     {
         changeIntensity(time, NightStart, DawnStart, initNightIntensity, initDawnIntensity);
         changeColor(time, NightStart, DawnStart, initNightColor, initDawnColor);
-        changeFog(time, NightStart, DawnStart, initNightFog, initDawnFog);
+        changeFog(time, NightStart, DawnStart, initNightFog, initDawnFog, nightFogDens, midFogDens);
 
         //Debug.Log("<i>Night</i>");
     }
 
-    void changeFog(float time, float initTime, float finalTime, Color initFog, Color finalFog)
+    void changeFog(float time, float initTime, float finalTime, Color initFog, Color finalFog, float dayFogDensity, float nightFogDensity)
     {
         if (time < initTime)
         {
@@ -159,6 +167,7 @@ public class Environment : MonoBehaviour
 
         RenderSettings.fogColor = Color.Lerp(initFog, finalFog, perCentTime);
         RenderSettings.ambientSkyColor = RenderSettings.fogColor;
+        RenderSettings.fogDensity = Mathf.Lerp(dayFogDensity, nightFogDensity, perCentTime);
 
     }
 

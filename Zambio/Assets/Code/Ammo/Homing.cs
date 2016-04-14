@@ -7,6 +7,8 @@ public class Homing : MonoBehaviour
     Vector3 path;
     float distance, progress;
     Vector3 start;
+    float startTime;
+    public float timeToHit = 5;
 
     // Use this for initialization
     void Start()
@@ -16,13 +18,14 @@ public class Homing : MonoBehaviour
         path = target.position - start;
         distance = path.magnitude;
         progress = 0;
+        startTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
+        progress = (Time.time - startTime) / timeToHit;
         transform.position = Vector3.Lerp(start, target.position, progress);
-        progress = (target.position - start ).magnitude / distance;
     }
 }
 
