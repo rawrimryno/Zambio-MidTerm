@@ -9,16 +9,17 @@ public class MainMenu : MonoBehaviour {
     public GameObject mainMenu;
     public GameObject pauseMenu;
     public GameObject bossBarOBJ;
+    public GameObject creditsOBJ;
 
     public CursorLockMode cursorLock;
 
     private bool focus = true;
     private bool focusLock = true;
 
-    public Button[] mmBTN;
-    public Button[] pmBTN;
-    private int mainBTN = -1;
-    private int pauseBTN = -1;
+    //public Button[] mmBTN;
+    //public Button[] pmBTN;
+    //private int mainBTN = -1;
+    //private int pauseBTN = -1;
 
     GameControllerSingleton gc;
 
@@ -33,11 +34,11 @@ public class MainMenu : MonoBehaviour {
     }
 	
 	void Update () {
-        if (Input.GetButtonDown("Pause"))
+        if (Input.GetButtonDown("Pause") && !creditsOBJ.activeInHierarchy)
         {
             onPause();
         }
-        if (!focus && focusLock && Time.timeScale == 1.0f) //Pauses Game on Focus Loss
+        if (!focus && focusLock && Time.timeScale == 1.0f && !creditsOBJ.activeInHierarchy) //Pauses Game on Focus Loss
         {
             onPause();
         }
@@ -114,5 +115,9 @@ public class MainMenu : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-
+    public void onDeath()
+    {
+        ui.SetActive(false);
+        creditsOBJ.SetActive(true);
+    }
 }

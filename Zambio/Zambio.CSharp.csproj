@@ -86,6 +86,7 @@
     <Compile Include="Assets\Code\PowerUps\PowerUp.cs" />
     <Compile Include="Assets\Code\SplashScript.cs" />
     <Compile Include="Assets\Code\UI\BossBar.cs" />
+    <Compile Include="Assets\Code\UI\Credits.cs" />
     <Compile Include="Assets\Code\UI\HealthPanel.cs" />
     <Compile Include="Assets\Code\UI\HealthPanelDisplay.cs" />
     <Compile Include="Assets\Code\UI\InfoTab.cs" />
