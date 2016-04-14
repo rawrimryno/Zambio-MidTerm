@@ -1404,7 +1404,7 @@ GameObject:
   - 54: {fileID: 5451540}
   m_Layer: 0
   m_Name: Bowser
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3114,7 +3114,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190622}
-  m_LocalRotation: {x: 0.29987222, y: 0.6562318, z: -0.2780702, w: 0.6341241}
+  m_LocalRotation: {x: 0.29987225, y: 0.6562319, z: -0.27807024, w: 0.63412416}
   m_LocalPosition: {x: -11.988015, y: 9.832601, z: 7.3400126}
   m_LocalScale: {x: 0.86257726, y: 5.4891653, z: 1.5153855}
   m_Children: []
@@ -4403,7 +4403,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171006}
-  m_LocalRotation: {x: 0.29987222, y: 0.6562318, z: -0.2780702, w: 0.6341241}
+  m_LocalRotation: {x: 0.29987225, y: 0.6562319, z: -0.27807024, w: 0.63412416}
   m_LocalPosition: {x: 12.389181, y: 9.491538, z: 7.192107}
   m_LocalScale: {x: 0.86257726, y: 5.4891653, z: 1.5153855}
   m_Children: []
