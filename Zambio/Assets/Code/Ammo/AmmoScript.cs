@@ -49,7 +49,8 @@ public class AmmoScript : MonoBehaviour
             rb = GetComponent<Rigidbody>();
             meshAgent.speed = speed;
             acquireEnemy();
-            lifetime = 999;
+            //lifetime = 999;  Todd:  Hardcoded values like this makes debugging hard
+                                    // Set it High from the Component Viewer in Unity
 
             //Debug.Log("RedShell Stupid Check");
         }
@@ -154,6 +155,7 @@ public class AmmoScript : MonoBehaviour
         }
     }
     // Computational Complexity : O(numEnemiesInGame^2)
+    //  Can reduce to O(n) by saving the enemies to a list as they spawn and searching through that.
     void acquireEnemy()
     {
         const float maxDist = 10000f;
