@@ -7,8 +7,8 @@ public class Homing : MonoBehaviour
     public int damage = 1;
     Vector3 path;
     float distance, progress;
-    Vector3 start, finish;
-    float startTime;
+    public Vector3 start, finish;
+    public float startTime;
     public float timeToHit = 5;
 
     // Use this for initialization
@@ -27,18 +27,28 @@ public class Homing : MonoBehaviour
     void Update()
     {
         progress = (Time.time - startTime) / timeToHit;
-        if ( gameObject.name == "onFire") {
+        if (gameObject.name == "onFire")
+        {
             // Practically "stick" to the target, which should be the attached ammo
             transform.position = Vector3.Lerp(transform.position, target.position, progress);
         }
-
-        transform.position = Vector3.Lerp(start, finish, progress);
+        else { // Fireball
+            transform.position = Vector3.Lerp(start, finish, progress);
+        }
     }
     void OnTriggerEnter(Collider tColl )
     {
-        if ( gameObject.name == "fireBall" &&  tColl.CompareTag("Player"))
+        if ( gameObject.name == "fireBall" )
         {
-            tColl.gameObject.GetComponent<PlayerController>().adjustHealth(-damage);
+            if (tColl.CompareTag("Player"))
+            {
+                tColl.gameObject.GetComponent<PlayerController>().adjustHealth(-damage);
+                gameObject.SetActive(false);
+                Destroy(gameObject);
+            }
+            else if (tColl.CompareTag("Bowser")){
+                tColl.gameObject.GetComponent<EnemyController>().health -= damage/2;
+            }
         }
     }
 }

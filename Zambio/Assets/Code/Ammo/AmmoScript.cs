@@ -141,7 +141,6 @@ public class AmmoScript : MonoBehaviour
                 acquireEnemy();
                 rb.AddForce(-rb.velocity * reboundForce * rb.mass);
             }
-
             enemy.health -= damage;
 
             if (cInfo.gameObject.activeInHierarchy && enemy.health <= 0)
@@ -154,6 +153,15 @@ public class AmmoScript : MonoBehaviour
                 randomDrop();
 
             }
+        }
+        else if (cInfo.gameObject.name == "fireBall")
+        {
+            Homing homer = cInfo.gameObject.GetComponent<Homing>();
+            homer.finish = homer.start;
+            homer.start = transform.position;
+            homer.timeToHit -= Time.time - homer.startTime;
+            homer.startTime = Time.time;
+            Destroy(gameObject);
         }
     }
     // Computational Complexity : O(numEnemiesInGame^2)

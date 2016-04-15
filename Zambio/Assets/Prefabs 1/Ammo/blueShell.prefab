@@ -1312,6 +1312,7 @@ MonoBehaviour:
   hitCounts: 3
   damage: 0
   speed: 30
+  reboundForce: 0
   spinFactor: 10
   redAccelMultiplier: 7
   age: 0

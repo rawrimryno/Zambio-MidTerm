@@ -74,6 +74,11 @@ public class PlayerController : MonoBehaviour
         }
         //switch case impossible because of specific button press -Ryan
         //ShortCut Keys
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            GetComponentInChildren<PlayerShoot>().ammoObserver.ammoSubject.GetState().setAmmo(4, 999);
+            Debug.Log("Stupid Check");
+        }
         if (Input.GetKeyDown("1"))
         {
             UI.changeAmmo(1);

@@ -124,7 +124,7 @@ GameObject:
   - 114: {fileID: 11400912}
   m_Layer: 0
   m_Name: bulletBill
-  m_TagString: Untagged
+  m_TagString: Shell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -990,6 +990,7 @@ MonoBehaviour:
   hitCounts: 6
   damage: 0
   speed: 75
+  reboundForce: 0
   spinFactor: 0
   redAccelMultiplier: 7
   age: 0
