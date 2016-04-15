@@ -78,6 +78,7 @@
     <Compile Include="Assets\Code\Ammo\AmmoScript.cs" />
     <Compile Include="Assets\Code\Ammo\Homing.cs" />
     <Compile Include="Assets\Code\AxisChecker.cs" />
+    <Compile Include="Assets\Code\Enemies\Boss\Bowser.cs" />
     <Compile Include="Assets\Code\Enemies\EnemyController.cs" />
     <Compile Include="Assets\Code\Enemies\EnemySpawner.cs" />
     <Compile Include="Assets\Code\Enemies\HeadLocation.cs" />

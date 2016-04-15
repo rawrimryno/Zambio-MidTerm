@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     // Use this when you want to increase ammo or add Powerups already applied to character
     public int health { get; set; }
     //describes ammo type not ammount
-    private int ammo; 
-    private List<PowerUp> myPowerUps;
+    private int ammo;
+    private List<string> myPowerUps;
     GameControllerSingleton gc;
 
     // Pattern Practice
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         hpDisplay = GameObject.FindGameObjectWithTag("HealthStatusDisplay").GetComponent<HealthPanelDisplay>();
         ammo = UI.bullet;
         myInventory = GetComponent<Inventory>();
-        myPowerUps = new List<PowerUp>();
+        myPowerUps = new List<string>();
 
         // Health Observer Registration
 
@@ -124,25 +124,32 @@ public class PlayerController : MonoBehaviour
             // Check powerup applied, add to to inventory if not, else add to powerup applied
             if (thisPowerUp.isFire || thisPowerUp.isMetal)
             {
-                if (myPowerUps.Contains(thisPowerUp))
+
+                if (myPowerUps.Contains(thisPowerUp.name))
                 {
                     myInventory.AddPower(thisPowerUp);
                 }
-                myPowerUps.Add(thisPowerUp);
+                myPowerUps.Add(thisPowerUp.name);
+
+
             }
 
-          
+
 
             tColl.gameObject.SetActive(false);
             Destroy(tColl.gameObject);
         }
     }
 
+    public bool hasPowerUp(string tName)
+    {
+        return myPowerUps.Contains(tName);
+    }
+
     private void setHealth(int amt)
     {
         health = amt;
         healthModel.SetState(amt);
-        //UI.setHearts(); 
         healthModel.Notify();
         if (health < 1)
         {
@@ -161,17 +168,7 @@ public class PlayerController : MonoBehaviour
     public void adjustHealth(int amt)
     {
         //Debug.Log("Adjusting Health by " + amt);
-        health += amt;
-        //UI.getHealth();
-        //UI.setHearts(); 
-        healthModel.SetState(health);
-        healthModel.Notify();
-        if ( health < 1)
-        {
-            health = 0;
-            deathSequence();
-            //dead = true;
-        }
+        setHealth(health + amt);
 
     }
     void deathSequence()

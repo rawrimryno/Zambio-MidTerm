@@ -8,6 +8,7 @@ public class AmmoScript : MonoBehaviour
     private int hitsLeft;
     private int ID;
     public float speed;
+    public float reboundForce;
     bool init = false;
     private Inventory inventory;
     Rigidbody rb;
@@ -50,7 +51,7 @@ public class AmmoScript : MonoBehaviour
             meshAgent.speed = speed;
             acquireEnemy();
             //lifetime = 999;  Todd:  Hardcoded values like this makes debugging hard
-                                    // Set it High from the Component Viewer in Unity
+            // Set it High from the Component Viewer in Unity
 
             //Debug.Log("RedShell Stupid Check");
         }
@@ -138,6 +139,7 @@ public class AmmoScript : MonoBehaviour
             else if (gameObject.name == "redShell")
             {
                 acquireEnemy();
+                rb.AddForce(-rb.velocity * reboundForce * rb.mass);
             }
 
             enemy.health -= damage;
@@ -177,7 +179,7 @@ public class AmmoScript : MonoBehaviour
                 closest = dist;
             }
         }
-        if ( closest == maxDist )
+        if (closest == maxDist)
         {
             Destroy(gameObject);
         }

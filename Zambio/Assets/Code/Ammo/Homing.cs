@@ -4,9 +4,10 @@ using System.Collections;
 public class Homing : MonoBehaviour
 {
     public Transform target;
+    public int damage = 1;
     Vector3 path;
     float distance, progress;
-    Vector3 start;
+    Vector3 start, finish;
     float startTime;
     public float timeToHit = 5;
 
@@ -15,6 +16,7 @@ public class Homing : MonoBehaviour
     {
         target = FindObjectOfType<PlayerController>().transform;
         start = gameObject.transform.position;
+        finish = target.position + target.GetComponent<Rigidbody>().velocity * timeToHit;
         path = target.position - start;
         distance = path.magnitude;
         progress = 0;
@@ -25,7 +27,19 @@ public class Homing : MonoBehaviour
     void Update()
     {
         progress = (Time.time - startTime) / timeToHit;
-        transform.position = Vector3.Lerp(start, target.position, progress);
+        if ( gameObject.name == "onFire") {
+            // Practically "stick" to the target, which should be the attached ammo
+            transform.position = Vector3.Lerp(transform.position, target.position, progress);
+        }
+
+        transform.position = Vector3.Lerp(start, finish, progress);
+    }
+    void OnTriggerEnter(Collider tColl )
+    {
+        if ( tColl.CompareTag("Player"))
+        {
+            tColl.gameObject.GetComponent<PlayerController>().adjustHealth(-damage);
+        }
     }
 }
 

@@ -16,6 +16,7 @@ public class PlayerShoot : MonoBehaviour {
     private GameControllerSingleton gc;
     private bool ammoInit = false;
     private bool observerRegistered = false;
+    public GameObject fire;
 
 	// Use this for initialization
 	void Start () {
@@ -67,9 +68,20 @@ public class PlayerShoot : MonoBehaviour {
         if ((Input.GetButtonDown("Fire1")|| (Input.GetAxis("XboxTriggers") == 1) ) && rateOfFire <= 0 && Time.timeScale != 0f && ammoObserver.ammoSubject.GetState().returnAmmo(ammoNum) > 0)
         {
             Rigidbody clone;
+            //Homing thisHomer;
             projectile = ammo[ammoNum].GetComponent<Rigidbody>();
+            //projectile = ammo[ammoNum].GetComponentInChildren<Rigidbody>();
             clone = Instantiate(projectile, (transform.position), transform.rotation) as Rigidbody;
             clone.name = projectile.name;
+            //if (gc.pc.hasPowerUp("fireFlower"))
+            //{
+            //    GameObject thisFire;
+            //    thisFire = Instantiate(fire, (transform.position), transform.rotation) as GameObject;
+                
+            //    thisHomer = thisFire.gameObject.GetComponent<Homing>();
+            //    thisHomer.target = clone.gameObject.transform;
+            //    thisHomer.timeToHit = 0.001f;
+            //}
             clone.velocity = transform.TransformDirection((Vector3.forward) * bulletSpeed);
             switch (ammoNum)
             {
