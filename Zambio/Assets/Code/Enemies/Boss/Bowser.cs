@@ -33,6 +33,7 @@ public class Bowser : MonoBehaviour {
             Debug.Log("Bowser is shooting a fireball!");
             GameObject thisOne;
             thisOne = Instantiate(FireBall, mouth.transform.position, Quaternion.identity) as GameObject;
+            thisOne.name = FireBall.name;
             attackTimers[1] = 0f;
         }
 	}

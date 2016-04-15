@@ -3338,7 +3338,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173484}
-  m_LocalRotation: {x: 0.29987225, y: 0.6562319, z: -0.27807024, w: 0.63412416}
+  m_LocalRotation: {x: 0.29987222, y: 0.6562318, z: -0.2780702, w: 0.6341241}
   m_LocalPosition: {x: 12.389181, y: 9.491538, z: 7.192107}
   m_LocalScale: {x: 0.86257726, y: 5.4891653, z: 1.5153855}
   m_Children: []
@@ -3592,7 +3592,7 @@ Transform:
   m_GameObject: {fileID: 173390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 274.93433, y: 8.3, z: 122.006874}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 439802}
   - {fileID: 490986}
@@ -4629,7 +4629,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157622}
-  m_LocalRotation: {x: 0.29987225, y: 0.6562319, z: -0.27807024, w: 0.63412416}
+  m_LocalRotation: {x: 0.29987222, y: 0.6562318, z: -0.2780702, w: 0.6341241}
   m_LocalPosition: {x: -11.988015, y: 9.832601, z: 7.3400126}
   m_LocalScale: {x: 0.86257726, y: 5.4891653, z: 1.5153855}
   m_Children: []
@@ -6926,7 +6926,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!95 &9565816
 Animator:
@@ -7568,7 +7568,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 1
-  m_AngularSpeed: 120
+  m_AngularSpeed: 2
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1

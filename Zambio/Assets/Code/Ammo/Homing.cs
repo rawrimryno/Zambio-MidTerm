@@ -36,7 +36,7 @@ public class Homing : MonoBehaviour
     }
     void OnTriggerEnter(Collider tColl )
     {
-        if ( tColl.CompareTag("Player"))
+        if ( gameObject.name == "fireBall" &&  tColl.CompareTag("Player"))
         {
             tColl.gameObject.GetComponent<PlayerController>().adjustHealth(-damage);
         }
