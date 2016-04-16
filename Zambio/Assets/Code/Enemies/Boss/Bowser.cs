@@ -10,6 +10,8 @@ public class Bowser : MonoBehaviour {
     public Transform mouth;
     public MainMenu UImain;
     BossSubject bossSub;
+    EnemyController ec;
+    int currHealth;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +21,9 @@ public class Bowser : MonoBehaviour {
             attackTimers[i] = 0f;
         }
         bossSub = new BossSubject();
-        bossSub.SetState(GetComponent<EnemyController>());
+        ec = GetComponent<EnemyController>();
+        bossSub.SetState(ec);
+        currHealth = ec.health;
         UImain = FindObjectOfType<MainMenu>();
         UImain.bossObserver().attach(bossSub);
         bossSub.Notify();
@@ -27,6 +31,12 @@ public class Bowser : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if ( currHealth != ec.health)
+        {
+            currHealth = ec.health;
+            bossSub.Notify();
+        }
+
         for (int i = 0; i < 2; i++)
         {
             attackTimers[i] += Time.deltaTime;
