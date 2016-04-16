@@ -8,6 +8,8 @@ public class Bowser : MonoBehaviour {
     public GameObject Flare;
     public GameObject FireBall;
     public Transform mouth;
+    public MainMenu UImain;
+    BossSubject bossSub;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +18,11 @@ public class Bowser : MonoBehaviour {
         {
             attackTimers[i] = 0f;
         }
+        bossSub = new BossSubject();
+        bossSub.SetState(GetComponent<EnemyController>());
+        UImain = FindObjectOfType<MainMenu>();
+        UImain.bossObserver().attach(bossSub);
+        bossSub.Notify();
 	}
 	
 	// Update is called once per frame

@@ -6,6 +6,18 @@ public abstract class Observer {
     public abstract void update();
 }
 
+public class BossObserver : Observer
+{
+    BossSubject boss;
+    public EnemyController enemyData;
+    MainMenu menu;
+    public override void update()
+    {
+        enemyData = boss.GetState();
+        //menu.bossHealth = enemyData.health;
+    }
+}
+
 public class SpawnControllerObserver : Observer
 {
     //public bool canSpawn = false;

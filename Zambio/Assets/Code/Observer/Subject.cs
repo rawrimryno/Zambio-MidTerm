@@ -32,6 +32,21 @@ public abstract class Subject {
     }
 }
 
+public class BossSubject : Subject
+{
+    private EnemyController boss;
+
+    public EnemyController GetState()
+    {
+        return boss;
+    }
+
+    public void SetState( EnemyController subject)
+    {
+        boss = subject;
+    }
+}
+
 public class SpawnSubject : Subject
 {
     private SpawnerController state;
