@@ -3,12 +3,13 @@ using System.Collections;
 
 public class BossEncounter : IState {
     public GameObject Boss;
+    GameObject clone;
     public GameObject spawnLocation;
 	// Use this for initialization
 	public override void OnStart () {
         // Load Boss
         Debug.Log("Load Boss");
-        Instantiate(Boss, spawnLocation.transform.position, spawnLocation.transform.rotation);
+        clone = Instantiate(Boss, spawnLocation.transform.position, spawnLocation.transform.rotation) as GameObject;
 	
 	}
 
@@ -16,6 +17,9 @@ public class BossEncounter : IState {
     public override void OnUpdate() {
         // Check if Boss Has been Killed
         // true : this.nextState = this.futureState, where future state is hasWon
-
+        if ( clone == null)
+        {
+            this.nextState = this.futureState;
+        }
 	}
 }
