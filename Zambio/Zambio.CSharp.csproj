@@ -78,6 +78,7 @@
     <Compile Include="Assets\Code\Enemies\HeadLocation.cs" />
     <Compile Include="Assets\Code\Enemies\SpawnerController.cs" />
     <Compile Include="Assets\Code\Environment\Environment.cs" />
+    <Compile Include="Assets\Code\Environment\PeachHeal.cs" />
     <Compile Include="Assets\Code\GC\GameController.cs" />
     <Compile Include="Assets\Code\GC\GameControllerSingleton.cs" />
     <Compile Include="Assets\Code\GC\StateMachine\BossEncounter.cs" />
