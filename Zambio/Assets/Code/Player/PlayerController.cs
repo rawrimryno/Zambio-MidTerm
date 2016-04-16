@@ -14,8 +14,10 @@ public class PlayerController : MonoBehaviour
     public int health { get; set; }
     //describes ammo type not ammount
     private int ammo;
-    private List<string> myPowerUps;
+    public List<string> myPowerUps;
     GameControllerSingleton gc;
+    GameObject regMario;
+    GameObject metalMario;
 
     // Pattern Practice
     public HealthSubject healthModel;
@@ -49,6 +51,9 @@ public class PlayerController : MonoBehaviour
         hpDisplay = GameObject.FindGameObjectWithTag("HealthStatusDisplay").GetComponent<HealthPanelDisplay>();
         ammo = UI.bullet;
         myInventory = GetComponent<Inventory>();
+        regMario = GameObject.Find("Mario");
+        metalMario = GameObject.Find("MetalMario");
+
         myPowerUps = new List<string>();
 
         // Health Observer Registration
@@ -147,7 +152,7 @@ public class PlayerController : MonoBehaviour
             Destroy(tColl.gameObject);
         }
     }
-
+  
     public bool hasPowerUp(string tName)
     {
         return myPowerUps.Contains(tName);
