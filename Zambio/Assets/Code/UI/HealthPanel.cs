@@ -6,143 +6,90 @@ using System;
 public class HealthPanel : MonoBehaviour
 {
 
-    public RectTransform coolDownBar;
-    public float coolDownBase;
+    UIHealthObserver healthObserver;
+    UIAmmoObserver ammoObserver;
+    StateMachine sm;
+    GameControllerSingleton gc;
+    public bool init = false;
+
     public Image[] hearts;
     public Sprite[] heartIcons;
     public int health;
+
     public int score;
     public Text scoreTXT;
+
+    public int round;
+    public Text roundTXT;
+
     public Image[] ammo;
-
-    UIHealthObserver healthObserver;
-
-    // For Heart Change
-    GameControllerSingleton gc;
-
-
     public Sprite[] ammoIcons;
-
+    public Text ammoTXT;
     public int bullet;
+    private int bulletCount;
 
+    public RectTransform[] crossHairs;
+    private float coolDownBase = 5;
     private float coolDownCur;
-
-    public bool init = false;
 
     void Awake()
     {
         healthObserver = new UIHealthObserver();
+        ammoObserver = new UIAmmoObserver();
+        sm = GetComponentInParent<StateMachine>();
     }
 
     void Start()
     {
-        coolDownCur = coolDownBase;
         changeAmmo(1);
-        coolDownCur = 0.5f; // Zach's original
         bullet = 1;
         score = 0;
+        round = 0;
         scoreTXT = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
         gc = GameControllerSingleton.get();
-        //ammoIcons = new Sprite[gc.numAmmo];
-
-        //if (!init)
-        //{
-        //    int i = 0;
-        //    Sprite tempSpr;
-        //    while (i < gc.numAmmo)
-        //    {
-        //        tempSpr = gc.getAmmoSpriteByID(i);
-        //        ammo[i].sprite = tempSpr;
-        //        //ammo[i].sprite = ammoIcons[0];
-        //        i++;
-        //    }
-        //    init = true;
-
-        //}
-
-
-
     }
 
     void Update()
     {
+        
         if (!init)
         {
             scoreTXT = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
             gc = GameControllerSingleton.get();
             init = true;
 
-            // Register Model to Oberver and then assign observer 
+            FindObjectOfType<Inventory>().ammoContents.ammoSubject.Attach(ammoObserver);
+            sm = FindObjectOfType<StateMachine>(); //GetComponentInParent<StateMachine>();
+
             healthObserver.healthSubject = gc.pc.healthModel;
             gc.pc.healthModel.Attach(healthObserver);
             healthObserver.healthPanel = this;
-            //Debug.Log("got GameController in health panel");
         }
-        //int i = 0;
-        //if (!init)
-        //{
-        //    Sprite tempSpr;
-        //    while (i < gc.numAmmo)
-        //    {
-        //        tempSpr = gc.getAmmoSpriteByID(i);
-        //        ammoIcons[i++] = tempSpr;
-        //    }
-        //    init = true;
 
-        //}
-
-        if (Input.GetButtonDown("Fire1"))
+        if(bulletCount != ammoObserver.ammoSubject.GetState().returnAmmo(bullet - 1)) //Check for ammo pickup or switch ammo type
         {
-            coolDown();
+            bulletCount = ammoObserver.ammoSubject.GetState().returnAmmo(bullet - 1);
+            ammoCount(bulletCount);
+            //coolDownBase = ;
         }
 
-        //Debug Code 
-        if (Input.GetKeyDown("z"))
+        if ((Input.GetButtonDown("Fire1") || (Input.GetAxis("XboxTriggers") == 1)) && ammoObserver.ammoSubject.GetState().returnAmmo(bullet - 1) > 0 && Time.timeScale == 1 && !IsInvoking("coolDownBar")) //CoolDown Animation
         {
-            health--;
-            setHearts();
+            coolDown(coolDownBase);
         }
-        if (Input.GetKeyDown("x"))
+
+        if(round != sm.Round) //Checks and Updates Round Number if needed
         {
-            health++;
-            setHearts();
-        }
-        //getScore();
-        //getHealth();
-
-    }
-
-    public void coolDown()
-    {
-
-        if (coolDownCur == coolDownBase)
-        {
-            coolDownCur = 0f;
-            coolDownBar.localScale = new Vector3(0, 0, 1);
-            InvokeRepeating("coolDownScaler", 0, 0.01f);
+            round = sm.Round;
+            roundTXT.text = "Round " + round;
         }
 
-    }
-
-    private void coolDownScaler() //Visual Aid
-    {
-        if (coolDownCur < coolDownBase)
-        {
-            coolDownCur++;
-            coolDownBar.localScale = new Vector3((float)coolDownCur / coolDownBase, (float)coolDownCur / coolDownBase, 1);
-        }
-        else
-        {
-            CancelInvoke("coolDownScaler");
-        }
     }
 
     public void getScore()
     {
         score = gc.pc.score;
-        
         setScore();
-        //Debug.Log("ScorePanel is Getting Score " + score);
     }
 
     public void setScore()
@@ -155,11 +102,10 @@ public class HealthPanel : MonoBehaviour
 
     public void getHealth()
     {
-        //health = gc.pc.health;  ** Health should be updated through Observer
         setHearts();
-        //Debug.Log("HealthPanel is Getting Health " + health);
     }
-    public void setHearts( int health )
+
+    public void setHearts(int health)
     {
         if (health < 0)
         {
@@ -204,6 +150,7 @@ public class HealthPanel : MonoBehaviour
             }
         }
     }
+
     public void setHearts()
     {
 
@@ -254,67 +201,107 @@ public class HealthPanel : MonoBehaviour
 
     public void changeAmmo(int ammoType)
     {
-        //Sprite test = gc.getAmmoSpriteByID(0);
-        //if (!IsInvoking("coolDownScaler")) //Remove To Have A Blast
+
+        bullet = ammoType;
+
+        if (bullet < 1)
         {
-
-            coolDownCur = coolDownBase;
-            coolDownBar.localScale = new Vector3((float)coolDownCur / coolDownBase, (float)coolDownCur / coolDownBase, 1);
-
-            bullet = ammoType;
-
-            if (bullet < 1)
-            {
-                bullet = 5;
-            }
-            if (bullet > 5)
-            {
-                bullet = 1;
-            }
-
-            switch (bullet)
-            {
-                case 1:
-                    ammo[0].sprite = ammoIcons[4];
-                    ammo[1].sprite = ammoIcons[3];
-                    ammo[2].sprite = ammoIcons[2];
-                    ammo[3].sprite = ammoIcons[1];
-                    ammo[4].sprite = ammoIcons[0];
-                    break;
-                case 2:
-                    ammo[0].sprite = ammoIcons[3];
-                    ammo[1].sprite = ammoIcons[2];
-                    ammo[2].sprite = ammoIcons[1];
-                    ammo[3].sprite = ammoIcons[0];
-                    ammo[4].sprite = ammoIcons[4];
-                    break;
-                case 3:
-                    ammo[0].sprite = ammoIcons[2];
-                    ammo[1].sprite = ammoIcons[1];
-                    ammo[2].sprite = ammoIcons[0];
-                    ammo[3].sprite = ammoIcons[4];
-                    ammo[4].sprite = ammoIcons[3];
-                    break;
-                case 4:
-                    ammo[0].sprite = ammoIcons[1];
-                    ammo[1].sprite = ammoIcons[0];
-                    ammo[2].sprite = ammoIcons[4];
-                    ammo[3].sprite = ammoIcons[3];
-                    ammo[4].sprite = ammoIcons[2];
-                    break;
-                case 5:
-                    ammo[0].sprite = ammoIcons[0];
-                    ammo[1].sprite = ammoIcons[4];
-                    ammo[2].sprite = ammoIcons[3];
-                    ammo[3].sprite = ammoIcons[2];
-                    ammo[4].sprite = ammoIcons[1];
-                    break;
-                default:
-                    break;
-            }
-
+            bullet = 5;
+        }
+        if (bullet > 5)
+        {
+            bullet = 1;
         }
 
+        switch (bullet)
+        {
+            case 1:
+                ammo[0].sprite = ammoIcons[4];
+                ammo[1].sprite = ammoIcons[3];
+                ammo[2].sprite = ammoIcons[2];
+                ammo[3].sprite = ammoIcons[1];
+                ammo[4].sprite = ammoIcons[0];
+                break;
+            case 2:
+                ammo[0].sprite = ammoIcons[3];
+                ammo[1].sprite = ammoIcons[2];
+                ammo[2].sprite = ammoIcons[1];
+                ammo[3].sprite = ammoIcons[0];
+                ammo[4].sprite = ammoIcons[4];
+                break;
+            case 3:
+                ammo[0].sprite = ammoIcons[2];
+                ammo[1].sprite = ammoIcons[1];
+                ammo[2].sprite = ammoIcons[0];
+                ammo[3].sprite = ammoIcons[4];
+                ammo[4].sprite = ammoIcons[3];
+                break;
+            case 4:
+                ammo[0].sprite = ammoIcons[1];
+                ammo[1].sprite = ammoIcons[0];
+                ammo[2].sprite = ammoIcons[4];
+                ammo[3].sprite = ammoIcons[3];
+                ammo[4].sprite = ammoIcons[2];
+                break;
+            case 5:
+                ammo[0].sprite = ammoIcons[0];
+                ammo[1].sprite = ammoIcons[4];
+                ammo[2].sprite = ammoIcons[3];
+                ammo[3].sprite = ammoIcons[2];
+                ammo[4].sprite = ammoIcons[1];
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    public void ammoCount(int amount)
+    {
+        if(amount == 0)
+        {
+            ammoTXT.text = "0";
+            ammoTXT.color = Color.red;
+        }
+        else if(amount > 99)
+        {
+            ammoTXT.text = "99";
+            ammoTXT.color = Color.cyan;
+        }
+        else
+        {
+            ammoTXT.text = amount.ToString();
+            ammoTXT.color = Color.green;
+        }
+    }
+
+    public void coolDown(float length)
+    {
+        crossHairs[0].Translate(-6, 6, 0);
+        crossHairs[1].Translate(6, 6, 0);
+        crossHairs[2].Translate(-6, -6, 0);
+        crossHairs[3].Translate(6, -6, 0);
+        coolDownCur = 100;
+        InvokeRepeating("coolDownBar", 0, length / 100);
+        //print("begin coolDownBar");
+    }
+
+    private void coolDownBar()
+    {
+        if(coolDownCur > 0)
+        {
+            crossHairs[0].Translate(0.06f, -0.06f, 0);
+            crossHairs[1].Translate(-0.06f, -0.06f, 0);
+            crossHairs[2].Translate(0.06f, 0.06f, 0);
+            crossHairs[3].Translate(-0.06f, 0.06f, 0);
+            //print("coolDown");
+        }
+        else
+        {
+            //print("end coolDown");
+            CancelInvoke("coolDownBar");
+        }
+        coolDownCur--;
     }
 
 }

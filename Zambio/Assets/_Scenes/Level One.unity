@@ -229,7 +229,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 63225774}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8284b0d34e790ca478b3c47f3c29ffb1, type: 3}
   m_Name: 
@@ -8940,7 +8940,7 @@ Transform:
   m_PrefabParentObject: {fileID: 404530, guid: a01beabb998eda345973391aca41e425, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 555118028}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.043577537, y: -0.043577537, z: -0.0019026217, w: 0.99809736}
   m_LocalPosition: {x: 0.03, y: 1.33, z: 2.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -41262,6 +41262,7 @@ GameObject:
   - 92: {fileID: 1735602127}
   - 81: {fileID: 1735602126}
   - 114: {fileID: 1735602125}
+  - 114: {fileID: 1735602130}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -41359,6 +41360,18 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!114 &1735602130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1735602123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8229c497722d2f5408ee98c2c27ede37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 1735602129}
 --- !u!1001 &1746476217
 Prefab:
   m_ObjectHideFlags: 0
@@ -48852,6 +48865,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1862097318}
   - 20: {fileID: 1862097317}
+  - 45: {fileID: 1862097319}
   m_Layer: 0
   m_Name: Water4AdvancedReflectionSceneCamera
   m_TagString: Untagged
@@ -48899,12 +48913,20 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1862097316}
-  m_LocalRotation: {x: 0.16286378, y: 0.14154892, z: 0.023616744, w: -0.97615653}
-  m_LocalPosition: {x: -3.2778986, y: -13.487533, z: -13.152782}
+  m_LocalRotation: {x: 0.31251192, y: 0.103742644, z: 0.0343589, w: -0.94360656}
+  m_LocalPosition: {x: 31.750547, y: -174.83432, z: -145.1461}
   m_LocalScale: {x: 0.4346941, y: 0.37755784, z: 0.988831}
   m_Children: []
   m_Father: {fileID: 1402447687}
   m_RootOrder: 6
+--- !u!45 &1862097319
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1862097316}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!1 &1862908204
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,13 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
 
     public GameObject ui;
     public GameObject mainMenu;
     public GameObject pauseMenu;
+    public GameObject bossBarOBJ;
+    public GameObject creditsOBJ;
+
     public CursorLockMode cursorLock;
+
+    private bool focus = true;
+    private bool focusLock = true;
+
+    //public Button[] mmBTN;
+    //public Button[] pmBTN;
+    //private int mainBTN = -1;
+    //private int pauseBTN = -1;
+
+    GameControllerSingleton gc;
 
     void Start () {
         Time.timeScale = 0f;
@@ -15,14 +29,35 @@ public class MainMenu : MonoBehaviour {
         cursorLock = CursorLockMode.Confined;
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
-	}
+
+        gc = GameControllerSingleton.get();
+    }
 	
 	void Update () {
-        if (Input.GetButtonDown("Pause"))
+        if (Input.GetButtonDown("Pause") && !creditsOBJ.activeInHierarchy)
         {
             onPause();
         }
+        if (!focus && focusLock && Time.timeScale == 1.0f && !creditsOBJ.activeInHierarchy) //Pauses Game on Focus Loss
+        {
+            onPause();
+        }
+
+        //Debug Code
+        if (Input.GetKeyUp("p"))
+        {
+            bossBarOBJ.SetActive(true);
+        }
 	}
+
+    void OnApplicationFocus(bool focusStatus)
+    {
+        focus = focusStatus;
+        if (focus)
+            focusLock = false;
+        else
+            focusLock = true;
+    }
 
     public void onPlay()
     {
@@ -42,9 +77,7 @@ public class MainMenu : MonoBehaviour {
 
     public void onMenu()
     {
-        pauseMenu.SetActive(false);
-        ui.SetActive(false);
-        mainMenu.SetActive(true);
+        gc.pc.deathSequence();
 
         Time.timeScale = 0f;
         Cursor.visible = true;
@@ -82,5 +115,9 @@ public class MainMenu : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-
+    public void onDeath()
+    {
+        ui.SetActive(false);
+        creditsOBJ.SetActive(true);
+    }
 }

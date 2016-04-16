@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
         gc = GameControllerSingleton.get();
 
 
-        //if (gc.powerUpByID.Count == 0) //Zach Edit - Partly solves deathsequence
+        if (gc.powerUpByID.Count == 0) //Zach Edit - Partly solves deathsequence
             gc.loadTexts(powerUpFile, ammoFile, AmmoSpriteList, PowerUpSpriteList, ammoPrefab, powerUpPrefab);
     }
 
