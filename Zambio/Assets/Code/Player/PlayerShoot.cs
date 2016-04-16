@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class PlayerShoot : MonoBehaviour {
 
     public GameObject[] ammo;
+    public GameObject fireAmmo;
     public float bulletSpeed;
     public float rateOfFire;
     public UIAmmoObserver ammoObserver;
@@ -16,7 +17,6 @@ public class PlayerShoot : MonoBehaviour {
     private GameControllerSingleton gc;
     private bool ammoInit = false;
     private bool observerRegistered = false;
-    public GameObject fire;
 
 	// Use this for initialization
 	void Start () {
@@ -65,24 +65,24 @@ public class PlayerShoot : MonoBehaviour {
         }
 
         ammoNum = UI.bullet-1;
-        if ((Input.GetButtonDown("Fire1")|| (Input.GetAxis("XboxTriggers") == 1) ) && rateOfFire <= 0 && Time.timeScale != 0f && ammoObserver.ammoSubject.GetState().returnAmmo(ammoNum) > 0)
+        if ((Input.GetButtonDown("Fire1") || (Input.GetAxis("XboxTriggers") == 1) ) && rateOfFire <= 0 && Time.timeScale != 0f && ammoObserver.ammoSubject.GetState().returnAmmo(ammoNum) > 0)
         {
             Rigidbody clone;
+            GameObject fireParent;
             //Homing thisHomer;
-            projectile = ammo[ammoNum].GetComponent<Rigidbody>();
-            //projectile = ammo[ammoNum].GetComponentInChildren<Rigidbody>();
-            clone = Instantiate(projectile, (transform.position), transform.rotation) as Rigidbody;
-            clone.name = projectile.name;
-            //if (gc.pc.hasPowerUp("fireFlower"))
-            //{
-            //    GameObject thisFire;
-            //    thisFire = Instantiate(fire, (transform.position), transform.rotation) as GameObject;
-                
-            //    thisHomer = thisFire.gameObject.GetComponent<Homing>();
-            //    thisHomer.target = clone.gameObject.transform;
-            //    thisHomer.timeToHit = 0.001f;
-            //}
+            if (gc.pc.myPowerUps.Contains("fireFlower"))
+            {
+                fireParent = Instantiate(fireAmmo, transform.position, Quaternion.identity) as GameObject;
+                projectile = ammo[ammoNum].GetComponent<Rigidbody>();
+                clone = Instantiate(projectile, transform.position, transform.rotation) as Rigidbody;
+                fireParent.GetComponentInChildren<Homing>().target = clone.transform;
+            }
+            else {
+                projectile = ammo[ammoNum].GetComponent<Rigidbody>();
+                clone = Instantiate(projectile, (transform.position), transform.rotation) as Rigidbody;
+            }
             clone.velocity = transform.TransformDirection((Vector3.forward) * bulletSpeed);
+            clone.name = projectile.name;
             switch (ammoNum)
             {
                 case 0:

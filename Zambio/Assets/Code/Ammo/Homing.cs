@@ -14,7 +14,11 @@ public class Homing : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        target = FindObjectOfType<PlayerController>().transform;
+        if (gameObject.name == "fireBall")
+        {
+            target = FindObjectOfType<PlayerController>().transform;
+        }
+
         start = gameObject.transform.position;
         finish = target.position + target.GetComponent<Rigidbody>().velocity * timeToHit;
         path = target.position - start;
@@ -30,15 +34,16 @@ public class Homing : MonoBehaviour
         if (gameObject.name == "onFire")
         {
             // Practically "stick" to the target, which should be the attached ammo
-            transform.position = Vector3.Lerp(transform.position, target.position, progress);
+            if (target != null)
+                transform.position = Vector3.Lerp(transform.position, target.position, progress);
         }
         else { // Fireball
             transform.position = Vector3.Lerp(start, finish, progress);
         }
     }
-    void OnTriggerEnter(Collider tColl )
+    void OnTriggerEnter(Collider tColl)
     {
-        if ( gameObject.name == "fireBall" )
+        if (gameObject.name == "fireBall")
         {
             if (tColl.CompareTag("Player"))
             {
@@ -46,8 +51,9 @@ public class Homing : MonoBehaviour
                 gameObject.SetActive(false);
                 Destroy(gameObject);
             }
-            else if (tColl.CompareTag("Bowser")){
-                tColl.gameObject.GetComponent<EnemyController>().health -= damage/2;
+            else if (tColl.CompareTag("Bowser"))
+            {
+                tColl.gameObject.GetComponent<EnemyController>().health -= damage / 2;
             }
         }
     }

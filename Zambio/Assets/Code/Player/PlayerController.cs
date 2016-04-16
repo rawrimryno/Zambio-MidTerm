@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public int health { get; set; }
     //describes ammo type not ammount
     private int ammo;
-    private List<string> myPowerUps;
+    public List<string> myPowerUps;
     GameControllerSingleton gc;
 
     // Pattern Practice

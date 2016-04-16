@@ -25,7 +25,7 @@ public class Bowser : MonoBehaviour {
         bossSub.SetState(ec);
         currHealth = ec.health;
         UImain = FindObjectOfType<MainMenu>();
-        UImain.bossObserver().attach(bossSub);
+        //UImain.bossObserver().attach(bossSub);
         bossSub.Notify();
 	}
 	
