@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Code\Ammo\AmmoScript.cs" />
+    <Compile Include="Assets\Code\Ammo\FireAmmo.cs" />
     <Compile Include="Assets\Code\Ammo\Homing.cs" />
     <Compile Include="Assets\Code\CameraController.cs" />
     <Compile Include="Assets\Code\Enemies\Boss\Bowser.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Assets\Code\Enemies\HeadLocation.cs" />
     <Compile Include="Assets\Code\Enemies\SpawnerController.cs" />
     <Compile Include="Assets\Code\Environment\Environment.cs" />
+    <Compile Include="Assets\Code\Environment\PeachHeal.cs" />
     <Compile Include="Assets\Code\GC\GameController.cs" />
     <Compile Include="Assets\Code\GC\GameControllerSingleton.cs" />
     <Compile Include="Assets\Code\GC\StateMachine\BossEncounter.cs" />

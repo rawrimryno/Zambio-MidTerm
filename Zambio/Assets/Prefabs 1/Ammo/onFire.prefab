@@ -47,6 +47,7 @@ GameObject:
   - 114: {fileID: 11466248}
   - 198: {fileID: 19882498}
   - 199: {fileID: 19960042}
+  - 114: {fileID: 11486454}
   m_Layer: 0
   m_Name: onFire
   m_TagString: Fire
@@ -136,6 +137,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 1
+--- !u!114 &11486454
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c19ae65dfba703542ba9fa347c660633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  damage: 1
+  start: {x: 0, y: 0, z: 0}
+  finish: {x: 0, y: 0, z: 0}
+  startTime: 0
+  timeToHit: 5
 --- !u!198 &19842094
 ParticleSystem:
   m_ObjectHideFlags: 1

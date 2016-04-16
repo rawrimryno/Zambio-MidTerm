@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private int ammo;
     public List<string> myPowerUps;
     GameControllerSingleton gc;
+    GameObject regMario;
+    GameObject metalMario;
 
     // Pattern Practice
     public HealthSubject healthModel;
@@ -49,6 +51,9 @@ public class PlayerController : MonoBehaviour
         hpDisplay = GameObject.FindGameObjectWithTag("HealthStatusDisplay").GetComponent<HealthPanelDisplay>();
         ammo = UI.bullet;
         myInventory = GetComponent<Inventory>();
+        regMario = GameObject.Find("Mario");
+        metalMario = GameObject.Find("MetalMario");
+
         myPowerUps = new List<string>();
 
         // Health Observer Registration
@@ -130,24 +135,20 @@ public class PlayerController : MonoBehaviour
 
             // Check powerup applied, add to to inventory if not, else add to powerup applied
             if (thisPowerUp.isFire || thisPowerUp.isMetal)
-            {
-
+            {       
                 if (myPowerUps.Contains(thisPowerUp.name))
                 {
                     myInventory.AddPower(thisPowerUp);
                 }
-                myPowerUps.Add(thisPowerUp.name);
-
-
+                else {
+                    myPowerUps.Add(thisPowerUp.name);
+                }
             }
-
-
-
             tColl.gameObject.SetActive(false);
             Destroy(tColl.gameObject);
         }
     }
-
+  
     public bool hasPowerUp(string tName)
     {
         return myPowerUps.Contains(tName);
