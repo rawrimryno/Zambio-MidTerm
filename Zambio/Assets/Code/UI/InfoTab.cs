@@ -6,7 +6,6 @@ public class InfoTab : MonoBehaviour {
 
     public GameObject infoTab;
     public GameObject ui;
-
     public bool active;
 
 	void Start () {
@@ -32,6 +31,11 @@ public class InfoTab : MonoBehaviour {
     public void toggleInfo ()
     {
         infoTab.SetActive(active);
+    }
+
+    public void displayControls()
+    {
+        
     }
 
 }

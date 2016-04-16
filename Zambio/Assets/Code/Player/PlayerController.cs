@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     HealthPanel UI;
     HealthPanelDisplay hpDisplay;
+    MainMenu MM; //Zach Edit
     // Use this when you want to increase ammo or add Powerups already applied to character
     public int health { get; set; }
     //describes ammo type not ammount
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         UI = GameObject.FindGameObjectWithTag("HealthPanel").GetComponent<HealthPanel>();
+        MM = GameObject.FindGameObjectWithTag("MainMenu").GetComponent<MainMenu>(); //Zach Edit
         hpDisplay = GameObject.FindGameObjectWithTag("HealthStatusDisplay").GetComponent<HealthPanelDisplay>();
         ammo = UI.bullet;
         myInventory = GetComponent<Inventory>();
@@ -58,14 +60,14 @@ public class PlayerController : MonoBehaviour
     {
         ammo = UI.bullet;
 
-        if (Input.GetButtonDown("PreviousAmmo"))
+        if (Input.GetButtonDown("PreviousAmmo") || Input.GetAxis("Mouse ScrollWheel") > 0 && Time.timeScale != 0)
         {
             if (ammo - 1 < 1)
                 ammo = 6;
             UI.changeAmmo(--ammo);
             hpDisplay.setTextToAmmoName();
         }
-        if (Input.GetButtonDown("NextAmmo"))
+        if (Input.GetButtonDown("NextAmmo") || Input.GetAxis("Mouse ScrollWheel") < 0 && Time.timeScale != 0)
         {
             if (ammo + 1 > 5)
                 ammo = 0;
@@ -158,7 +160,8 @@ public class PlayerController : MonoBehaviour
         healthModel.Notify();
         if (health < 1)
         {
-            deathSequence();
+            MM.onDeath(); //Zach Edit
+            //deathSequence(); //Zach Edit
             //dead = true;
         }
     }
@@ -176,7 +179,7 @@ public class PlayerController : MonoBehaviour
         setHealth(health + amt);
 
     }
-    void deathSequence()
+    public void deathSequence()
     {
         Debug.Log("GAME OVER");
         //SceneManager.UnloadScene("Level One");
