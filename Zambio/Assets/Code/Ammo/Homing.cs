@@ -48,13 +48,20 @@ public class Homing : MonoBehaviour
             if (tColl.CompareTag("Player"))
             {
                 tColl.gameObject.GetComponent<PlayerController>().adjustHealth(-damage);
-                gameObject.SetActive(false);
-                Destroy(gameObject);
             }
             else if (tColl.CompareTag("Bowser"))
             {
                 tColl.gameObject.GetComponent<EnemyController>().health -= damage / 2;
             }
+
+        }
+    }
+    void OnCollisionEnter( Collision cInfo)
+    {
+        if (gameObject.name == "fireBall")
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

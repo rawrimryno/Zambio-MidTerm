@@ -76,6 +76,14 @@ public class EnemyController : MonoBehaviour
         if (oCol.CompareTag("Player"))
         {
             hurtPlayer();
+            if ( gc.pc.myPowerUps.Contains("fireFlower") )
+            {
+                gc.pc.myPowerUps.Remove("fireFlower");
+                if (gc.pc.myPowerUps.Contains("fireFlower"))
+                {
+                    Debug.Log("<b>Removed, but still exists<\b>");
+                }
+            }
         }
     }
 

@@ -207,6 +207,7 @@ public class AmmoScript : MonoBehaviour
         //150 so 2/3 of the time it will drop a a randomdrop;
         int itemType = rand.Next(0, 150);
         bool metal = false;
+        GameObject renameMe;
         if (itemType < 50)
         {
             //make ammo
@@ -265,11 +266,13 @@ public class AmmoScript : MonoBehaviour
             {
                 if (metal == false)
                 {
-                    Instantiate(prefab.prefab, transform.position, new Quaternion(0, 0, 0, 0));
+                    renameMe = Instantiate(prefab.prefab, transform.position, new Quaternion(0, 0, 0, 0)) as GameObject;
+                    renameMe.name = prefab.prefab.name;
                 }
                 else
                 {
-                    Instantiate(prefab.prefab, transform.position + new Vector3(0, 3, 0), new Quaternion(0, 0, 0, 0));
+                    renameMe = Instantiate(prefab.prefab, transform.position + new Vector3(0, 3, 0), new Quaternion(0, 0, 0, 0)) as GameObject;
+                    renameMe.name = prefab.prefab.name;
                 }
             }
 
