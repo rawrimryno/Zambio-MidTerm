@@ -29,7 +29,7 @@ public class HealthPanel : MonoBehaviour
     private int bulletCount;
 
     public RectTransform[] crossHairs;
-    private float coolDownBase = 5;
+    //private float coolDownBase = 5;
     private float coolDownCur;
 
     void Awake()
@@ -70,12 +70,11 @@ public class HealthPanel : MonoBehaviour
         {
             bulletCount = ammoObserver.ammoSubject.GetState().returnAmmo(bullet - 1);
             ammoCount(bulletCount);
-            //coolDownBase = ;
         }
 
         if ((Input.GetButtonDown("Fire1") || (Input.GetAxis("XboxTriggers") == 1)) && ammoObserver.ammoSubject.GetState().returnAmmo(bullet - 1) > 0 && Time.timeScale == 1 && !IsInvoking("coolDownBar")) //CoolDown Animation
         {
-            coolDown(coolDownBase);
+            //coolDown(coolDownBase);
         }
 
         if(round != sm.Round) //Checks and Updates Round Number if needed
@@ -275,33 +274,32 @@ public class HealthPanel : MonoBehaviour
         }
     }
 
-    public void coolDown(float length)
-    {
-        crossHairs[0].Translate(-6, 6, 0);
-        crossHairs[1].Translate(6, 6, 0);
-        crossHairs[2].Translate(-6, -6, 0);
-        crossHairs[3].Translate(6, -6, 0);
-        coolDownCur = 100;
-        InvokeRepeating("coolDownBar", 0, length / 100);
-        //print("begin coolDownBar");
-    }
+    //public void coolDown(float length)
+    //{
+    //    crossHairs[0].Translate(-6, 6, 0);
+    //    crossHairs[1].Translate(6, 6, 0);
+    //    crossHairs[2].Translate(-6, -6, 0);
+    //    crossHairs[3].Translate(6, -6, 0);
+    //    coolDownCur = 100;
+    //    InvokeRepeating("coolDownBar", 0, length / 100);
+    //}
 
-    private void coolDownBar()
-    {
-        if(coolDownCur > 0)
-        {
-            crossHairs[0].Translate(0.06f, -0.06f, 0);
-            crossHairs[1].Translate(-0.06f, -0.06f, 0);
-            crossHairs[2].Translate(0.06f, 0.06f, 0);
-            crossHairs[3].Translate(-0.06f, 0.06f, 0);
-            //print("coolDown");
-        }
-        else
-        {
-            //print("end coolDown");
-            CancelInvoke("coolDownBar");
-        }
-        coolDownCur--;
-    }
+    //private void coolDownBar()
+    //{
+    //    if(coolDownCur > 0)
+    //    {
+    //        crossHairs[0].Translate(0.06f, -0.06f, 0);
+    //        crossHairs[1].Translate(-0.06f, -0.06f, 0);
+    //        crossHairs[2].Translate(0.06f, 0.06f, 0);
+    //        crossHairs[3].Translate(-0.06f, 0.06f, 0);
+    //        //print("coolDown");
+    //    }
+    //    else
+    //    {
+    //        //print("end coolDown");
+    //        CancelInvoke("coolDownBar");
+    //    }
+    //    coolDownCur--;
+    //}
 
 }
