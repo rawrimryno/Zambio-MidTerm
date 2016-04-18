@@ -12,6 +12,7 @@ public class AmmoScript : MonoBehaviour
     bool init = false;
     private Inventory inventory;
     Rigidbody rb;
+    PlayerController pc;
 
 
     public float spinFactor;
@@ -38,6 +39,7 @@ public class AmmoScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         if (lifetime <= 0)
         {
             lifetime = 5;
@@ -141,7 +143,15 @@ public class AmmoScript : MonoBehaviour
                 acquireEnemy();
                 rb.AddForce(-rb.velocity * reboundForce * rb.mass);
             }
-            enemy.health -= damage;
+            if (pc.myPowerUps.Contains("fireFlower"))
+            {
+                Debug.Log("Damaging Enemy: " + (damage * 2));
+                enemy.health -= (damage * 2);
+            }
+            else {
+                Debug.Log("Damaging Enemy: " + (damage));
+                enemy.health -= damage;
+            }
 
             if (cInfo.gameObject.activeInHierarchy && enemy.health <= 0)
             {
