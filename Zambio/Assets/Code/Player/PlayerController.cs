@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     GameControllerSingleton gc;
     GameObject regMario;
     GameObject metalMario;
+    public bool isMetalMario;
 
     // Pattern Practice
     public HealthSubject healthModel;
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
         hpDisplay = GameObject.FindGameObjectWithTag("HealthStatusDisplay").GetComponent<HealthPanelDisplay>();
         ammo = UI.bullet;
         myInventory = GetComponent<Inventory>();
-        regMario = GameObject.Find("Mario");
+        regMario = GameObject.Find("Mario") ;
         metalMario = GameObject.Find("MetalMario");
 
         myPowerUps = new List<string>();
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
         }
 
         initMetalHealth = metalHealth;
+        isMetalMario = false;
         // Health Observer Registration
 
     }
@@ -71,6 +73,22 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //Metal Mario Checks-Ryan
+
+        if (isMetalMario)
+        {
+            regMario.SetActive(false);
+            metalMario.SetActive(true);
+        }
+        else
+        {
+            regMario.SetActive(true);
+            metalMario.SetActive(false);
+        }
+
+        //Ammo-Ryan
+
         ammo = UI.bullet;
 
         if (Input.GetButtonDown("PreviousAmmo") || Input.GetAxis("Mouse ScrollWheel") > 0 && Time.timeScale != 0)
@@ -149,6 +167,10 @@ public class PlayerController : MonoBehaviour
                     myInventory.AddPower(thisPowerUp);
                 }
                 else {
+                    if (thisPowerUp.isMetal)
+                    {
+                        isMetalMario = true;
+                    }
                     myPowerUps.Add(thisPowerUp.name);
                 }
             }
@@ -189,6 +211,7 @@ public class PlayerController : MonoBehaviour
         {
             if (myPowerUps.Contains("metalMario"))
             {
+                isMetalMario = true;
                 if (amt == -1)
                 {
                     metalHealth -= 1;
@@ -209,6 +232,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                isMetalMario = false;
                 setHealth(health + amt);
             }
         }

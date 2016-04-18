@@ -23984,7 +23984,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea4712b3cfcb7943a802ecbbd69719d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  metalHealth: 0
+  initMetalHealth: 0
   myPowerUps: []
+  isMetalMario: 0
 --- !u!143 &1059435269
 CharacterController:
   m_ObjectHideFlags: 0
@@ -35642,7 +35645,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100024, guid: 64c3795fdc8534f3fa32dae32ce8daa7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64c3795fdc8534f3fa32dae32ce8daa7, type: 3}
@@ -50251,7 +50254,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1830087505}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
@@ -50285,8 +50288,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1830087505}
-  m_LocalRotation: {x: 0, y: 0.9993031, z: 0, w: 0.037328087}
-  m_LocalPosition: {x: -47.49508, y: -18.48, z: -0.5360869}
+  m_LocalRotation: {x: 0.31273732, y: 0.37647223, z: 0.13670252, w: -0.8612645}
+  m_LocalPosition: {x: -43.424824, y: -19.931145, z: -4.1112742}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2076624190}
@@ -50440,8 +50443,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1862097316}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 74.29587, y: -110.92563, z: -409.68027}
+  m_LocalRotation: {x: 0.3132126, y: 0.37346354, z: 0.13561003, w: -0.8625734}
+  m_LocalPosition: {x: 12.754137, y: -28.93655, z: -17.330252}
   m_LocalScale: {x: 0.4346941, y: 0.37755784, z: 0.988831}
   m_Children: []
   m_Father: {fileID: 1402447687}
