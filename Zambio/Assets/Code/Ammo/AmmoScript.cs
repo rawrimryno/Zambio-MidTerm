@@ -145,11 +145,11 @@ public class AmmoScript : MonoBehaviour
             }
             if (pc.myPowerUps.Contains("fireFlower"))
             {
-                Debug.Log("Damaging Enemy: " + (damage * 2));
+                //Debug.Log("Damaging Enemy: " + (damage * 2));
                 enemy.health -= (damage * 2);
             }
             else {
-                Debug.Log("Damaging Enemy: " + (damage));
+                //Debug.Log("Damaging Enemy: " + (damage));
                 enemy.health -= damage;
             }
 

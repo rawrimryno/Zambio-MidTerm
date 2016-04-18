@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     MainMenu MM; //Zach Edit
     // Use this when you want to increase ammo or add Powerups already applied to character
     public int health { get; set; }
+    public int metalHealth;
+    public int initMetalHealth;
     //describes ammo type not ammount
     private int ammo;
     public List<string> myPowerUps;
@@ -56,6 +58,12 @@ public class PlayerController : MonoBehaviour
 
         myPowerUps = new List<string>();
 
+        if (metalHealth == 0)
+        {
+            metalHealth = 20;
+        }
+
+        initMetalHealth = metalHealth;
         // Health Observer Registration
 
     }
@@ -177,7 +185,37 @@ public class PlayerController : MonoBehaviour
     public void adjustHealth(int amt)
     {
         //Debug.Log("Adjusting Health by " + amt);
-        setHealth(health + amt);
+        if (amt < 0)
+        {
+            if (myPowerUps.Contains("metalMario"))
+            {
+                if (amt == -1)
+                {
+                    metalHealth -= 1;
+                }
+                else
+                {
+                    amt /= 2;
+                    metalHealth += amt;
+                    setHealth(health + amt);
+                }
+                if (metalHealth <= 0)
+                {
+                    myPowerUps.Remove("metalMario");
+                    metalHealth = initMetalHealth;
+                }
+                //Debug.Log("Metal Mario Health: " + metalHealth);
+                Debug.Log("Damage Taken: " + amt);
+            }
+            else
+            {
+                setHealth(health + amt);
+            }
+        }
+        else
+        {
+            setHealth(health + amt);
+        }
 
     }
     public void deathSequence()
