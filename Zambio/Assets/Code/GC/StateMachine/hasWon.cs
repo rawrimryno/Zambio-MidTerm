@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class hasWon : IState {
+    public IState creditsState;
 
 	// Use this for initialization
 	public override void OnStart () {

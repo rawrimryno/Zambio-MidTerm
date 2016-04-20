@@ -57,7 +57,7 @@ public class PeachHeal : MonoBehaviour {
                     wait = healWait;
                     particle.Play();
                 }
-                Debug.Log("Stupid.Check-waiting");
+                //Debug.Log("Stupid.Check-waiting");    //Zach Edit - Spams Console
             }
             else
             {
@@ -70,7 +70,7 @@ public class PeachHeal : MonoBehaviour {
                     particle.Pause();
                 }
 
-                Debug.Log("Stupid.Check-healing");
+                //Debug.Log("Stupid.Check-healing");    //Zach Edit - Spams Console
             }
 
         }

@@ -10,14 +10,23 @@ public class PlayerController : MonoBehaviour
     HealthPanel UI;
     HealthPanelDisplay hpDisplay;
     MainMenu MM; //Zach Edit
-    // Use this when you want to increase ammo or add Powerups already applied to character
-    public int health { get; set; }
-    //describes ammo type not ammount
-    private int ammo;
-    public List<string> myPowerUps;
+    int ammo;//describes ammo type not ammount
     GameControllerSingleton gc;
     GameObject regMario;
     GameObject metalMario;
+    AudioSource audioSource;
+    BossObserver bossObserver;
+    bool playedBowserDead = false;
+
+
+    // Use this when you want to increase ammo or add Powerups already applied to character
+    public int health { get; set; }
+    public int metalHealth;
+    public int initMetalHealth;
+    public List<string> myPowerUps;
+    public bool isMetalMario;
+
+    public AudioClip[] audioClips;
 
     // Pattern Practice
     public HealthSubject healthModel;
@@ -35,6 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         SceneManager.LoadScene("UI", LoadSceneMode.Additive);
         gc = GameControllerSingleton.get();
+        audioSource = GetComponent<AudioSource>();
         health = 20;
         score = 0;
 
@@ -51,18 +61,60 @@ public class PlayerController : MonoBehaviour
         hpDisplay = GameObject.FindGameObjectWithTag("HealthStatusDisplay").GetComponent<HealthPanelDisplay>();
         ammo = UI.bullet;
         myInventory = GetComponent<Inventory>();
-        regMario = GameObject.Find("Mario");
+        regMario = GameObject.Find("Mario") ;
         metalMario = GameObject.Find("MetalMario");
 
         myPowerUps = new List<string>();
 
-        // Health Observer Registration
+        if (metalHealth == 0)
+        {
+            metalHealth = 20;
+        }
 
+        initMetalHealth = metalHealth;
+        isMetalMario = false;
+        // Health Observer Registration
+        audioSource.clip = audioClips[0];
+        audioSource.Play(); 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        // Boss Observer For Audio Timing - Todd
+        if ( bossObserver == null && gc.hasBossSpawned())
+        {
+            bossObserver = new BossObserver();
+            FindObjectOfType<Bowser>().AddObserver(bossObserver);
+            Debug.Log("Bowser is being observed by the PlayerController");
+        }
+
+        // Have we played the audio for bowser death? - Todd
+        if ( !playedBowserDead && gc.isBossDead())
+        {
+            audioSource.Stop();
+            audioSource.clip = audioClips[4];
+            audioSource.Play();
+
+            playedBowserDead = true;
+        }
+
+        //Metal Mario Checks-Ryan
+
+        if (isMetalMario)
+        {
+            regMario.SetActive(false);
+            metalMario.SetActive(true);
+        }
+        else
+        {
+            regMario.SetActive(true);
+            metalMario.SetActive(false);
+        }
+
+        //Ammo-Ryan
+
         ammo = UI.bullet;
 
         if (Input.GetButtonDown("PreviousAmmo") || Input.GetAxis("Mouse ScrollWheel") > 0 && Time.timeScale != 0)
@@ -141,6 +193,10 @@ public class PlayerController : MonoBehaviour
                     myInventory.AddPower(thisPowerUp);
                 }
                 else {
+                    if (thisPowerUp.isMetal)
+                    {
+                        isMetalMario = true;
+                    }
                     myPowerUps.Add(thisPowerUp.name);
                 }
             }
@@ -177,7 +233,49 @@ public class PlayerController : MonoBehaviour
     public void adjustHealth(int amt)
     {
         //Debug.Log("Adjusting Health by " + amt);
-        setHealth(health + amt);
+        if (amt < 0)
+        {
+            if (myPowerUps.Contains("metalMario"))
+            {
+                // Stop current Effect, Load Damage Sound, Play it
+                // This is for metal damage taking.  - Todd
+                audioSource.Stop();
+                audioSource.clip = audioClips[5];
+                audioSource.Play();
+                isMetalMario = true;
+                if (amt == -1)
+                {
+                    metalHealth -= 1;
+                }
+                else
+                {
+                    amt /= 2;
+                    metalHealth += amt;
+                    setHealth(health + amt);
+                }
+                if (metalHealth <= 0)
+                {
+                    myPowerUps.Remove("metalMario");
+                    metalHealth = initMetalHealth;
+                }
+                //Debug.Log("Metal Mario Health: " + metalHealth);
+                Debug.Log("Damage Taken: " + amt);
+            }
+            else
+            {
+                isMetalMario = false;
+                setHealth(health + amt);
+                // Stop current Effect, Load Damage Sound, Play it
+                // This is for non-metal damage taking.  - Todd
+                audioSource.Stop();
+                audioSource.clip = audioClips[3];
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            setHealth(health + amt);
+        }
 
     }
     public void deathSequence()

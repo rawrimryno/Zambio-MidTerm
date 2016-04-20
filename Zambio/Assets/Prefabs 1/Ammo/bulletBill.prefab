@@ -988,7 +988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitCounts: 6
-  damage: 0
+  damage: 2
   speed: 75
   reboundForce: 0
   spinFactor: 0

@@ -8,6 +8,7 @@ public class Credits : MonoBehaviour {
     public GameObject score;
     public Text scoreOBJ;
 
+    public bool start = false;
     private bool begin = true;
     private bool end = false;
     private bool scoreSET = false;
@@ -22,6 +23,8 @@ public class Credits : MonoBehaviour {
         ammoObserver = new UIAmmoObserver();
         FindObjectOfType<Inventory>().ammoContents.ammoSubject.Attach(ammoObserver);
 
+        Time.timeScale = 1;
+        Cursor.visible = false;
         InvokeRepeating("textScroll", 1.5f, 0.01f);
 
         if (Input.anyKey)
@@ -35,11 +38,11 @@ public class Credits : MonoBehaviour {
         {
             begin = true;
         }
-        if (Input.anyKeyDown && end && begin)
+        if ((Input.anyKeyDown && end && begin) || (start && !credits.activeInHierarchy) || (start && Input.anyKeyDown))
         {
             gc.pc.deathSequence();
         }
-        if (Input.anyKeyDown || !credits.activeInHierarchy && begin && !end)
+        if ((Input.anyKeyDown && !start) || (!credits.activeInHierarchy && begin && !end && !start))
         {
             if (IsInvoking("textScroll"))
                 CancelInvoke("textScroll");
@@ -57,7 +60,7 @@ public class Credits : MonoBehaviour {
 
     public void textScroll()
     {
-        if (credits.transform.position.y < Screen.height / 2 + credits.transform.position.y / 2 + 25)
+        if (credits.transform.position.y < Screen.height / 2 + credits.transform.position.y / 2 + 15)
         {
             credits.transform.Translate(0, (float)Screen.height / 1080.0f, 0);
         }
@@ -67,7 +70,8 @@ public class Credits : MonoBehaviour {
             scoreDisplay();
             scoreSET = true;
             credits.SetActive(false);
-            score.SetActive(true);
+            if(!start)
+                score.SetActive(true);
             end = true;
         }
     }
@@ -82,6 +86,11 @@ public class Credits : MonoBehaviour {
         scoreTXT = scoreTXT + "\n" + "Red Bullet Bill: " + ammoObserver.ammoSubject.GetState().returnAmmo(4) + " x 100 = " + 100 * ammoObserver.ammoSubject.GetState().returnAmmo(4);
         scoreTXT = scoreTXT + "\n" + " Base Score: " + gc.pc.score;
         scoreOBJ.text = scoreTXT;
+    }
+
+    public void setStart()
+    {
+        start = true;
     }
 
 }
