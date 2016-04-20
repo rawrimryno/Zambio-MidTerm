@@ -1975,6 +1975,7 @@ GameObject:
   - 136: {fileID: 13621314}
   - 54: {fileID: 5463856}
   - 114: {fileID: 11462884}
+  - 82: {fileID: 8252246}
   m_Layer: 0
   m_Name: Bowser
   m_TagString: Enemy
@@ -3338,7 +3339,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173484}
-  m_LocalRotation: {x: 0.29987225, y: 0.6562319, z: -0.27807024, w: 0.63412416}
+  m_LocalRotation: {x: 0.29987222, y: 0.6562318, z: -0.2780702, w: 0.6341241}
   m_LocalPosition: {x: 12.389181, y: 9.491538, z: 7.192107}
   m_LocalScale: {x: 0.86257726, y: 5.4891653, z: 1.5153855}
   m_Children: []
@@ -4629,7 +4630,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157622}
-  m_LocalRotation: {x: 0.29987225, y: 0.6562319, z: -0.27807024, w: 0.63412416}
+  m_LocalRotation: {x: 0.29987222, y: 0.6562318, z: -0.2780702, w: 0.6341241}
   m_LocalPosition: {x: -11.988015, y: 9.832601, z: 7.3400126}
   m_LocalScale: {x: 0.86257726, y: 5.4891653, z: 1.5153855}
   m_Children: []
@@ -6928,6 +6929,81 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!82 &8252246
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173390}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24375914, guid: d98f24b8f1f5c8f4088206a69a869794,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &9565816
 Animator:
   serializedVersion: 3
@@ -6974,7 +7050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pipeHeight: 0
-  health: 50
+  health: 10
   damage: 5
   value: 100
   hitTime: 4
@@ -6995,6 +7071,10 @@ MonoBehaviour:
   FireBall: {fileID: 129058, guid: 34e97d096c93f764294efc078cfc51c6, type: 2}
   mouth: {fileID: 474220}
   UImain: {fileID: 0}
+  effectList:
+  - {fileID: 8300000, guid: 55cbe23095fb9924694ce3e6d1398edb, type: 3}
+  - {fileID: 8300000, guid: 29ccab00dbe8ff84b9089f124f9a0c1e, type: 3}
+  - {fileID: 8300000, guid: fa932c9196e271840aef37c430b9fd2d, type: 3}
 --- !u!114 &11493908
 MonoBehaviour:
   m_ObjectHideFlags: 1
