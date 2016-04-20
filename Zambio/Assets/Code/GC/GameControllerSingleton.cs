@@ -10,6 +10,8 @@ public class GameControllerSingleton : ScriptableObject
     private static GameControllerSingleton _instance;
     public SpawnerController sc;
     public StateMachine sm;
+    bool bossSpawned = false;
+    bool bossDead = false;
 
     //public Dictionary<string, PowerUpDesc> powerUpData;
     public Dictionary<string, PowerUpDesc> powerUpData;
@@ -187,5 +189,19 @@ public class GameControllerSingleton : ScriptableObject
     public void RegisterSpawner(ref SpawnerController spawner)
     {
         sc = spawner;
+    }
+
+    public void setBossSpawned()
+    {
+        bossSpawned = true;
+    }
+
+    public bool hasBossSpawned()
+    {
+        return bossSpawned;
+    }
+    public bool isBossDead()
+    {
+        return bossDead;
     }
 }

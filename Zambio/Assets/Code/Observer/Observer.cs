@@ -8,7 +8,7 @@ public abstract class Observer {
 
 public class BossObserver : Observer
 {
-    BossSubject boss;
+    public BossSubject boss;
     public EnemyController enemyData;
     MainMenu menu;
     public override void update()

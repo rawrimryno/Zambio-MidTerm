@@ -5,11 +5,14 @@ public class BossEncounter : IState {
     public GameObject Boss;
     GameObject clone;
     public GameObject spawnLocation;
+    GameControllerSingleton gc;
 	// Use this for initialization
 	public override void OnStart () {
         // Load Boss
         Debug.Log("Load Boss");
         clone = Instantiate(Boss, spawnLocation.transform.position, spawnLocation.transform.rotation) as GameObject;
+        gc = GameControllerSingleton.get();
+        gc.setBossSpawned();
 	
 	}
 

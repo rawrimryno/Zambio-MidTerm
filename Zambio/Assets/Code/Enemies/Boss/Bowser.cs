@@ -54,4 +54,12 @@ public class Bowser : MonoBehaviour {
             attackTimers[1] = 0f;
         }
 	}
+    public void AddObserver( BossObserver bo)
+    {
+        bossSub.Attach(bo);
+    }
+    public void RemoveObserver( BossObserver bo)
+    {
+        bossSub.Detach(bo);
+    }
 }
