@@ -11,6 +11,7 @@ public class BossEncounter : IState {
         // Load Boss
         Debug.Log("Load Boss");
         clone = Instantiate(Boss, spawnLocation.transform.position, spawnLocation.transform.rotation) as GameObject;
+        clone.name = Boss.name;
         gc = GameControllerSingleton.get();
         gc.setBossSpawned();
 	

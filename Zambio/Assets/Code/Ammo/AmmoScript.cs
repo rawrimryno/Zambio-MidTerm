@@ -137,6 +137,7 @@ public class AmmoScript : MonoBehaviour
             {
                 gameObject.SetActive(false);
                 Destroy(gameObject);
+
             }
             else if (gameObject.name == "redShell")
             {
@@ -153,14 +154,23 @@ public class AmmoScript : MonoBehaviour
                 enemy.health -= damage;
             }
 
+
+            // Enemy Death Condition
             if (cInfo.gameObject.activeInHierarchy && enemy.health <= 0)
             {
                 // Points for now
                 gc.pc.adjustScore(enemy.value);
                 gc.sc.registerDeadEnemy();
-                cInfo.gameObject.SetActive(false);
-                Destroy(cInfo.gameObject);
-                randomDrop();
+                if (cInfo.gameObject.name == "Bowser")
+                {
+                    gc.setBossDead();
+                    FindObjectOfType<Bowser>().PlayDeathSequence();
+                }
+                else {
+                    cInfo.gameObject.SetActive(false);
+                    Destroy(cInfo.gameObject);
+                    randomDrop();
+                }
 
             }
         }

@@ -200,6 +200,11 @@ public class GameControllerSingleton : ScriptableObject
     {
         return bossSpawned;
     }
+
+    public void setBossDead()
+    {
+        bossDead = true;
+    }
     public bool isBossDead()
     {
         return bossDead;

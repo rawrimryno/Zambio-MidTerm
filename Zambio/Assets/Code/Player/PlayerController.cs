@@ -91,11 +91,12 @@ public class PlayerController : MonoBehaviour
         }
 
         // Have we played the audio for bowser death? - Todd
-        if ( !playedBowserDead && bossObserver != null && bossObserver.enemyData == null)
+        if ( !playedBowserDead && gc.isBossDead())
         {
             audioSource.Stop();
             audioSource.clip = audioClips[4];
             audioSource.Play();
+
             playedBowserDead = true;
         }
 
