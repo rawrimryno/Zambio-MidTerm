@@ -9,6 +9,7 @@ public class KillingEnemies : IState {
     public int bossWave = 10;
     bool oInit = false;
     public IState bossState;
+    public IState ChillState;
 
     public override void OnStart()
     {
@@ -41,6 +42,10 @@ public class KillingEnemies : IState {
             if (sm.Round == bossWave)
             {
                 this.futureState = bossState;
+            }
+            else
+            {
+                this.futureState = ChillState;
             }
             this.nextState = this.futureState;
         }

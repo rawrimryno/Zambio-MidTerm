@@ -111,6 +111,7 @@
     <Compile Include="Assets\Code\UI\HealthPanelDisplay.cs" />
     <Compile Include="Assets\Code\UI\InfoTab.cs" />
     <Compile Include="Assets\Code\UI\MainMenu.cs" />
+    <Compile Include="Assets\MusicController.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\ReturnToMainMenu.cs" />

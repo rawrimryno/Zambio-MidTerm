@@ -82,6 +82,7 @@ public class GameControllerSingleton : ScriptableObject
         if (!pc)
         {
             pc = FindObjectOfType<PlayerController>();
+            Debug.Log("GC looking for Player");
         }
         if ( !sc)
         {

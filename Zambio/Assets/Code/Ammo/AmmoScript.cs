@@ -97,7 +97,10 @@ public class AmmoScript : MonoBehaviour
             float distCovered = (Time.time - startTime) * speed;
             float fracTrip = distCovered / tripLength;
 
-            transform.position = Vector3.Lerp(startTransform.position, navAgent.target.transform.position, fracTrip);
+            if (navAgent.target != null)
+            {
+                transform.position = Vector3.Lerp(startTransform.position, navAgent.target.transform.position, fracTrip);
+            }
 
             Vector3 dir = new Vector3();
             dir = navAgent.target.position + navAgent.GetComponent<Rigidbody>().velocity * Time.deltaTime - transform.position;

@@ -16,6 +16,7 @@ public class Bowser : MonoBehaviour {
     int currHealth;
     AudioSource bowserSource;
     bool hasPlayedDeathSound = false;
+    Rigidbody rb;
 
 
 	// Use this for initialization
@@ -37,6 +38,8 @@ public class Bowser : MonoBehaviour {
         bowserSource = GetComponent<AudioSource>();
         bowserSource.clip = effectList[0];
         bowserSource.Play();
+
+        rb = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -49,10 +52,14 @@ public class Bowser : MonoBehaviour {
         // Removed Destroy from Ammo for bowser so that he may play his death sound - Todd
         if (currHealth <= 0)
         {
+            // Stop Motion on Death so he doesn't slide around when he should be dying.
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            // ^ Wasn't very effective.
             if( hasPlayedDeathSound && bowserSource.isPlaying == false ) // Add Condition for Animation.isPlaying == false, to allow animation to stop before destroy -Todd
             {
                 gameObject.SetActive(false);
                 Destroy(gameObject);
+                
             }
         }
 
@@ -65,7 +72,7 @@ public class Bowser : MonoBehaviour {
             attackTimers[0] = 0f;
             //Flare Attack
         }
-        else if ( attackTimers[1] >= fireBallAttackRate) {
+        else if ( currHealth > 0 && attackTimers[1] >= fireBallAttackRate) {
             Debug.Log("Bowser is shooting a fireball!");
             GameObject thisOne;
             thisOne = Instantiate(FireBall, mouth.transform.position, Quaternion.identity) as GameObject;
