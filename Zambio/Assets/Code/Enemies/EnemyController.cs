@@ -62,6 +62,11 @@ public class EnemyController : MonoBehaviour
             gc = GameControllerSingleton.get();
         }
 
+        if ( health < 0)
+        {
+            enemyNav.target = null;
+        }
+
 
     }
 
@@ -106,7 +111,7 @@ public class EnemyController : MonoBehaviour
 
         if (oCol.CompareTag("Player"))
         {
-            if (coolDown <= 0)
+            if (coolDown <= 0 && health > 0)
             {
                 hurtPlayer();
             }

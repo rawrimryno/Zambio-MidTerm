@@ -89,6 +89,7 @@
     <Compile Include="Assets\Code\GC\GameController.cs" />
     <Compile Include="Assets\Code\GC\GameControllerSingleton.cs" />
     <Compile Include="Assets\Code\GC\StateMachine\BossEncounter.cs" />
+    <Compile Include="Assets\Code\GC\StateMachine\CreditsState.cs" />
     <Compile Include="Assets\Code\GC\StateMachine\IState.cs" />
     <Compile Include="Assets\Code\GC\StateMachine\KillingEnemies.cs" />
     <Compile Include="Assets\Code\GC\StateMachine\StateMachine.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Assets\Code\UI\HealthPanelDisplay.cs" />
     <Compile Include="Assets\Code\UI\InfoTab.cs" />
     <Compile Include="Assets\Code\UI\MainMenu.cs" />
+    <Compile Include="Assets\MusicController.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\ReturnToMainMenu.cs" />
@@ -121,6 +123,7 @@
     <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Audio\SoundSources.txt" />
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />

@@ -10,17 +10,24 @@ public class PlayerController : MonoBehaviour
     HealthPanel UI;
     HealthPanelDisplay hpDisplay;
     MainMenu MM; //Zach Edit
+    int ammo;//describes ammo type not ammount
+    GameControllerSingleton gc;
+    GameObject regMario;
+    GameObject metalMario;
+    AudioSource audioSource;
+    BossObserver bossObserver;
+    bool playedBowserDead = false;
+
+
     // Use this when you want to increase ammo or add Powerups already applied to character
     public int health { get; set; }
     public int metalHealth;
     public int initMetalHealth;
-    //describes ammo type not ammount
-    private int ammo;
     public List<string> myPowerUps;
-    GameControllerSingleton gc;
-    GameObject regMario;
-    GameObject metalMario;
     public bool isMetalMario;
+    public bool isFireMario; //Zach Edit
+
+    public AudioClip[] audioClips;
 
     // Pattern Practice
     public HealthSubject healthModel;
@@ -38,6 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         SceneManager.LoadScene("UI", LoadSceneMode.Additive);
         gc = GameControllerSingleton.get();
+        audioSource = GetComponent<AudioSource>();
         health = 20;
         score = 0;
 
@@ -66,13 +74,33 @@ public class PlayerController : MonoBehaviour
 
         initMetalHealth = metalHealth;
         isMetalMario = false;
+        isFireMario = false; //Zach Edit
         // Health Observer Registration
-
+        audioSource.clip = audioClips[0];
+        audioSource.Play(); 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        // Boss Observer For Audio Timing - Todd
+        if ( bossObserver == null && gc.hasBossSpawned())
+        {
+            bossObserver = new BossObserver();
+            FindObjectOfType<Bowser>().AddObserver(bossObserver);
+            Debug.Log("Bowser is being observed by the PlayerController");
+        }
+
+        // Have we played the audio for bowser death? - Todd
+        if ( !playedBowserDead && gc.isBossDead())
+        {
+            audioSource.Stop();
+            audioSource.clip = audioClips[4];
+            audioSource.Play();
+
+            playedBowserDead = true;
+        }
 
         //Metal Mario Checks-Ryan
 
@@ -171,9 +199,25 @@ public class PlayerController : MonoBehaviour
                     {
                         isMetalMario = true;
                     }
+                    if (thisPowerUp.isFire) //Zach Edit
+                    {
+                        isFireMario = true;
+                    }
                     myPowerUps.Add(thisPowerUp.name);
                 }
             }
+
+            //Zach Edit
+            if (thisPowerUp.numQtrHearts > 0)
+            {
+                MM.heal();
+            }
+            else if (thisPowerUp.numQtrHearts < 0)
+            {
+                isFireMario = false;
+                MM.hurt();
+            }
+
             tColl.gameObject.SetActive(false);
             Destroy(tColl.gameObject);
         }
@@ -209,8 +253,14 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("Adjusting Health by " + amt);
         if (amt < 0)
         {
+            isFireMario = false; //Zach Edit
             if (myPowerUps.Contains("metalMario"))
             {
+                // Stop current Effect, Load Damage Sound, Play it
+                // This is for metal damage taking.  - Todd
+                audioSource.Stop();
+                audioSource.clip = audioClips[5];
+                audioSource.Play();
                 isMetalMario = true;
                 if (amt == -1)
                 {
@@ -234,11 +284,26 @@ public class PlayerController : MonoBehaviour
             {
                 isMetalMario = false;
                 setHealth(health + amt);
+                // Stop current Effect, Load Damage Sound, Play it
+                // This is for non-metal damage taking.  - Todd
+                audioSource.Stop();
+                audioSource.clip = audioClips[3];
+                audioSource.Play();
             }
         }
         else
         {
             setHealth(health + amt);
+        }
+
+        //Zach Edit
+        if (amt > 0)
+        {
+            MM.heal();
+        }
+        else if (amt < 0)
+        {
+            MM.hurt();
         }
 
     }

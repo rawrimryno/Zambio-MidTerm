@@ -36,6 +36,15 @@ public class BossSubject : Subject
 {
     private EnemyController boss;
 
+
+    public bool Attach(BossObserver observer)
+    {
+        observers.Add(observer);
+        observer.boss = this;
+        observer.update();
+        return observers.Contains(observer);
+    }
+
     public EnemyController GetState()
     {
         return boss;

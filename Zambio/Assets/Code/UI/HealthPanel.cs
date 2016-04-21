@@ -10,6 +10,7 @@ public class HealthPanel : MonoBehaviour
     UIAmmoObserver ammoObserver;
     StateMachine sm;
     GameControllerSingleton gc;
+    PlayerShoot ps;
     public bool init = false;
 
     public Image[] hearts;
@@ -28,15 +29,19 @@ public class HealthPanel : MonoBehaviour
     public int bullet;
     private int bulletCount;
 
-    public RectTransform[] crossHairs;
-    //private float coolDownBase = 5;
-    private float coolDownCur;
+    public Image[] crossHairs;
+    private float coolDownBase = 1;
+    private float coolDownCur = 0;
+
+    public GameObject fireFlower;
+    public GameObject metalBox;
 
     void Awake()
     {
         healthObserver = new UIHealthObserver();
         ammoObserver = new UIAmmoObserver();
         sm = GetComponentInParent<StateMachine>();
+        ps = GetComponentInParent<PlayerShoot>();
     }
 
     void Start()
@@ -72,15 +77,51 @@ public class HealthPanel : MonoBehaviour
             ammoCount(bulletCount);
         }
 
-        if ((Input.GetButtonDown("Fire1") || (Input.GetAxis("XboxTriggers") == 1)) && ammoObserver.ammoSubject.GetState().returnAmmo(bullet - 1) > 0 && Time.timeScale == 1 && !IsInvoking("coolDownBar")) //CoolDown Animation
+        if ((Input.GetButtonDown("Fire1") || (Input.GetAxis("XboxTriggers") == 1)) && ammoObserver.ammoSubject.GetState().returnAmmo(bullet - 1) > 0 && Time.timeScale == 1 && coolDownCur == 0) //CoolDown Animation
         {
-            //coolDown(coolDownBase);
+            //coolDownBase = ps.rateOfFire;
+            print(coolDownBase);
+            while(coolDownCur != 0)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    if (coolDownCur / coolDownBase > 2 / 3)
+                        crossHairs[i].color = Color.red;
+                    else if (coolDownCur / coolDownBase < 1 / 3)
+                        crossHairs[i].color = Color.cyan;
+                    else
+                        crossHairs[i].color = Color.yellow;
+                }
+                coolDownCur = ps.rateOfFire;
+                print(coolDownCur);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                crossHairs[i].color = Color.green;
+            }
         }
 
         if(round != sm.Round) //Checks and Updates Round Number if needed
         {
             round = sm.Round;
             roundTXT.text = "Round " + round;
+        }
+
+        if(gc.pc.isMetalMario && !metalBox.activeInHierarchy)
+        {
+            metalBox.SetActive(true);
+        }
+        else if(!gc.pc.isMetalMario && metalBox.activeInHierarchy)
+        {
+            metalBox.SetActive(false);
+        }
+        if (gc.pc.isFireMario && !fireFlower.activeInHierarchy)
+        {
+            fireFlower.SetActive(true);
+        }
+        else if (!gc.pc.isFireMario && fireFlower.activeInHierarchy)
+        {
+            fireFlower.SetActive(false);
         }
 
     }
@@ -262,11 +303,11 @@ public class HealthPanel : MonoBehaviour
             ammoTXT.text = "0";
             ammoTXT.color = Color.red;
         }
-        else if(amount > 99)
-        {
-            ammoTXT.text = "99";
-            ammoTXT.color = Color.cyan;
-        }
+        //else if(amount > 99)
+        //{
+        //    ammoTXT.text = "99";
+        //    ammoTXT.color = Color.cyan;
+        //}
         else
         {
             ammoTXT.text = amount.ToString();

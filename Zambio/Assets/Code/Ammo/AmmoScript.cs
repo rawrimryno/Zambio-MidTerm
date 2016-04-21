@@ -97,7 +97,10 @@ public class AmmoScript : MonoBehaviour
             float distCovered = (Time.time - startTime) * speed;
             float fracTrip = distCovered / tripLength;
 
-            transform.position = Vector3.Lerp(startTransform.position, navAgent.target.transform.position, fracTrip);
+            if (navAgent.target != null)
+            {
+                transform.position = Vector3.Lerp(startTransform.position, navAgent.target.transform.position, fracTrip);
+            }
 
             Vector3 dir = new Vector3();
             dir = navAgent.target.position + navAgent.GetComponent<Rigidbody>().velocity * Time.deltaTime - transform.position;
@@ -137,6 +140,7 @@ public class AmmoScript : MonoBehaviour
             {
                 gameObject.SetActive(false);
                 Destroy(gameObject);
+
             }
             else if (gameObject.name == "redShell")
             {
@@ -153,14 +157,23 @@ public class AmmoScript : MonoBehaviour
                 enemy.health -= damage;
             }
 
+
+            // Enemy Death Condition
             if (cInfo.gameObject.activeInHierarchy && enemy.health <= 0)
             {
                 // Points for now
                 gc.pc.adjustScore(enemy.value);
                 gc.sc.registerDeadEnemy();
-                cInfo.gameObject.SetActive(false);
-                Destroy(cInfo.gameObject);
-                randomDrop();
+                if (cInfo.gameObject.name == "Bowser")
+                {
+                    gc.setBossDead();
+                    FindObjectOfType<Bowser>().PlayDeathSequence();
+                }
+                else {
+                    cInfo.gameObject.SetActive(false);
+                    Destroy(cInfo.gameObject);
+                    randomDrop();
+                }
 
             }
         }
