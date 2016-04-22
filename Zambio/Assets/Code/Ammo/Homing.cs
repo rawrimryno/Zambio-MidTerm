@@ -9,7 +9,7 @@ public class Homing : MonoBehaviour
     float distance, progress;
     public Vector3 start, finish;
     public float startTime;
-    public float timeToHit = 5;
+    public float timeToHit = 2;
 
     // Use this for initialization
     void Start()
