@@ -78,7 +78,7 @@ public class EnemyController : MonoBehaviour
             enemyNav.enabled = false;
         }
 
-        if (oCol.CompareTag("Player"))
+        if (oCol.CompareTag("Player") && !gc.pc.IsImpervious() )
         {
             hurtPlayer();
             if ( gc.pc.myPowerUps.Contains("fireFlower") )
@@ -109,7 +109,7 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        if (oCol.CompareTag("Player"))
+        if (oCol.CompareTag("Player") && !gc.pc.IsImpervious() )
         {
             if (coolDown <= 0 && health > 0)
             {

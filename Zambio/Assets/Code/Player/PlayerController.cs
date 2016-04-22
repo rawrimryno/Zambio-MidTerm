@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     AudioSource audioSource;
     BossObserver bossObserver;
     bool playedBowserDead = false;
+    bool impervious = false;
 
 
     // Use this when you want to increase ammo or add Powerups already applied to character
@@ -217,6 +218,7 @@ public class PlayerController : MonoBehaviour
         healthModel.Notify();
         if (health < 1)
         {
+            impervious = true;
             MM.onDeath(); //Zach Edit
             //deathSequence(); //Zach Edit
             //dead = true;
@@ -290,5 +292,10 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Debug.Log("hi");
         //Game Over
+    }
+
+    public bool IsImpervious()
+    {
+        return impervious;
     }
 }
