@@ -13,6 +13,7 @@ public class Bowser : MonoBehaviour {
     private float[] attackTimers;
     BossSubject bossSub;
     EnemyController ec;
+    StateMachine sm;
     int currHealth;
     AudioSource bowserSource;
     bool hasPlayedDeathSound = false;
@@ -29,10 +30,10 @@ public class Bowser : MonoBehaviour {
         bossSub = new BossSubject();
         ec = GetComponent<EnemyController>();
         bossSub.SetState(ec);
-        currHealth = ec.health;
         UImain = FindObjectOfType<MainMenu>();
         //UImain.bossObserver().attach(bossSub);
         bossSub.Notify();
+        sm = GameObject.Find("_GameStateMachine").GetComponent<StateMachine>();
 
         // Audio Source Acquisition - Todd
         bowserSource = GetComponent<AudioSource>();
@@ -40,6 +41,9 @@ public class Bowser : MonoBehaviour {
         bowserSource.Play();
 
         rb = GetComponent<Rigidbody>();
+        currHealth = sm.Round * 10;
+        ec.health = currHealth;
+        Debug.Log("Bowser Health: " + currHealth);
 	}
 	
 	// Update is called once per frame

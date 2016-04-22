@@ -58,14 +58,14 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +95,7 @@
     <Compile Include="Assets\Code\GC\StateMachine\StateMachine.cs" />
     <Compile Include="Assets\Code\GC\StateMachine\WaitForChillTimeToEnd.cs" />
     <Compile Include="Assets\Code\GC\StateMachine\hasWon.cs" />
+    <Compile Include="Assets\Code\MusicController.cs" />
     <Compile Include="Assets\Code\NavAgent\NavAgentGoToTransform.cs" />
     <Compile Include="Assets\Code\Observer\Observer.cs" />
     <Compile Include="Assets\Code\Observer\Subject.cs" />
@@ -111,7 +112,6 @@
     <Compile Include="Assets\Code\UI\HealthPanelDisplay.cs" />
     <Compile Include="Assets\Code\UI\InfoTab.cs" />
     <Compile Include="Assets\Code\UI\MainMenu.cs" />
-    <Compile Include="Assets\MusicController.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\ReturnToMainMenu.cs" />

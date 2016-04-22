@@ -189,7 +189,7 @@ MonoBehaviour:
   start: {x: 0, y: 0, z: 0}
   finish: {x: 0, y: 0, z: 0}
   startTime: 0
-  timeToHit: 3
+  timeToHit: 2
 --- !u!114 &11476484
 MonoBehaviour:
   m_ObjectHideFlags: 1
