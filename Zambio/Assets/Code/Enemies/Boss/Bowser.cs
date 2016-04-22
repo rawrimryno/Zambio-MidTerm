@@ -17,6 +17,7 @@ public class Bowser : MonoBehaviour {
     AudioSource bowserSource;
     bool hasPlayedDeathSound = false;
     Rigidbody rb;
+    StateMachine sm;
 
 
 	// Use this for initialization
@@ -29,7 +30,9 @@ public class Bowser : MonoBehaviour {
         bossSub = new BossSubject();
         ec = GetComponent<EnemyController>();
         bossSub.SetState(ec);
-        currHealth = ec.health;
+        sm = GameObject.Find("_GameStateMachine").GetComponent<StateMachine>();
+        currHealth = ec.health*sm.Round;
+        Debug.Log("Bowser Health: " + currHealth);
         UImain = FindObjectOfType<MainMenu>();
         //UImain.bossObserver().attach(bossSub);
         bossSub.Notify();
