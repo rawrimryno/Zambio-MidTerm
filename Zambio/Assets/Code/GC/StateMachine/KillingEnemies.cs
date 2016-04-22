@@ -39,7 +39,7 @@ public class KillingEnemies : IState {
             // 
             spawnO.spawnSubject.GetState().endRound = false;
             sm.Round++;
-            if ((sm.Round%bossWave) == 0)
+            if (sm.Round == bossWave)
             {
                 this.futureState = bossState;
             }

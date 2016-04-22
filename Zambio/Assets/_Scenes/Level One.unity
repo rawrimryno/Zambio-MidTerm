@@ -34580,6 +34580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicList:
   - {fileID: 8300000, guid: f460a74531141934a87561e5a5a9d0f9, type: 3}
+  - {fileID: 8300000, guid: eef76357b1e14f24889e9811c478c1c5, type: 3}
   - {fileID: 8300000, guid: d37a46e6bbcd38343adbe2877c771532, type: 3}
   audioSource: {fileID: 0}
 --- !u!1 &1447061895
