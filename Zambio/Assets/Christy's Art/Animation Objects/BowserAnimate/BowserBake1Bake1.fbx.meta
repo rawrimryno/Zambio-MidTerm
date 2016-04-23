@@ -580,8 +580,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Walk/Wave
       takeName: Bake1
-      firstFrame: 1
-      lastFrame: 100
+      firstFrame: 9
+      lastFrame: 94
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
