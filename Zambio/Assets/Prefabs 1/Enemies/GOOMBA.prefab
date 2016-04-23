@@ -1833,7 +1833,7 @@ GameObject:
   - 136: {fileID: 13697310}
   - 114: {fileID: 11445384}
   m_Layer: 0
-  m_Name: Goomba
+  m_Name: GOOMBA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6400,6 +6400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pipeHeight: 5
+  dying: 0
   health: 1
   damage: 1
   value: 5
