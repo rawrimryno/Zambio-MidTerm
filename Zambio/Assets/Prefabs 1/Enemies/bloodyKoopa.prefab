@@ -6452,7 +6452,7 @@ CapsuleCollider:
   m_Radius: 1.06
   m_Height: 3.48
   m_Direction: 1
-  m_Center: {x: 0, y: 1.59, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &19511454
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -6503,6 +6503,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Speed
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Center.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

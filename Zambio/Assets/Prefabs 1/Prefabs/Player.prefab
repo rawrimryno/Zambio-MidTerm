@@ -1950,6 +1950,7 @@ GameObject:
   - 114: {fileID: 11490256}
   - 114: {fileID: 11438374}
   - 114: {fileID: 11403864}
+  - 95: {fileID: 9534036}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -10421,6 +10422,23 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179988}
   m_Enabled: 1
+--- !u!95 &9534036
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 140584}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 151f90f728df847b4910bf73927d4307, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11403864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10449,6 +10467,7 @@ MonoBehaviour:
   - {fileID: 177750, guid: 3659d1f8292ae7c41852e53ee2c8ed9f, type: 2}
   - {fileID: 164138, guid: f1775b099a69c8042b73b3e05ce9ac9a, type: 2}
   - {fileID: 178530, guid: 1896a479b79a7b048ac4e0a140d06a23, type: 2}
+  fireAmmo: {fileID: 0}
   bulletSpeed: 50
   rateOfFire: 0.25
 --- !u!114 &11438374
@@ -10493,6 +10512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea4712b3cfcb7943a802ecbbd69719d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myPowerUps: []
 --- !u!124 &12445014
 Behaviour:
   m_ObjectHideFlags: 1
@@ -10545,6 +10565,14 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_CullingType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 151f90f728df847b4910bf73927d4307, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 140584}
