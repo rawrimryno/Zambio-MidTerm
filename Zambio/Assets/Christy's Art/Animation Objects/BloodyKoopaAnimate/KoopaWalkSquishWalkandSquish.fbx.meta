@@ -520,7 +520,381 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: WalkandSquish
+      takeName: WalkandSquish
+      firstFrame: 1
+      lastFrame: 67
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group2
+        weight: 1
+      - path: group2/head
+        weight: 1
+      - path: group2/head/transform50
+        weight: 1
+      - path: group2/head1
+        weight: 1
+      - path: group2/head1/transform46
+        weight: 1
+      - path: group2/pCube1
+        weight: 1
+      - path: group2/pCube1/transform42
+        weight: 1
+      - path: group2/pCube2
+        weight: 1
+      - path: group2/pCube2/transform41
+        weight: 1
+      - path: group2/pSphere4
+        weight: 1
+      - path: group2/pSphere4/transform40
+        weight: 1
+      - path: group2/pSphere5
+        weight: 1
+      - path: group2/pSphere5/transform39
+        weight: 1
+      - path: group2/teeth1
+        weight: 1
+      - path: group2/teeth1/transform49
+        weight: 1
+      - path: group2/teeth2
+        weight: 1
+      - path: group2/teeth2/transform48
+        weight: 1
+      - path: group2/teeth3
+        weight: 1
+      - path: group2/teeth3/transform47
+        weight: 1
+      - path: group2/teeth4
+        weight: 1
+      - path: group2/teeth4/transform45
+        weight: 1
+      - path: group2/teeth5
+        weight: 1
+      - path: group2/teeth5/transform44
+        weight: 1
+      - path: group2/teeth6
+        weight: 1
+      - path: group2/teeth6/transform43
+        weight: 1
+      - path: group2/teeth7
+        weight: 1
+      - path: group2/teeth7/transform38
+        weight: 1
+      - path: group2/teeth8
+        weight: 1
+      - path: group2/teeth8/transform37
+        weight: 1
+      - path: group2/teeth9
+        weight: 1
+      - path: group2/teeth9/transform36
+        weight: 1
+      - path: group2/teeth10
+        weight: 1
+      - path: group2/teeth10/transform35
+        weight: 1
+      - path: group2/teeth11
+        weight: 1
+      - path: group2/teeth11/transform34
+        weight: 1
+      - path: group2/teeth12
+        weight: 1
+      - path: group2/teeth12/transform33
+        weight: 1
+      - path: group2/teeth13 1
+        weight: 1
+      - path: group2/teeth13 1/transform27
+        weight: 1
+      - path: group2/teeth14
+        weight: 1
+      - path: group2/teeth14/transform26
+        weight: 1
+      - path: group2/teeth15
+        weight: 1
+      - path: group2/teeth15/transform25
+        weight: 1
+      - path: group2/teeth16
+        weight: 1
+      - path: group2/teeth16/transform24
+        weight: 1
+      - path: group2/teeth17
+        weight: 1
+      - path: group2/teeth17/transform23
+        weight: 1
+      - path: group2/teeth18 1
+        weight: 1
+      - path: group2/teeth18 1/transform20
+        weight: 1
+      - path: group2/teeth19
+        weight: 1
+      - path: group2/teeth19/transform19
+        weight: 1
+      - path: group2/teeth20
+        weight: 1
+      - path: group2/teeth20/transform18
+        weight: 1
+      - path: group2/teeth21
+        weight: 1
+      - path: group2/teeth21/transform17
+        weight: 1
+      - path: group2/teeth22
+        weight: 1
+      - path: group2/teeth22/transform16
+        weight: 1
+      - path: group3
+        weight: 1
+      - path: group3/body_bones
+        weight: 1
+      - path: group3/body_bones/transform32
+        weight: 1
+      - path: group3/body_skin
+        weight: 1
+      - path: group3/body_skin/transform31
+        weight: 1
+      - path: head_mesh1:group
+        weight: 1
+      - path: head_mesh:group
+        weight: 1
+      - path: left
+        weight: 1
+      - path: left_foot
+        weight: 1
+      - path: left_foot/joint2
+        weight: 1
+      - path: pasted__polySurface1
+        weight: 1
+      - path: pasted__polySurface1/transform28
+        weight: 1
+      - path: pCube3
+        weight: 1
+      - path: pCube3/transform52
+        weight: 1
+      - path: pCube4
+        weight: 1
+      - path: pCube4/transform51
+        weight: 1
+      - path: pCube5
+        weight: 1
+      - path: pCube5/polySurface29
+        weight: 1
+      - path: pCube5/polySurface29/transform22
+        weight: 1
+      - path: pCube5/polySurface30
+        weight: 1
+      - path: pCube5/polySurface30/transform21
+        weight: 1
+      - path: pCube5/polySurface32
+        weight: 1
+      - path: pCube5/polySurface32/transform15
+        weight: 1
+      - path: pCube5/polySurface33
+        weight: 1
+      - path: pCube5/polySurface33/transform14
+        weight: 1
+      - path: pCube5/transform13
+        weight: 1
+      - path: polySurface13
+        weight: 1
+      - path: polySurface13/polySurface22
+        weight: 1
+      - path: polySurface23
+        weight: 1
+      - path: polySurface23/transform54
+        weight: 1
+      - path: polySurface28
+        weight: 1
+      - path: polySurface28/transform53
+        weight: 1
+      - path: pSphere3
+        weight: 1
+      - path: pSphere3/polySurface9
+        weight: 1
+      - path: pSphere3/polySurface9/polySurface10
+        weight: 1
+      - path: pSphere3/polySurface9/polySurface10/transform12
+        weight: 1
+      - path: pSphere3/polySurface9/polySurface11
+        weight: 1
+      - path: pSphere3/polySurface9/polySurface11/transform11
+        weight: 1
+      - path: pSphere3/polySurface9/transform10
+        weight: 1
+      - path: pSphere3/transform9
+        weight: 1
+      - path: right
+        weight: 1
+      - path: right_foot
+        weight: 1
+      - path: right_foot/joint3
+        weight: 1
+      - path: shell
+        weight: 1
+      - path: shell/pasted__pCube1
+        weight: 1
+      - path: shell/pasted__pCube1/group1
+        weight: 1
+      - path: shell/pasted__pCube1/group1/pasted__polySurface3
+        weight: 1
+      - path: shell/pasted__pCube1/group1/pasted__polySurface3/transform55
+        weight: 1
+      - path: shell/pasted__pCube1/pasted__transform1
+        weight: 1
+      - path: teeth13
+        weight: 1
+      - path: teeth13/transform29
+        weight: 1
+      - path: teeth18
+        weight: 1
+      - path: teeth18/transform30
+        weight: 1
+      - path: whole_body
+        weight: 1
+      - path: whole_body/group4
+        weight: 1
+      - path: whole_body/group4/group5
+        weight: 1
+      - path: whole_body/group4/group5/body
+        weight: 1
+      - path: whole_body/group4/group5/left_foot 1
+        weight: 1
+      - path: whole_body/group4/group5/left_foot 1/polySurface37
+        weight: 1
+      - path: whole_body/group4/group5/left_foot 1/polySurface38
+        weight: 1
+      - path: whole_body/group4/group5/left_foot 1/polySurface40
+        weight: 1
+      - path: whole_body/group4/group5/left_foot 1/polySurface56
+        weight: 1
+      - path: whole_body/group4/group5/left_foot 1/polySurface58
+        weight: 1
+      - path: whole_body/group4/group5/left_foot 1/polySurface60
+        weight: 1
+      - path: whole_body/group4/group5/left_hand
+        weight: 1
+      - path: whole_body/group4/group5/left_hand/polySurface79
+        weight: 1
+      - path: whole_body/group4/group5/left_hand/polySurface80
+        weight: 1
+      - path: whole_body/group4/group5/left_hand/polySurface81
+        weight: 1
+      - path: whole_body/group4/group5/left_hand/polySurface82
+        weight: 1
+      - path: whole_body/group4/group5/left_hand/polySurface83
+        weight: 1
+      - path: whole_body/group4/group5/left_hand/polySurface84
+        weight: 1
+      - path: whole_body/group4/group5/left_hand/polySurface85
+        weight: 1
+      - path: whole_body/group4/group5/polySurface34
+        weight: 1
+      - path: whole_body/group4/group5/polySurface41
+        weight: 1
+      - path: whole_body/group4/group5/polySurface42
+        weight: 1
+      - path: whole_body/group4/group5/polySurface43
+        weight: 1
+      - path: whole_body/group4/group5/polySurface44
+        weight: 1
+      - path: whole_body/group4/group5/polySurface45
+        weight: 1
+      - path: whole_body/group4/group5/polySurface46
+        weight: 1
+      - path: whole_body/group4/group5/polySurface47
+        weight: 1
+      - path: whole_body/group4/group5/polySurface48
+        weight: 1
+      - path: whole_body/group4/group5/polySurface49
+        weight: 1
+      - path: whole_body/group4/group5/polySurface50
+        weight: 1
+      - path: whole_body/group4/group5/polySurface51
+        weight: 1
+      - path: whole_body/group4/group5/polySurface52
+        weight: 1
+      - path: whole_body/group4/group5/polySurface53
+        weight: 1
+      - path: whole_body/group4/group5/polySurface54
+        weight: 1
+      - path: whole_body/group4/group5/polySurface61
+        weight: 1
+      - path: whole_body/group4/group5/polySurface62
+        weight: 1
+      - path: whole_body/group4/group5/polySurface63
+        weight: 1
+      - path: whole_body/group4/group5/polySurface64
+        weight: 1
+      - path: whole_body/group4/group5/polySurface65
+        weight: 1
+      - path: whole_body/group4/group5/polySurface66
+        weight: 1
+      - path: whole_body/group4/group5/polySurface67
+        weight: 1
+      - path: whole_body/group4/group5/polySurface68
+        weight: 1
+      - path: whole_body/group4/group5/polySurface69
+        weight: 1
+      - path: whole_body/group4/group5/polySurface70
+        weight: 1
+      - path: whole_body/group4/group5/polySurface86
+        weight: 1
+      - path: whole_body/group4/group5/right_foot 1
+        weight: 1
+      - path: whole_body/group4/group5/right_foot 1/polySurface35
+        weight: 1
+      - path: whole_body/group4/group5/right_foot 1/polySurface36
+        weight: 1
+      - path: whole_body/group4/group5/right_foot 1/polySurface39
+        weight: 1
+      - path: whole_body/group4/group5/right_foot 1/polySurface55
+        weight: 1
+      - path: whole_body/group4/group5/right_foot 1/polySurface57
+        weight: 1
+      - path: whole_body/group4/group5/right_foot 1/polySurface59
+        weight: 1
+      - path: whole_body/group4/group5/right_hand
+        weight: 1
+      - path: whole_body/group4/group5/right_hand/polySurface72
+        weight: 1
+      - path: whole_body/group4/group5/right_hand/right_hand 1
+        weight: 1
+      - path: whole_body/group4/group5/right_hand/right_hand 1/polySurface73
+        weight: 1
+      - path: whole_body/group4/group5/right_hand/right_hand 1/polySurface74
+        weight: 1
+      - path: whole_body/group4/group5/right_hand/right_hand 1/polySurface75
+        weight: 1
+      - path: whole_body/group4/group5/right_hand/right_hand 1/polySurface76
+        weight: 1
+      - path: whole_body/group4/group5/right_hand/right_hand 1/polySurface77
+        weight: 1
+      - path: whole_body/group4/group5/right_hand/right_hand 1/polySurface78
+        weight: 1
+      - path: whole_body/transform56
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []

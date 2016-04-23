@@ -4,16 +4,18 @@ using System.Collections;
 public class EnemyAnimator : MonoBehaviour {
     Rigidbody rb;
     Animator anim;
-    Animation animation;
+    //Animation animation;
     EnemyController ec;
+    //AmmoScript dummyAmmo;
     bool dead;
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         ec = GetComponent<EnemyController>();
-	
-	}
+       // dummyAmmo = ec.gameObject.AddComponent<AmmoScript>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -31,18 +33,28 @@ public class EnemyAnimator : MonoBehaviour {
         }
         else
         {
+            anim.SetBool("isMoving", false);
             anim.SetBool("isDying", true);
-            animation = anim.GetComponent<Animation>();
         }
 
-        if (anim.GetBool("isDying") == true && !animation.isPlaying)
+        if (ec.health <= 0 && anim.GetCurrentAnimatorStateInfo(0).IsName("Flatten"))
         {
-            ec.gameObject.SetActive(false);
-            Destroy(ec.gameObject);
-            AmmoScript dummyAmmo = new AmmoScript();
-            dummyAmmo.randomDrop();
+            //ec.gameObject.SetActive(false);
+            //Destroy(ec.gameObject);
+            //AmmoScript dummyAmmo = new AmmoScript();
+            //dummyAmmo.randomDrop();
+            StartCoroutine("Die");
         }
-        Debug.Log("Enemy Velocity is " + rb.velocity.magnitude);
+        //Debug.Log("Enemy Velocity is " + rb.velocity.magnitude);
 	
 	}
+
+    IEnumerator Die()
+    {
+        Debug.Log("Starting Coroutine");
+        //anim.SetInteger("Flatten", 3);
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        ec.randomDrop();
+        Destroy(ec.gameObject);
+    }
 }

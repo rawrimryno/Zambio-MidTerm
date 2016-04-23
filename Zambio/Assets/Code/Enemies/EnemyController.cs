@@ -7,6 +7,8 @@ public class EnemyController : MonoBehaviour
     NavAgentGoToTransform enemyNav;
     Rigidbody rb;
     Animator anim;
+    PlayerController pc;
+    private Inventory inventory;
 
     private bool hasLeftSpawner = true;
     private bool init = false;
@@ -20,11 +22,13 @@ public class EnemyController : MonoBehaviour
     public int value;
     public float hitTime;  // time for one hit
     private float coolDown=0;
+    private bool dead;
+    private Vector3 freeze;
 
     void Awake()
     {
         anim = GetComponent<Animator>();
-        Random.seed = (int)Time.realtimeSinceStartup;
+        //Random.seed = (int)Time.realtimeSinceStartup;
 
         if (damage <= 0)
         {
@@ -47,15 +51,26 @@ public class EnemyController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        gc = GameControllerSingleton.get();
+        //gc = GameControllerSingleton.get();
+        pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         enemyNav = GetComponent<NavAgentGoToTransform>();
         rb = GetComponent<Rigidbody>();
+
+        //inventory = gc.pc.myInventory;
         acquirePlayer();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!init && Time.timeScale != 0f)
+        {
+            gc = GameControllerSingleton.get();
+            //inventory = FindObjectOfType<Inventory>();
+            inventory = gc.pc.myInventory;
+            init = true;
+            //Debug.Log("Inventory probably didn't set, don't forget to work on it.");
+        }
         if (coolDown > 0)
         {
             coolDown -= Time.deltaTime;
@@ -65,9 +80,17 @@ public class EnemyController : MonoBehaviour
             gc = GameControllerSingleton.get();
         }
 
-        if ( health < 0)
+        if ( health <= 0)
         {
-            enemyNav.target = null;
+            if (!dead)
+            {
+                freeze = this.transform.position;
+                dead = true;
+            }
+            else
+            {
+                this.transform.position = freeze;
+            }
         }
 
 
@@ -146,4 +169,81 @@ public class EnemyController : MonoBehaviour
         coolDown = hitTime;
     }
 
+    public void randomDrop()
+    {
+        System.Random rand = new System.Random();
+        //150 so 2/3 of the time it will drop a a randomdrop;
+        int itemType = rand.Next(0, 150);
+        bool metal = false;
+        GameObject renameMe;
+        if (itemType < 50)
+        {
+            //make ammo
+            if (itemType < 25)
+            {
+                inventory.ammoContents.setAmmo(0, inventory.ammoContents.returnAmmo(0) + 5);
+            }
+            else if (itemType < 37)
+            {
+                inventory.ammoContents.setAmmo(1, inventory.ammoContents.returnAmmo(1) + 5);
+            }
+            else if (itemType < 44)
+            {
+                inventory.ammoContents.setAmmo(2, inventory.ammoContents.returnAmmo(2) + 5);
+            }
+            else if (itemType < 48)
+            {
+                inventory.ammoContents.setAmmo(3, inventory.ammoContents.returnAmmo(3) + 5);
+            }
+            else if (itemType < 50)
+            {
+                inventory.ammoContents.setAmmo(4, inventory.ammoContents.returnAmmo(4) + 5);
+            }
+        }
+        else
+        {
+            PowerUpDesc prefab = new PowerUpDesc();
+            //instatiate powerup or mushroom
+            if (itemType < 65)
+            {
+                gc.powerUpByID.TryGetValue(2, out prefab);
+
+            }
+            else if (itemType < 78)
+            {
+                gc.powerUpByID.TryGetValue(0, out prefab);
+
+            }
+            else if (itemType < 80)
+            {
+                gc.powerUpByID.TryGetValue(1, out prefab);
+
+            }
+            else if (itemType < 90)
+            {
+                gc.powerUpByID.TryGetValue(3, out prefab);
+
+            }
+            else if (itemType <= 100)
+            {
+                gc.powerUpByID.TryGetValue(4, out prefab);
+                metal = true;
+
+            }
+            if (itemType <= 100)
+            {
+                if (metal == false)
+                {
+                    renameMe = Instantiate(prefab.prefab, transform.position + new Vector3(0,1,0), new Quaternion(0, 0, 0, 0)) as GameObject;
+                    renameMe.name = prefab.prefab.name;
+                }
+                else
+                {
+                    renameMe = Instantiate(prefab.prefab, transform.position + new Vector3(0, 3, 0), new Quaternion(0, 0, 0, 0)) as GameObject;
+                    renameMe.name = prefab.prefab.name;
+                }
+            }
+
+        }
+    }
 }

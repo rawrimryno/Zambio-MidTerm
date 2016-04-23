@@ -222,81 +222,81 @@ public class AmmoScript : MonoBehaviour
         startTransform = this.transform;
     }
 
-    public void randomDrop()
-    {
-        System.Random rand = new System.Random();
-        //150 so 2/3 of the time it will drop a a randomdrop;
-        int itemType = rand.Next(0, 150);
-        bool metal = false;
-        GameObject renameMe;
-        if (itemType < 50)
-        {
-            //make ammo
-            if (itemType < 25)
-            {
-                inventory.ammoContents.setAmmo(0, inventory.ammoContents.returnAmmo(0) + 5);
-            }
-            else if (itemType < 37)
-            {
-                inventory.ammoContents.setAmmo(1, inventory.ammoContents.returnAmmo(1) + 5);
-            }
-            else if (itemType < 44)
-            {
-                inventory.ammoContents.setAmmo(2, inventory.ammoContents.returnAmmo(2) + 5);
-            }
-            else if (itemType < 48)
-            {
-                inventory.ammoContents.setAmmo(3, inventory.ammoContents.returnAmmo(3) + 5);
-            }
-            else if (itemType < 50)
-            {
-                inventory.ammoContents.setAmmo(4, inventory.ammoContents.returnAmmo(4) + 5);
-            }
-        }
-        else
-        {
-            PowerUpDesc prefab = new PowerUpDesc();
-            //instatiate powerup or mushroom
-            if (itemType < 65)
-            {
-                gc.powerUpByID.TryGetValue(2, out prefab);
+    //public void randomDrop()
+    //{
+    //    System.Random rand = new System.Random();
+    //    //150 so 2/3 of the time it will drop a a randomdrop;
+    //    int itemType = rand.Next(0, 150);
+    //    bool metal = false;
+    //    GameObject renameMe;
+    //    if (itemType < 50)
+    //    {
+    //        //make ammo
+    //        if (itemType < 25)
+    //        {
+    //            inventory.ammoContents.setAmmo(0, inventory.ammoContents.returnAmmo(0) + 5);
+    //        }
+    //        else if (itemType < 37)
+    //        {
+    //            inventory.ammoContents.setAmmo(1, inventory.ammoContents.returnAmmo(1) + 5);
+    //        }
+    //        else if (itemType < 44)
+    //        {
+    //            inventory.ammoContents.setAmmo(2, inventory.ammoContents.returnAmmo(2) + 5);
+    //        }
+    //        else if (itemType < 48)
+    //        {
+    //            inventory.ammoContents.setAmmo(3, inventory.ammoContents.returnAmmo(3) + 5);
+    //        }
+    //        else if (itemType < 50)
+    //        {
+    //            inventory.ammoContents.setAmmo(4, inventory.ammoContents.returnAmmo(4) + 5);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        PowerUpDesc prefab = new PowerUpDesc();
+    //        //instatiate powerup or mushroom
+    //        if (itemType < 65)
+    //        {
+    //            gc.powerUpByID.TryGetValue(2, out prefab);
 
-            }
-            else if (itemType < 78)
-            {
-                gc.powerUpByID.TryGetValue(0, out prefab);
+    //        }
+    //        else if (itemType < 78)
+    //        {
+    //            gc.powerUpByID.TryGetValue(0, out prefab);
 
-            }
-            else if (itemType < 80)
-            {
-                gc.powerUpByID.TryGetValue(1, out prefab);
+    //        }
+    //        else if (itemType < 80)
+    //        {
+    //            gc.powerUpByID.TryGetValue(1, out prefab);
 
-            }
-            else if (itemType < 90)
-            {
-                gc.powerUpByID.TryGetValue(3, out prefab);
+    //        }
+    //        else if (itemType < 90)
+    //        {
+    //            gc.powerUpByID.TryGetValue(3, out prefab);
 
-            }
-            else if (itemType <= 100)
-            {
-                gc.powerUpByID.TryGetValue(4, out prefab);
-                metal = true;
+    //        }
+    //        else if (itemType <= 100)
+    //        {
+    //            gc.powerUpByID.TryGetValue(4, out prefab);
+    //            metal = true;
 
-            }
-            if (itemType <= 100)
-            {
-                if (metal == false)
-                {
-                    renameMe = Instantiate(prefab.prefab, transform.position, new Quaternion(0, 0, 0, 0)) as GameObject;
-                    renameMe.name = prefab.prefab.name;
-                }
-                else
-                {
-                    renameMe = Instantiate(prefab.prefab, transform.position + new Vector3(0, 3, 0), new Quaternion(0, 0, 0, 0)) as GameObject;
-                    renameMe.name = prefab.prefab.name;
-                }
-            }
+    //        }
+    //        if (itemType <= 100)
+    //        {
+    //            if (metal == false)
+    //            {
+    //                renameMe = Instantiate(prefab.prefab, transform.position, new Quaternion(0, 0, 0, 0)) as GameObject;
+    //                renameMe.name = prefab.prefab.name;
+    //            }
+    //            else
+    //            {
+    //                renameMe = Instantiate(prefab.prefab, transform.position + new Vector3(0, 3, 0), new Quaternion(0, 0, 0, 0)) as GameObject;
+    //                renameMe.name = prefab.prefab.name;
+    //            }
+    //        }
 
-        }
-    }
+    //    }
+    //}
 }
