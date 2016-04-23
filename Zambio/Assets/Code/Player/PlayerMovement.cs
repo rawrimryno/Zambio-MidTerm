@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public int jumpToPlaySound = 3;
 
     int jumpCounter = 0;
-    private Vector3 moveDirection = Vector3.zero;
+    public Vector3 moveDirection = Vector3.zero;
     AudioSource playerAudioSource;
     PlayerController pc;
 
@@ -55,5 +55,26 @@ public class PlayerMovement : MonoBehaviour
 
         moveDirection.y -= gravity * Time.deltaTime;
         controller.Move(moveDirection * Time.deltaTime);
+        //Debug.Log("Velocity Magnitude " + moveDirection.magnitude);
+        //if (moveDirection.magnitude >= .75)
+        //{
+        //    if (pc.isMetalMario)
+        //    {
+        //        anim.SetBool("isMetal", true);
+        //        Debug.Log("Metal Walking");
+        //    }
+        //    else
+        //    {
+        //        anim.SetBool("isMetal", false);
+        //        Debug.Log("Regular Walking");
+        //    }
+        //    anim.SetBool("isWalking", true);
+        //}
+        //else
+        //{
+        //    anim.SetBool("isWalking", false);
+        //    Debug.Log("Not Walking");
+        //}
     }
 }
+
