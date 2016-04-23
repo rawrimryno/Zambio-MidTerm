@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
     GameControllerSingleton gc;
     NavAgentGoToTransform enemyNav;
     Rigidbody rb;
+    Animator anim;
 
     private bool hasLeftSpawner = true;
     private bool init = false;
@@ -13,6 +14,7 @@ public class EnemyController : MonoBehaviour
 
     public float pipeHeight = 5;
 
+    public bool dying = false;
     public int health;
     public int damage;
     public int value;
@@ -21,6 +23,7 @@ public class EnemyController : MonoBehaviour
 
     void Awake()
     {
+        anim = GetComponent<Animator>();
         Random.seed = (int)Time.realtimeSinceStartup;
 
         if (damage <= 0)
@@ -142,4 +145,5 @@ public class EnemyController : MonoBehaviour
         gc.pc.adjustHealth(-damage);
         coolDown = hitTime;
     }
+
 }

@@ -170,9 +170,7 @@ public class AmmoScript : MonoBehaviour
                     FindObjectOfType<Bowser>().PlayDeathSequence();
                 }
                 else {
-                    cInfo.gameObject.SetActive(false);
-                    Destroy(cInfo.gameObject);
-                    randomDrop();
+                    cInfo.gameObject.GetComponent<EnemyController>().dying = true;
                 }
 
             }
@@ -224,7 +222,7 @@ public class AmmoScript : MonoBehaviour
         startTransform = this.transform;
     }
 
-    void randomDrop()
+    public void randomDrop()
     {
         System.Random rand = new System.Random();
         //150 so 2/3 of the time it will drop a a randomdrop;
