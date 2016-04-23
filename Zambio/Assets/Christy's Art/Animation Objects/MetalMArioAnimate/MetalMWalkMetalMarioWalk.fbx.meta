@@ -689,7 +689,7 @@ ModelImporter:
       name: MetalMarioWalk
       takeName: MetalMarioWalk
       firstFrame: 1
-      lastFrame: 50
+      lastFrame: 46.1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
