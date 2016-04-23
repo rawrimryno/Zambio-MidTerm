@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public int initMetalHealth;
     public List<string> myPowerUps;
     public bool isMetalMario;
+    public bool impervious;
 
     public AudioClip[] audioClips;
 
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
         // Health Model
         healthModel = new HealthSubject();
         healthModel.SetState(health);
+        impervious = false;
 
     }
     // Use this for initialization
@@ -217,6 +219,7 @@ public class PlayerController : MonoBehaviour
         healthModel.Notify();
         if (health < 1)
         {
+            impervious = true;
             MM.onDeath(); //Zach Edit
             //deathSequence(); //Zach Edit
             //dead = true;
@@ -233,7 +236,7 @@ public class PlayerController : MonoBehaviour
     public void adjustHealth(int amt)
     {
         //Debug.Log("Adjusting Health by " + amt);
-        if (amt < 0)
+        if (amt < 0 && !impervious)
         {
             if (myPowerUps.Contains("metalMario"))
             {
