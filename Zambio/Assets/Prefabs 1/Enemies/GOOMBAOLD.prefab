@@ -6299,10 +6299,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d3017946c592f4694dd516e88fe9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pc: {fileID: 0}
   pipeHeight: 5
+  dying: 0
   health: 1
   damage: 1
-  value: 0
+  value: 5
   hitTime: 2
 --- !u!114 &11450834
 MonoBehaviour:

@@ -7,8 +7,8 @@ public class EnemyController : MonoBehaviour
     NavAgentGoToTransform enemyNav;
     Rigidbody rb;
     Animator anim;
-    PlayerController pc;
-    private Inventory inventory;
+    public PlayerController pc;
+    Inventory inventory;
 
     private bool hasLeftSpawner = true;
     private bool init = false;

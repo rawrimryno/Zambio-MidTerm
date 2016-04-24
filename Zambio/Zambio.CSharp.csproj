@@ -58,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -80,9 +74,9 @@
     <Compile Include="Assets\Code\Ammo\Homing.cs" />
     <Compile Include="Assets\Code\CameraController.cs" />
     <Compile Include="Assets\Code\Enemies\Boss\Bowser.cs" />
+    <Compile Include="Assets\Code\Enemies\ChompScript.cs" />
     <Compile Include="Assets\Code\Enemies\EnemyController.cs" />
     <Compile Include="Assets\Code\Enemies\EnemySpawner.cs" />
-    <Compile Include="Assets\Code\Enemies\HeadLocation.cs" />
     <Compile Include="Assets\Code\Enemies\SpawnerController.cs" />
     <Compile Include="Assets\Code\Environment\Environment.cs" />
     <Compile Include="Assets\Code\Environment\PeachHeal.cs" />
