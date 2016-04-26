@@ -6369,7 +6369,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!95 &9580884
 Animator:
@@ -6399,6 +6399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d3017946c592f4694dd516e88fe9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pc: {fileID: 0}
   pipeHeight: 5
   dying: 0
   health: 1

@@ -585,7 +585,7 @@ ModelImporter:
       name: Smooth
       takeName: Smooth
       firstFrame: 1
-      lastFrame: 121
+      lastFrame: 130
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -977,8 +977,8 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
-    meshCompression: 0
+    globalScale: 150
+    meshCompression: 3
     addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0

@@ -274,12 +274,216 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Peach
+      takeName: Peach
+      firstFrame: 1
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: body
+        weight: 1
+      - path: body/dresscover
+        weight: 1
+      - path: body/left_arm
+        weight: 1
+      - path: body/left_sleeve
+        weight: 1
+      - path: body/puffs
+        weight: 1
+      - path: body/puffs/left_puff
+        weight: 1
+      - path: body/puffs/right_puff
+        weight: 1
+      - path: body/right_arm
+        weight: 1
+      - path: body/right_sleeve
+        weight: 1
+      - path: body/torso_group
+        weight: 1
+      - path: body/torso_group/front_jewel
+        weight: 1
+      - path: body/torso_group/front_jewel/polySurface42
+        weight: 1
+      - path: body/torso_group/front_jewel/polySurface43
+        weight: 1
+      - path: body/torso_group/torso
+        weight: 1
+      - path: body/upper_head
+        weight: 1
+      - path: body/upper_head/collar
+        weight: 1
+      - path: body/upper_head/crown1
+        weight: 1
+      - path: body/upper_head/crown1/pPipe1
+        weight: 1
+      - path: body/upper_head/crown1/pSphere3
+        weight: 1
+      - path: body/upper_head/crown1/pSphere4
+        weight: 1
+      - path: body/upper_head/crown1/pTorus2
+        weight: 1
+      - path: body/upper_head/crown1/pTorus3
+        weight: 1
+      - path: body/upper_head/crown1/pTorus5
+        weight: 1
+      - path: body/upper_head/crown1/pTorus6
+        weight: 1
+      - path: body/upper_head/ear1
+        weight: 1
+      - path: body/upper_head/ear2
+        weight: 1
+      - path: body/upper_head/earing1
+        weight: 1
+      - path: body/upper_head/earing2
+        weight: 1
+      - path: body/upper_head/eye1
+        weight: 1
+      - path: body/upper_head/eye2
+        weight: 1
+      - path: body/upper_head/eyebrow1
+        weight: 1
+      - path: body/upper_head/eyebrow2
+        weight: 1
+      - path: body/upper_head/eyelash1
+        weight: 1
+      - path: body/upper_head/eyelash2
+        weight: 1
+      - path: body/upper_head/group3
+        weight: 1
+      - path: body/upper_head/group3/big_hair
+        weight: 1
+      - path: body/upper_head/group3/head
+        weight: 1
+      - path: body/upper_head/group3/littlehair1
+        weight: 1
+      - path: body/upper_head/group3/littlehair2
+        weight: 1
+      - path: body/upper_head/neck 2
+        weight: 1
+      - path: dress1:body
+        weight: 1
+      - path: dress1:body/dress1:dress
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group/pasted__group3
+        weight: 1
+      - path: group/pasted__group3/pasted__group4
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group2
+        weight: 1
+      - path: joint9
+        weight: 1
+      - path: joint9/joint10
+        weight: 1
+      - path: joint9/joint10/joint11
+        weight: 1
+      - path: joint9/joint10/joint11/joint12
+        weight: 1
+      - path: joint9/left_arm 1
+        weight: 1
+      - path: joint9/left_arm 1/joint19
+        weight: 1
+      - path: joint9/left_arm 1/joint19/joint20
+        weight: 1
+      - path: joint9/left_arm 1/joint19/joint20/joint23
+        weight: 1
+      - path: joint9/left_arm 1/joint19/joint20/joint23/joint21
+        weight: 1
+      - path: joint9/left_arm 1/joint19/joint20/joint23/joint21/joint22
+        weight: 1
+      - path: joint9/neck 1
+        weight: 1
+      - path: joint9/neck 1/joint16
+        weight: 1
+      - path: joint9/neck 1/joint16/joint17
+        weight: 1
+      - path: joint9/right_arm 1
+        weight: 1
+      - path: joint9/right_arm 1/joint25
+        weight: 1
+      - path: joint9/right_arm 1/joint25/joint26
+        weight: 1
+      - path: joint9/right_arm 1/joint25/joint26/joint27
+        weight: 1
+      - path: joint9/right_arm 1/joint25/joint26/joint27/joint28
+        weight: 1
+      - path: joint9/right_arm 1/joint25/joint26/joint27/joint28/joint29
+        weight: 1
+      - path: left_bend
+        weight: 1
+      - path: left_shoulder_control
+        weight: 1
+      - path: left_sideways
+        weight: 1
+      - path: left_wrist
+        weight: 1
+      - path: neck
+        weight: 1
+      - path: pCone1
+        weight: 1
+      - path: pCone1/polySurface37
+        weight: 1
+      - path: pCone1/polySurface37/polySurface38
+        weight: 1
+      - path: pCone1/polySurface37/polySurface38/transform44
+        weight: 1
+      - path: pCone1/polySurface37/polySurface39
+        weight: 1
+      - path: pCone1/polySurface37/polySurface39/transform43
+        weight: 1
+      - path: pCone1/polySurface37/transform42
+        weight: 1
+      - path: pCone1/transform41
+        weight: 1
+      - path: polySurface18
+        weight: 1
+      - path: polySurface18/transform19
+        weight: 1
+      - path: pPyramid1
+        weight: 1
+      - path: pPyramid1/transform18
+        weight: 1
+      - path: right_arm_control
+        weight: 1
+      - path: right_bend
+        weight: 1
+      - path: right_sideways
+        weight: 1
+      - path: right_wrist
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
-    meshCompression: 0
+    globalScale: 20
+    meshCompression: 3
     addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0

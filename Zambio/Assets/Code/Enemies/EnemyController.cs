@@ -46,6 +46,7 @@ public class EnemyController : MonoBehaviour
         {
             value = 10;
         }
+        coolDown = hitTime;
     }
 
     // Use this for initialization
@@ -71,7 +72,7 @@ public class EnemyController : MonoBehaviour
             init = true;
             //Debug.Log("Inventory probably didn't set, don't forget to work on it.");
         }
-        if (coolDown > 0)
+        if (coolDown > 0 && Time.timeScale != 0f)
         {
             coolDown -= Time.deltaTime;
         }
@@ -164,7 +165,7 @@ public class EnemyController : MonoBehaviour
 
     void hurtPlayer()
     {
-       // Debug.Log("Hurting Player");
+        Debug.Log("Hurting Player-"+this.name);
         gc.pc.adjustHealth(-damage);
         coolDown = hitTime;
     }
