@@ -963,7 +963,7 @@ GameObject:
   - 114: {fileID: 11418764}
   - 195: {fileID: 19599914}
   - 136: {fileID: 13636732}
-  - 54: {fileID: 5423568}
+  - 54: {fileID: 5475450}
   m_Layer: 0
   m_Name: bloodyKoopa
   m_TagString: Enemy
@@ -6297,7 +6297,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191356}
   m_Mesh: {fileID: 4300044, guid: 45e47e9781c344fd280708837b6be78d, type: 3}
---- !u!54 &5423568
+--- !u!54 &5475450
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
