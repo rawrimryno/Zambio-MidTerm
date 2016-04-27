@@ -21,12 +21,12 @@ public class ChompScript : MonoBehaviour {
         {
             if (distance <= attackRadius)
             {
-                Debug.Log("Attacking");
+                //Debug.Log("Attacking");
                 anim.SetBool("isAttacking",true);
             }
             else
             {
-                Debug.Log("Idle");
+                //Debug.Log("Idle");
                 anim.SetBool("isAttacking", false);
             }
         }
@@ -45,7 +45,7 @@ public class ChompScript : MonoBehaviour {
 
     IEnumerator Die()
     {
-        Debug.Log("Starting Coroutine");
+        //Debug.Log("Starting Coroutine");
         //anim.SetInteger("Flatten", 3);
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
         ec.randomDrop();

@@ -105,7 +105,7 @@ public class EnemyController : MonoBehaviour
             enemyNav.enabled = false;
         }
 
-        if (oCol.CompareTag("Player"))
+        if (oCol.CompareTag("Player") && pc.impervious == false)
         {
             hurtPlayer();
             if ( gc.pc.myPowerUps.Contains("fireFlower") )
@@ -206,9 +206,9 @@ public class EnemyController : MonoBehaviour
             PowerUpDesc prefab = new PowerUpDesc();
             //instatiate powerup or mushroom
             if (itemType < 65)
+           // if ( itemType < 77) // Upped to verify functionality of new firePrefab - Todd
             {
                 gc.powerUpByID.TryGetValue(2, out prefab);
-
             }
             else if (itemType < 78)
             {
@@ -223,7 +223,7 @@ public class EnemyController : MonoBehaviour
             else if (itemType < 90)
             {
                 gc.powerUpByID.TryGetValue(3, out prefab);
-
+                Debug.Log("Dropping FireFlower");
             }
             else if (itemType <= 100)
             {
@@ -235,7 +235,7 @@ public class EnemyController : MonoBehaviour
             {
                 if (metal == false)
                 {
-                    renameMe = Instantiate(prefab.prefab, transform.position + new Vector3(0,1,0), new Quaternion(0, 0, 0, 0)) as GameObject;
+                    renameMe = Instantiate(prefab.prefab, transform.position + new Vector3(0,2,0), new Quaternion(0, 0, 0, 0)) as GameObject;
                     renameMe.name = prefab.prefab.name;
                 }
                 else

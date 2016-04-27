@@ -31,7 +31,7 @@ public class Homing : MonoBehaviour
     void Update()
     {
         progress = (Time.time - startTime) / timeToHit;
-        if (gameObject.name == "onFire")
+        if (gameObject.CompareTag("Fire"))
         {
             // Practically "stick" to the target, which should be the attached ammo
             if (target != null)
@@ -56,7 +56,7 @@ public class Homing : MonoBehaviour
 
         }
     }
-    void OnCollisionEnter( Collision cInfo)
+    void OnCollisionEnter(Collision cInfo)
     {
         if (gameObject.name == "fireBall")
         {

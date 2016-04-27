@@ -138,7 +138,22 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F2))
         {
             GetComponentInChildren<PlayerShoot>().ammoObserver.ammoSubject.GetState().setAmmo(4, 999);
-            Debug.Log("Stupid Check");
+            //Debug.Log("Stupid Check");
+        }
+        // God Mode - Todd
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            if (impervious == true)
+            {
+                impervious = false;
+                Debug.Log("God Mode Disabled");
+            }
+            else
+            {
+                impervious = true;
+                Debug.Log("God Mode Enabled");
+
+            }
         }
         if (Input.GetKeyDown("1"))
         {
@@ -175,12 +190,12 @@ public class PlayerController : MonoBehaviour
             // Gain Health
             if (health + thisPowerUp.numQtrHearts < 20)
             {
-                setHealth(health + thisPowerUp.numQtrHearts);
+                adjustHealth(thisPowerUp.numQtrHearts);
                 //UI.getHealth();
             }
             else if (health + thisPowerUp.numQtrHearts <= 0) // Rancid Mushroom
             {
-                setHealth(0);
+                adjustHealth(thisPowerUp.numQtrHearts);
             }
             else // targetHealth >= 20
             {
@@ -204,6 +219,7 @@ public class PlayerController : MonoBehaviour
             }
             tColl.gameObject.SetActive(false);
             Destroy(tColl.gameObject);
+            Debug.Log("Health is now " + health);
         }
     }
   
@@ -275,9 +291,14 @@ public class PlayerController : MonoBehaviour
                 audioSource.Play();
             }
         }
+        else if ( impervious == true)
+        {
+            // Ignore Everything, God Mode Essentially.
+        }
         else
         {
-            setHealth(health + amt);
+            if ( health + amt <= 0 )
+            setHealth(0);
         }
 
     }

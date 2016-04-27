@@ -20,19 +20,19 @@ public class MarioWalk : MonoBehaviour {
             if (pc.isMetalMario)
             {
                 anim.SetBool("isMetal", true);
-                Debug.Log("Metal Walking");
+               // Debug.Log("Metal Walking");
             }
             else
             {
                 anim.SetBool("isMetal", false);
-                Debug.Log("Regular Walking");
+                //Debug.Log("Regular Walking");
             }
             anim.SetBool("isWalking", true);
         }
         else
         {
             anim.SetBool("isWalking", false);
-            Debug.Log("Not Walking");
+            //Debug.Log("Not Walking");
         }
     }
 }
