@@ -1829,9 +1829,9 @@ GameObject:
   - 195: {fileID: 19534308}
   - 114: {fileID: 11418050}
   - 114: {fileID: 11420386}
-  - 54: {fileID: 5434226}
   - 136: {fileID: 13697310}
   - 114: {fileID: 11445384}
+  - 54: {fileID: 5494394}
   m_Layer: 0
   m_Name: GOOMBA
   m_TagString: Enemy
@@ -6356,7 +6356,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130108}
   m_Mesh: {fileID: 4300002, guid: 1972ea8dac5374928a8f6138f4eb98d0, type: 3}
---- !u!54 &5434226
+--- !u!54 &5494394
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
