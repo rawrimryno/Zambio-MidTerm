@@ -1,0 +1,524 @@
+fileFormatVersion: 2
+guid: 2d1b9250a46e9463bbe3e2e308747150
+timeCreated: 1461170070
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: big_hair
+    100002: body
+    100004: collar
+    100006: crown1
+    100008: dress1:body
+    100010: dress1:dress
+    100012: dresscover
+    100014: ear1
+    100016: ear2
+    100018: earing1
+    100020: earing2
+    100022: eye1
+    100024: eye2
+    100026: eyebrow1
+    100028: eyebrow2
+    100030: eyelash1
+    100032: eyelash2
+    100034: front_jewel
+    100036: group
+    100038: group1
+    100040: group2
+    100042: group3
+    100044: head
+    100046: joint10
+    100048: joint11
+    100050: joint12
+    100052: joint16
+    100054: joint17
+    100056: joint19
+    100058: joint20
+    100060: joint21
+    100062: joint22
+    100064: joint23
+    100066: joint25
+    100068: joint26
+    100070: joint27
+    100072: joint28
+    100074: joint29
+    100076: joint9
+    100078: left_arm
+    100080: left_arm 1
+    100082: left_bend
+    100084: left_puff
+    100086: left_shoulder_control
+    100088: left_sideways
+    100090: left_sleeve
+    100092: left_wrist
+    100094: littlehair1
+    100096: littlehair2
+    100098: neck
+    100100: neck 1
+    100102: neck 2
+    100104: pasted__group3
+    100106: pasted__group4
+    100108: pCone1
+    100110: //RootNode
+    100112: polySurface18
+    100114: polySurface37
+    100116: polySurface38
+    100118: polySurface39
+    100120: polySurface42
+    100122: polySurface43
+    100124: pPipe1
+    100126: pPyramid1
+    100128: pSphere3
+    100130: pSphere4
+    100132: pTorus2
+    100134: pTorus3
+    100136: pTorus5
+    100138: pTorus6
+    100140: puffs
+    100142: right_arm
+    100144: right_arm 1
+    100146: right_arm_control
+    100148: right_bend
+    100150: right_puff
+    100152: right_sideways
+    100154: right_sleeve
+    100156: right_wrist
+    100158: torso
+    100160: torso_group
+    100162: transform18
+    100164: transform19
+    100166: transform41
+    100168: transform42
+    100170: transform43
+    100172: transform44
+    100174: upper_head
+    400000: big_hair
+    400002: body
+    400004: collar
+    400006: crown1
+    400008: dress1:body
+    400010: dress1:dress
+    400012: dresscover
+    400014: ear1
+    400016: ear2
+    400018: earing1
+    400020: earing2
+    400022: eye1
+    400024: eye2
+    400026: eyebrow1
+    400028: eyebrow2
+    400030: eyelash1
+    400032: eyelash2
+    400034: front_jewel
+    400036: group
+    400038: group1
+    400040: group2
+    400042: group3
+    400044: head
+    400046: joint10
+    400048: joint11
+    400050: joint12
+    400052: joint16
+    400054: joint17
+    400056: joint19
+    400058: joint20
+    400060: joint21
+    400062: joint22
+    400064: joint23
+    400066: joint25
+    400068: joint26
+    400070: joint27
+    400072: joint28
+    400074: joint29
+    400076: joint9
+    400078: left_arm
+    400080: left_arm 1
+    400082: left_bend
+    400084: left_puff
+    400086: left_shoulder_control
+    400088: left_sideways
+    400090: left_sleeve
+    400092: left_wrist
+    400094: littlehair1
+    400096: littlehair2
+    400098: neck
+    400100: neck 1
+    400102: neck 2
+    400104: pasted__group3
+    400106: pasted__group4
+    400108: pCone1
+    400110: //RootNode
+    400112: polySurface18
+    400114: polySurface37
+    400116: polySurface38
+    400118: polySurface39
+    400120: polySurface42
+    400122: polySurface43
+    400124: pPipe1
+    400126: pPyramid1
+    400128: pSphere3
+    400130: pSphere4
+    400132: pTorus2
+    400134: pTorus3
+    400136: pTorus5
+    400138: pTorus6
+    400140: puffs
+    400142: right_arm
+    400144: right_arm 1
+    400146: right_arm_control
+    400148: right_bend
+    400150: right_puff
+    400152: right_sideways
+    400154: right_sleeve
+    400156: right_wrist
+    400158: torso
+    400160: torso_group
+    400162: transform18
+    400164: transform19
+    400166: transform41
+    400168: transform42
+    400170: transform43
+    400172: transform44
+    400174: upper_head
+    2300000: collar
+    2300002: dress1:dress
+    2300004: dresscover
+    3300000: collar
+    3300002: dress1:dress
+    3300004: dresscover
+    4300000: left_puff
+    4300002: right_puff
+    4300004: right_sleeve
+    4300006: left_sleeve
+    4300008: right_arm
+    4300010: left_arm
+    4300012: dresscover
+    4300014: pPipe1
+    4300016: pSphere3
+    4300018: pTorus2
+    4300020: pTorus3
+    4300022: pSphere4
+    4300024: pTorus5
+    4300026: pTorus6
+    4300028: eyebrow1
+    4300030: eyebrow2
+    4300032: earing2
+    4300034: earing1
+    4300036: ear1
+    4300038: ear2
+    4300040: neck
+    4300042: collar
+    4300044: eye2
+    4300046: eye1
+    4300048: eyelash2
+    4300050: eyelash1
+    4300052: big_hair
+    4300054: littlehair1
+    4300056: littlehair2
+    4300058: head
+    4300060: torso
+    4300062: polySurface42
+    4300064: polySurface43
+    4300066: dress1:dress
+    7400000: Peach
+    9500000: //RootNode
+    13700000: big_hair
+    13700002: ear1
+    13700004: ear2
+    13700006: earing1
+    13700008: earing2
+    13700010: eye1
+    13700012: eye2
+    13700014: eyebrow1
+    13700016: eyebrow2
+    13700018: eyelash1
+    13700020: eyelash2
+    13700022: head
+    13700024: left_arm
+    13700026: left_puff
+    13700028: left_sleeve
+    13700030: littlehair1
+    13700032: littlehair2
+    13700034: neck 2
+    13700036: polySurface42
+    13700038: polySurface43
+    13700040: pPipe1
+    13700042: pSphere3
+    13700044: pSphere4
+    13700046: pTorus2
+    13700048: pTorus3
+    13700050: pTorus5
+    13700052: pTorus6
+    13700054: right_arm
+    13700056: right_puff
+    13700058: right_sleeve
+    13700060: torso
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Peach
+      takeName: Peach
+      firstFrame: 1
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: body
+        weight: 1
+      - path: body/dresscover
+        weight: 1
+      - path: body/left_arm
+        weight: 1
+      - path: body/left_sleeve
+        weight: 1
+      - path: body/puffs
+        weight: 1
+      - path: body/puffs/left_puff
+        weight: 1
+      - path: body/puffs/right_puff
+        weight: 1
+      - path: body/right_arm
+        weight: 1
+      - path: body/right_sleeve
+        weight: 1
+      - path: body/torso_group
+        weight: 1
+      - path: body/torso_group/front_jewel
+        weight: 1
+      - path: body/torso_group/front_jewel/polySurface42
+        weight: 1
+      - path: body/torso_group/front_jewel/polySurface43
+        weight: 1
+      - path: body/torso_group/torso
+        weight: 1
+      - path: body/upper_head
+        weight: 1
+      - path: body/upper_head/collar
+        weight: 1
+      - path: body/upper_head/crown1
+        weight: 1
+      - path: body/upper_head/crown1/pPipe1
+        weight: 1
+      - path: body/upper_head/crown1/pSphere3
+        weight: 1
+      - path: body/upper_head/crown1/pSphere4
+        weight: 1
+      - path: body/upper_head/crown1/pTorus2
+        weight: 1
+      - path: body/upper_head/crown1/pTorus3
+        weight: 1
+      - path: body/upper_head/crown1/pTorus5
+        weight: 1
+      - path: body/upper_head/crown1/pTorus6
+        weight: 1
+      - path: body/upper_head/ear1
+        weight: 1
+      - path: body/upper_head/ear2
+        weight: 1
+      - path: body/upper_head/earing1
+        weight: 1
+      - path: body/upper_head/earing2
+        weight: 1
+      - path: body/upper_head/eye1
+        weight: 1
+      - path: body/upper_head/eye2
+        weight: 1
+      - path: body/upper_head/eyebrow1
+        weight: 1
+      - path: body/upper_head/eyebrow2
+        weight: 1
+      - path: body/upper_head/eyelash1
+        weight: 1
+      - path: body/upper_head/eyelash2
+        weight: 1
+      - path: body/upper_head/group3
+        weight: 1
+      - path: body/upper_head/group3/big_hair
+        weight: 1
+      - path: body/upper_head/group3/head
+        weight: 1
+      - path: body/upper_head/group3/littlehair1
+        weight: 1
+      - path: body/upper_head/group3/littlehair2
+        weight: 1
+      - path: body/upper_head/neck 2
+        weight: 1
+      - path: dress1:body
+        weight: 1
+      - path: dress1:body/dress1:dress
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group/pasted__group3
+        weight: 1
+      - path: group/pasted__group3/pasted__group4
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group2
+        weight: 1
+      - path: joint9
+        weight: 1
+      - path: joint9/joint10
+        weight: 1
+      - path: joint9/joint10/joint11
+        weight: 1
+      - path: joint9/joint10/joint11/joint12
+        weight: 1
+      - path: joint9/left_arm 1
+        weight: 1
+      - path: joint9/left_arm 1/joint19
+        weight: 1
+      - path: joint9/left_arm 1/joint19/joint20
+        weight: 1
+      - path: joint9/left_arm 1/joint19/joint20/joint23
+        weight: 1
+      - path: joint9/left_arm 1/joint19/joint20/joint23/joint21
+        weight: 1
+      - path: joint9/left_arm 1/joint19/joint20/joint23/joint21/joint22
+        weight: 1
+      - path: joint9/neck 1
+        weight: 1
+      - path: joint9/neck 1/joint16
+        weight: 1
+      - path: joint9/neck 1/joint16/joint17
+        weight: 1
+      - path: joint9/right_arm 1
+        weight: 1
+      - path: joint9/right_arm 1/joint25
+        weight: 1
+      - path: joint9/right_arm 1/joint25/joint26
+        weight: 1
+      - path: joint9/right_arm 1/joint25/joint26/joint27
+        weight: 1
+      - path: joint9/right_arm 1/joint25/joint26/joint27/joint28
+        weight: 1
+      - path: joint9/right_arm 1/joint25/joint26/joint27/joint28/joint29
+        weight: 1
+      - path: left_bend
+        weight: 1
+      - path: left_shoulder_control
+        weight: 1
+      - path: left_sideways
+        weight: 1
+      - path: left_wrist
+        weight: 1
+      - path: neck
+        weight: 1
+      - path: pCone1
+        weight: 1
+      - path: pCone1/polySurface37
+        weight: 1
+      - path: pCone1/polySurface37/polySurface38
+        weight: 1
+      - path: pCone1/polySurface37/polySurface38/transform44
+        weight: 1
+      - path: pCone1/polySurface37/polySurface39
+        weight: 1
+      - path: pCone1/polySurface37/polySurface39/transform43
+        weight: 1
+      - path: pCone1/polySurface37/transform42
+        weight: 1
+      - path: pCone1/transform41
+        weight: 1
+      - path: polySurface18
+        weight: 1
+      - path: polySurface18/transform19
+        weight: 1
+      - path: pPyramid1
+        weight: 1
+      - path: pPyramid1/transform18
+        weight: 1
+      - path: right_arm_control
+        weight: 1
+      - path: right_bend
+        weight: 1
+      - path: right_sideways
+        weight: 1
+      - path: right_wrist
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 20
+    meshCompression: 3
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

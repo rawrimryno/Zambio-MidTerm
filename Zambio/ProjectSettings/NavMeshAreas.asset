@@ -13,8 +13,8 @@ NavMeshAreas:
     cost: 2
   - name: Water
     cost: 5
-  - name: 
-    cost: 1
+  - name: Castle
+    cost: 50
   - name: 
     cost: 1
   - name: 

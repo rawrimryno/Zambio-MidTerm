@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public int initMetalHealth;
     public List<string> myPowerUps;
     public bool isMetalMario;
+    public bool impervious;
 
     public AudioClip[] audioClips;
 
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
         // Health Model
         healthModel = new HealthSubject();
         healthModel.SetState(health);
+        impervious = false;
 
     }
     // Use this for initialization
@@ -136,7 +138,22 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F2))
         {
             GetComponentInChildren<PlayerShoot>().ammoObserver.ammoSubject.GetState().setAmmo(4, 999);
-            Debug.Log("Stupid Check");
+            //Debug.Log("Stupid Check");
+        }
+        // God Mode - Todd
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            if (impervious == true)
+            {
+                impervious = false;
+                Debug.Log("God Mode Disabled");
+            }
+            else
+            {
+                impervious = true;
+                Debug.Log("God Mode Enabled");
+
+            }
         }
         if (Input.GetKeyDown("1"))
         {
@@ -173,12 +190,12 @@ public class PlayerController : MonoBehaviour
             // Gain Health
             if (health + thisPowerUp.numQtrHearts < 20)
             {
-                setHealth(health + thisPowerUp.numQtrHearts);
+                adjustHealth(thisPowerUp.numQtrHearts);
                 //UI.getHealth();
             }
             else if (health + thisPowerUp.numQtrHearts <= 0) // Rancid Mushroom
             {
-                setHealth(0);
+                adjustHealth(thisPowerUp.numQtrHearts);
             }
             else // targetHealth >= 20
             {
@@ -202,6 +219,7 @@ public class PlayerController : MonoBehaviour
             }
             tColl.gameObject.SetActive(false);
             Destroy(tColl.gameObject);
+            Debug.Log("Health is now " + health);
         }
     }
   
@@ -217,6 +235,7 @@ public class PlayerController : MonoBehaviour
         healthModel.Notify();
         if (health < 1)
         {
+            impervious = true;
             MM.onDeath(); //Zach Edit
             //deathSequence(); //Zach Edit
             //dead = true;
@@ -233,7 +252,7 @@ public class PlayerController : MonoBehaviour
     public void adjustHealth(int amt)
     {
         //Debug.Log("Adjusting Health by " + amt);
-        if (amt < 0)
+        if (amt < 0 && !impervious)
         {
             if (myPowerUps.Contains("metalMario"))
             {
@@ -272,9 +291,14 @@ public class PlayerController : MonoBehaviour
                 audioSource.Play();
             }
         }
+        else if ( impervious == true)
+        {
+            // Ignore Everything, God Mode Essentially.
+        }
         else
         {
-            setHealth(health + amt);
+            if ( health + amt <= 0 )
+            setHealth(0);
         }
 
     }

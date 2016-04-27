@@ -104,9 +104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fadd7e76b6dfd0e469be279ec0678c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 112654, guid: d46dacec196137a4cb57088f4e5b0345, type: 2}
+  Enemy: {fileID: 131074, guid: 0a8ec49a656bac64e9360739a3ed9dfb, type: 2}
   rate: 5
-  level: 0
+  registered: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -6,6 +6,7 @@ public class BossEncounter : IState {
     GameObject clone;
     public GameObject spawnLocation;
     GameControllerSingleton gc;
+    StateMachine sm;
 	// Use this for initialization
 	public override void OnStart () {
         // Load Boss
@@ -14,8 +15,10 @@ public class BossEncounter : IState {
         clone.name = Boss.name;
         gc = GameControllerSingleton.get();
         gc.setBossSpawned();
-	
-	}
+        sm = FindObjectOfType<StateMachine>();
+
+
+    }
 
     // Update is called once per frame
     public override void OnUpdate() {
@@ -23,6 +26,10 @@ public class BossEncounter : IState {
         // true : this.nextState = this.futureState, where future state is hasWon
         if ( clone == null)
         {
+            if (sm != null)
+            {
+                sm.Round++;
+            }
             this.nextState = this.futureState;
         }
 	}

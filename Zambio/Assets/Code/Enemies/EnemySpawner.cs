@@ -7,12 +7,14 @@ public class EnemySpawner : MonoBehaviour {
     //public float level;
     //public SpawnerController master;
     SpawnControllerObserver spawnObserver;
+    StateMachine sm;
 
     public bool registered=false;
 
     void Start()
     {
         spawnObserver = new SpawnControllerObserver();
+        sm = FindObjectOfType<StateMachine>();
 
 
         //master = FindObjectOfType<SpawnerController>();
@@ -40,6 +42,14 @@ public class EnemySpawner : MonoBehaviour {
         {
             Instantiate(Enemy, new Vector3(transform.position.x + rand, transform.position.y, transform.position.z + rand), transform.rotation);
             spawnObserver.spawnSubject.GetState().registerNewEnemy();
+        }
+        if ( sm.Round > 5)
+        {
+            if (spawnObserver.spawnSubject.GetState().canSpawn())
+            {
+                Instantiate(Enemy, new Vector3(transform.position.x + rand, transform.position.y, transform.position.z + rand), transform.rotation);
+                spawnObserver.spawnSubject.GetState().registerNewEnemy();
+            }
         }
     }
 }

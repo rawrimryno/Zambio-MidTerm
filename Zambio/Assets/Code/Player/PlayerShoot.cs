@@ -4,7 +4,8 @@ using System.Collections.Generic;
 public class PlayerShoot : MonoBehaviour {
 
     public GameObject[] ammo;
-    public GameObject fireAmmo;
+    public GameObject[] fire;
+    //public GameObject onFire;
     public float bulletSpeed;
     public float rateOfFire;
     public UIAmmoObserver ammoObserver;
@@ -68,14 +69,19 @@ public class PlayerShoot : MonoBehaviour {
         if ((Input.GetButtonDown("Fire1") || (Input.GetAxis("XboxTriggers") == 1) ) && rateOfFire <= 0 && Time.timeScale != 0f && ammoObserver.ammoSubject.GetState().returnAmmo(ammoNum) > 0)
         {
             Rigidbody clone;
-            GameObject fireParent;
+            //GameObject fireParent;
+            GameObject fireEffect;
             //Homing thisHomer;
             if (gc.pc.myPowerUps.Contains("fireFlower"))
             {
-                fireParent = Instantiate(fireAmmo, transform.position, Quaternion.identity) as GameObject;
+                //fireParent = Instantiate(fire[ammoNum], transform.position, Quaternion.identity) as GameObject;
                 projectile = ammo[ammoNum].GetComponent<Rigidbody>();
                 clone = Instantiate(projectile, transform.position, transform.rotation) as Rigidbody;
-                fireParent.GetComponentInChildren<Homing>().target = clone.transform;
+                //clone.transform.parent = fireParent.transform;
+                //fireParent.GetComponent<Homing>().target = clone.transform;
+                fireEffect = Instantiate(fire[ammoNum], transform.position, Quaternion.identity) as GameObject;
+                fireEffect.transform.parent = clone.transform;
+
             }
             else {
                 projectile = ammo[ammoNum].GetComponent<Rigidbody>();

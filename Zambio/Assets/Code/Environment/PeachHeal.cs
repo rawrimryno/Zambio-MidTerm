@@ -13,12 +13,14 @@ public class PeachHeal : MonoBehaviour {
     private float time;
     private bool waiting;
     ParticleSystem particle;
+    Animator anim;
 
 
 	// Use this for initialization
 	void Start () {
         gc = GameControllerSingleton.get();
         particle = GetComponentInChildren<ParticleSystem>();
+        anim = GetComponent<Animator>();
         waiting = true;
 
         if (healWait == 0)
@@ -55,6 +57,7 @@ public class PeachHeal : MonoBehaviour {
                 {
                     waiting = false;
                     wait = healWait;
+                    anim.SetBool("isHealing", true);
                     particle.Play();
                 }
                 //Debug.Log("Stupid.Check-waiting");    //Zach Edit - Spams Console
@@ -67,6 +70,7 @@ public class PeachHeal : MonoBehaviour {
                     waiting = true;
                     time = healTime;
                     particle.Clear();
+                    anim.SetBool("isHealing", false);
                     particle.Pause();
                 }
 

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SplashScript : MonoBehaviour {
     public float displayTime;
-    float timeInSplash;
+    public float timeInSplash;
     AudioSource audioSource;
     bool audioHasPlayed = false;
 	// Use this for initialization
@@ -21,6 +21,10 @@ public class SplashScript : MonoBehaviour {
     void Update()
     {
         timeInSplash += Time.deltaTime;
+        if ( Time.timeScale != 1.0f)
+        {
+            Time.timeScale = 1.0f;
+        }
 
         if ( !audioHasPlayed && timeInSplash >= displayTime - audioSource.clip.length)
         {
