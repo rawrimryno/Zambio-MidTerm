@@ -6,6 +6,7 @@ public class Bowser : MonoBehaviour {
     public float fireBallAttackRate;
     public GameObject Flare;
     public GameObject FireBall;
+    public GameObject bossBar; //Zach Edit
     public Transform mouth;
     public MainMenu UImain;
     public AudioClip[] effectList;
@@ -22,6 +23,8 @@ public class Bowser : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        bossBar = GameObject.Find("BossHealth"); //Zach Edit
+        bossBar.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1); //Zach Edit
         attackTimers = new float[3];
         for(int i = 0; i < 2; i++)
         {
@@ -60,6 +63,7 @@ public class Bowser : MonoBehaviour {
             // ^ Wasn't very effective.
             if( hasPlayedDeathSound && bowserSource.isPlaying == false ) // Add Condition for Animation.isPlaying == false, to allow animation to stop before destroy -Todd
             {
+                bossBar.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0); //Zach Edit
                 gameObject.SetActive(false);
                 Destroy(gameObject);
                 

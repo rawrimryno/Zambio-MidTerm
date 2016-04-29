@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     public int initMetalHealth;
     public List<string> myPowerUps;
     public bool isMetalMario;
+    public bool isFireMario; //Zach Edit
+    private float seizure;
     public bool impervious;
 
     public AudioClip[] audioClips;
@@ -75,6 +77,8 @@ public class PlayerController : MonoBehaviour
 
         initMetalHealth = metalHealth;
         isMetalMario = false;
+        isFireMario = false; //Zach Edit
+        seizure = 0;
         // Health Observer Registration
         audioSource.clip = audioClips[0];
         audioSource.Play(); 
@@ -181,6 +185,12 @@ public class PlayerController : MonoBehaviour
             hpDisplay.setTextToAmmoName();
         }
 
+        //Zach Edit
+        if (seizure > 0)
+        {
+            seizure -= Time.deltaTime;
+        }
+
     }
     void OnTriggerEnter(Collider tColl)
     {
@@ -214,9 +224,27 @@ public class PlayerController : MonoBehaviour
                     {
                         isMetalMario = true;
                     }
+                    if (thisPowerUp.isFire) //Zach Edit
+                    {
+                        isFireMario = true;
+                    }
                     myPowerUps.Add(thisPowerUp.name);
                 }
             }
+
+            //Zach Edit
+            if (thisPowerUp.numQtrHearts > 0 && seizure <= 0)
+            {
+                seizure = 0.5f;
+                MM.heal();
+            }
+            else if (thisPowerUp.numQtrHearts < 0 && seizure <= 0)
+            {
+                isFireMario = false;
+                seizure = 0.5f;
+                MM.hurt();
+            }
+
             tColl.gameObject.SetActive(false);
             Destroy(tColl.gameObject);
             Debug.Log("Health is now " + health);
@@ -254,6 +282,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("Adjusting Health by " + amt);
         if (amt < 0 && !impervious)
         {
+            isFireMario = false; //Zach Edit
             if (myPowerUps.Contains("metalMario"))
             {
                 // Stop current Effect, Load Damage Sound, Play it
@@ -299,6 +328,18 @@ public class PlayerController : MonoBehaviour
         {
             if ( health + amt <= 0 )
             setHealth(0);
+        }
+
+        //Zach Edit
+        if (amt > 0 && seizure <= 0)
+        {
+            seizure = 0.5f;
+            MM.heal();
+        }
+        else if (amt < 0 && seizure <= 0)
+        {
+            seizure = 0.5f;
+            MM.hurt();
         }
 
     }

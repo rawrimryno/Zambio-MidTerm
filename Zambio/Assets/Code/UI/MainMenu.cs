@@ -12,6 +12,10 @@ public class MainMenu : MonoBehaviour {
     public GameObject creditsOBJ;
     public GameObject eventSystem;
 
+    public Image hurtOverlay;
+    public Image healOverlay;
+    private float opacity;
+
     public CursorLockMode cursorLock;
 
     private bool focus = true;
@@ -85,11 +89,13 @@ public class MainMenu : MonoBehaviour {
             mainBTN = -1;
             pauseBTN = -1;
             eventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+            //print("keyboard");
         }
         else if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0 && !controller)         //Activate Controller
         {
             controller = true;
             Cursor.visible = false;
+            //print("controller");
         }
 
         if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0) //Checks KeyDown
@@ -209,6 +215,72 @@ public class MainMenu : MonoBehaviour {
         }
 
         pmBTN[pauseBTN].Select();
+    }
+
+    public void hurt()
+    {
+        if (IsInvoking("hurtAnimation"))
+        {
+            CancelInvoke("hurtAnimation");
+        }
+        if (IsInvoking("healAnimation"))
+        {
+            CancelInvoke("healAnimation");
+            Color c = Color.white;
+            c.a = 0;
+            healOverlay.color = c;
+        }
+        opacity = 85;
+        InvokeRepeating("hurtAnimation", 0, 0.05f);
+    }
+
+    public void hurtAnimation()
+    {
+        opacity--;
+        if(opacity >= 0)
+        {
+            Color c = hurtOverlay.color;
+            c.a = opacity / 100;
+            hurtOverlay.color = c;
+        }
+        else
+        {
+            CancelInvoke("hurtAnimation");
+        }
+        //print(hurtOverlay.color);
+    }
+
+    public void heal()
+    {
+        if (IsInvoking("healAnimation"))
+        {
+            CancelInvoke("healAnimation");
+        }
+        if (IsInvoking("hurtAnimation"))
+        {
+            CancelInvoke("hurtAnimation");
+            Color c = Color.white;
+            c.a = 0;
+            hurtOverlay.color = c;
+        }
+        opacity = 85;
+        InvokeRepeating("healAnimation", 0, 0.05f);
+    }
+
+    public void healAnimation()
+    {
+        opacity--;
+        if (opacity >= 0)
+        {
+            Color c = healOverlay.color;
+            c.a = opacity / 100;
+            healOverlay.color = c;
+        }
+        else
+        {
+            CancelInvoke("healAnimation");
+        }
+        //print(healOverlay.color);
     }
 
 }

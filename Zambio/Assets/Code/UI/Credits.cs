@@ -78,13 +78,13 @@ public class Credits : MonoBehaviour {
 
     public void scoreDisplay()
     {
-        scoreTXT = "Final Score: " + (gc.pc.score + 10 * ammoObserver.ammoSubject.GetState().returnAmmo(0) + 25 * ammoObserver.ammoSubject.GetState().returnAmmo(1) + 50 * ammoObserver.ammoSubject.GetState().returnAmmo(2) + 75 * ammoObserver.ammoSubject.GetState().returnAmmo(3) + 100 * ammoObserver.ammoSubject.GetState().returnAmmo(4));
-        scoreTXT = scoreTXT + "\n" + "Green Shell: " + ammoObserver.ammoSubject.GetState().returnAmmo(0) + " x 10 = " + 10 * ammoObserver.ammoSubject.GetState().returnAmmo(0);
-        scoreTXT = scoreTXT + "\n" + "Red Shell: " + ammoObserver.ammoSubject.GetState().returnAmmo(1) + " x 25 = " + 25 * ammoObserver.ammoSubject.GetState().returnAmmo(1);
-        scoreTXT = scoreTXT + "\n" + "Blue Shell: " + ammoObserver.ammoSubject.GetState().returnAmmo(2) + " x 50 = " + 50 * ammoObserver.ammoSubject.GetState().returnAmmo(2);
-        scoreTXT = scoreTXT + "\n" + "Bullet Bill: " + ammoObserver.ammoSubject.GetState().returnAmmo(3) + " x 75 = " + 75 * ammoObserver.ammoSubject.GetState().returnAmmo(3);
-        scoreTXT = scoreTXT + "\n" + "Red Bullet Bill: " + ammoObserver.ammoSubject.GetState().returnAmmo(4) + " x 100 = " + 100 * ammoObserver.ammoSubject.GetState().returnAmmo(4);
-        scoreTXT = scoreTXT + "\n" + " Base Score: " + gc.pc.score;
+        scoreTXT = "Final Score: " + (gc.pc.score);// + 10 * ammoObserver.ammoSubject.GetState().returnAmmo(0) + 25 * ammoObserver.ammoSubject.GetState().returnAmmo(1) + 50 * ammoObserver.ammoSubject.GetState().returnAmmo(2) + 75 * ammoObserver.ammoSubject.GetState().returnAmmo(3) + 100 * ammoObserver.ammoSubject.GetState().returnAmmo(4));
+        //scoreTXT = scoreTXT + "\n" + "Green Shell: " + ammoObserver.ammoSubject.GetState().returnAmmo(0) + " x 10 = " + 10 * ammoObserver.ammoSubject.GetState().returnAmmo(0);
+        //scoreTXT = scoreTXT + "\n" + "Red Shell: " + ammoObserver.ammoSubject.GetState().returnAmmo(1) + " x 25 = " + 25 * ammoObserver.ammoSubject.GetState().returnAmmo(1);
+        //scoreTXT = scoreTXT + "\n" + "Blue Shell: " + ammoObserver.ammoSubject.GetState().returnAmmo(2) + " x 50 = " + 50 * ammoObserver.ammoSubject.GetState().returnAmmo(2);
+        //scoreTXT = scoreTXT + "\n" + "Bullet Bill: " + ammoObserver.ammoSubject.GetState().returnAmmo(3) + " x 75 = " + 75 * ammoObserver.ammoSubject.GetState().returnAmmo(3);
+        //scoreTXT = scoreTXT + "\n" + "Red Bullet Bill: " + ammoObserver.ammoSubject.GetState().returnAmmo(4) + " x 100 = " + 100 * ammoObserver.ammoSubject.GetState().returnAmmo(4);
+        //scoreTXT = scoreTXT + "\n" + " Base Score: " + gc.pc.score;
         scoreOBJ.text = scoreTXT;
     }
 
