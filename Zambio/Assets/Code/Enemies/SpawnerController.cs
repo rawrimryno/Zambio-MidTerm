@@ -3,10 +3,10 @@ using System.Collections;
 
 public class SpawnerController : MonoBehaviour
 {
-    public int maxEnemiesOnScreen = 50;  // To be determined, ~MaxEnemiesInScene
+    public int maxEnemiesOnScreen = 30;  // To be determined, ~MaxEnemiesInScene
 
     public int enemiesThisLevel;
-    public int levelMultiple = 10;
+    public int levelMultiple = 5;
 
     //public int enemiesLeft;
     public int enemiesSpawned;
@@ -56,7 +56,7 @@ public class SpawnerController : MonoBehaviour
 
     public void getEnemiesThisLevel()
     {
-        enemiesThisLevel = 5*(FindObjectOfType<StateMachine>().Round);
+        enemiesThisLevel = levelMultiple*(FindObjectOfType<StateMachine>().Round);
         //enemiesLeft = enemiesThisLevel;
     }
 
@@ -68,11 +68,10 @@ public class SpawnerController : MonoBehaviour
         bool status = false;
 
         //getEnemiesThisLevel();
-
-        if (spawning && enemiesSpawned < enemiesThisLevel)
+        //  Enabled  &&  NumberEnemiesInScene < maxEnemiesonScreen && enemiesSpawned < enemiesTot
+        if (spawning && ((enemiesSpawned-enemiesKilled) < maxEnemiesOnScreen) && enemiesSpawned < enemiesThisLevel)
         {
             status = true;
-            //spawning = true;
         }
         return status;
     }

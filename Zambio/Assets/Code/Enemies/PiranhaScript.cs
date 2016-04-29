@@ -4,8 +4,14 @@ using System.Collections;
 public class PiranhaScript : MonoBehaviour
 {
     private Transform target;
+    public Transform head;
+    public GameObject FireBall;
     public float attackRadius;
+    public Transform mouth;
+    public float fireballRadius;
+    public float fireballPeriod;
     private float distance;
+    private float fireballTimer =0f;
     EnemyController ec;
     Animator anim;
 
@@ -21,6 +27,7 @@ public class PiranhaScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        fireballTimer += Time.deltaTime;
         transform.LookAt(new Vector3(target.position.x, 3, target.position.z));
         distance = Vector3.Distance(this.transform.position, ec.pc.gameObject.transform.position);
         if (ec.health > 0)
@@ -29,6 +36,14 @@ public class PiranhaScript : MonoBehaviour
             {
                 //Debug.Log("Attacking");
                 anim.SetBool("isAttacking", true);
+            }
+            else if (distance <= fireballRadius && fireballTimer >= fireballPeriod)
+            {
+                GameObject thisOne;
+                thisOne = Instantiate(FireBall, mouth.transform.position, Quaternion.identity) as GameObject;
+                thisOne.name = FireBall.name;
+                fireballTimer = 0f;
+
             }
             else
             {

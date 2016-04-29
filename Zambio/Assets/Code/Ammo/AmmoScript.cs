@@ -216,6 +216,10 @@ public class AmmoScript : MonoBehaviour
         {
             navAgent.target = navAgent.target.GetComponent<ChompScript>().headTransform;
         }
+        if (navAgent.target.name == "Piranha")
+        {
+            navAgent.target = navAgent.target.GetComponent<PiranhaScript>().head;
+        }
         startTime = Time.time;
         tripLength = Vector3.Distance(navAgent.target.position, transform.position);
         startTransform = this.transform;

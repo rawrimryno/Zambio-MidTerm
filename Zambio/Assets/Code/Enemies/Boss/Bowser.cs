@@ -84,7 +84,7 @@ public class Bowser : MonoBehaviour {
             //Flare Attack
         }
         else if ( currHealth > 0 && attackTimers[1] >= fireBallAttackRate) {
-            Debug.Log("Bowser is shooting a fireball!");
+            //Debug.Log("Bowser is shooting a fireball!");
             GameObject thisOne;
             thisOne = Instantiate(FireBall, mouth.transform.position, Quaternion.identity) as GameObject;
             thisOne.name = FireBall.name;
