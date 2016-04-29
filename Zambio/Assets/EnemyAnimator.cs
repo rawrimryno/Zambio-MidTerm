@@ -43,6 +43,7 @@ public class EnemyAnimator : MonoBehaviour {
             //Destroy(ec.gameObject);
             //AmmoScript dummyAmmo = new AmmoScript();
             //dummyAmmo.randomDrop();
+            Destroy(ec.gameObject.GetComponent<CapsuleCollider>());
             StartCoroutine("Die");
         }
         //Debug.Log("Enemy Velocity is " + rb.velocity.magnitude);
