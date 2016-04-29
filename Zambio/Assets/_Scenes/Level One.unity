@@ -76,10 +76,10 @@ NavMeshSettings:
     serializedVersion: 2
     agentRadius: 0.5
     agentHeight: 2
-    agentSlope: 50
-    agentClimb: 0.6
+    agentSlope: 60
+    agentClimb: 0.89
     ledgeDropHeight: 0
-    maxJumpAcrossDistance: 3
+    maxJumpAcrossDistance: 2.4
     accuratePlacement: 0
     minRegionArea: 2
     cellSize: 0.16666667
@@ -16230,6 +16230,22 @@ Prefab:
     - target: {fileID: 146010, guid: f69b79bbb3082e24092ef0e0864f5713, type: 2}
       propertyPath: m_Name
       value: PeachKissPeach
+      objectReference: {fileID: 0}
+    - target: {fileID: 11471082, guid: f69b79bbb3082e24092ef0e0864f5713, type: 2}
+      propertyPath: healAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11471082, guid: f69b79bbb3082e24092ef0e0864f5713, type: 2}
+      propertyPath: healWait
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 11471082, guid: f69b79bbb3082e24092ef0e0864f5713, type: 2}
+      propertyPath: healTime
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11471082, guid: f69b79bbb3082e24092ef0e0864f5713, type: 2}
+      propertyPath: coolDown
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f69b79bbb3082e24092ef0e0864f5713, type: 2}
@@ -48577,8 +48593,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1830087505}
-  m_LocalRotation: {x: -0.0929391, y: 0.70351356, z: 0.09362884, w: 0.6983299}
-  m_LocalPosition: {x: -127.85694, y: -65.134, z: -51.16541}
+  m_LocalRotation: {x: -0.006166366, y: 0.99347204, z: 0.065973535, w: 0.09285896}
+  m_LocalPosition: {x: 31.940374, y: -25.098572, z: -38.243797}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2076624190}

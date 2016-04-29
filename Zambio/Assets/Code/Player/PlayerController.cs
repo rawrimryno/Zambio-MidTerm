@@ -326,8 +326,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if ( health + amt <= 0 )
-            setHealth(0);
+
+            setHealth(health + amt);
         }
 
         //Zach Edit

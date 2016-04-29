@@ -37,7 +37,7 @@ public class BossBar : MonoBehaviour
 
         if (gc.hasBossSpawned() && !summoned) //On Summoned
         {
-            Debug.Log("Logging Birth");
+            //Debug.Log("Logging Birth");
             ec = GameObject.Find("Bowser").GetComponent<EnemyController>();
             healthBase = ec.health;
             healthCur = healthBase;
@@ -52,7 +52,7 @@ public class BossBar : MonoBehaviour
 
         if (gc.isBossDead() && summoned) //On Death
         {
-            Debug.Log("Logging Death");
+            //Debug.Log("Logging Death");
             healthBarOBJ.localScale = new Vector3(0, 0, 0);
             GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0); //Zach Edit
             summoned = false;

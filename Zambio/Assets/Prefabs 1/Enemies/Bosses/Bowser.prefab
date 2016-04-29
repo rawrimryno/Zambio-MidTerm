@@ -3368,7 +3368,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173484}
-  m_LocalRotation: {x: 0.29987225, y: 0.6562319, z: -0.27807024, w: 0.63412416}
+  m_LocalRotation: {x: 0.29987222, y: 0.6562318, z: -0.2780702, w: 0.6341241}
   m_LocalPosition: {x: 6.1945906, y: 4.745769, z: 3.5960536}
   m_LocalScale: {x: 0.86257726, y: 5.4891653, z: 1.5153855}
   m_Children: []
@@ -4672,7 +4672,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157622}
-  m_LocalRotation: {x: 0.29987225, y: 0.6562319, z: -0.27807024, w: 0.63412416}
+  m_LocalRotation: {x: 0.29987222, y: 0.6562318, z: -0.2780702, w: 0.6341241}
   m_LocalPosition: {x: -5.9940076, y: 4.9163003, z: 3.6700063}
   m_LocalScale: {x: 0.86257726, y: 5.4891653, z: 1.5153855}
   m_Children: []
@@ -7136,6 +7136,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 55cbe23095fb9924694ce3e6d1398edb, type: 3}
   - {fileID: 8300000, guid: 29ccab00dbe8ff84b9089f124f9a0c1e, type: 3}
   - {fileID: 8300000, guid: fa932c9196e271840aef37c430b9fd2d, type: 3}
+  currHealth: 0
 --- !u!114 &11493908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7707,7 +7708,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 173390}
   m_Enabled: 1
   m_Radius: 9.62
-  m_Speed: 8
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
