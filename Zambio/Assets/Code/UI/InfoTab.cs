@@ -14,23 +14,23 @@ public class InfoTab : MonoBehaviour {
     }
 	
 	void Update () {
-        if (Input.GetKeyDown("tab") && Time.timeScale == 1f)
-        {
-            if (active)
-            {
-                active = false;
-            }
-            else
-            {
-                active = true;
-            }
-            toggleInfo();
-        }
+        //if (Input.GetKeyDown("tab") && Time.timeScale == 1f)
+        //{
+        //    if (active)
+        //    {
+        //        active = false;
+        //    }
+        //    else
+        //    {
+        //        active = true;
+        //    }
+        //    toggleInfo();
+        //}
     }
 
     public void toggleInfo ()
     {
-        infoTab.SetActive(active);
+        //infoTab.SetActive(active);
     }
 
     public void displayControls()

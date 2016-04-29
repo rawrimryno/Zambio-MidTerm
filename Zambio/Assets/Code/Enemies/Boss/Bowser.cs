@@ -103,6 +103,7 @@ public class Bowser : MonoBehaviour {
 
     public void PlayDeathSequence()
     {
+        bossBar.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0); //Zach Edit
         bowserSource.Stop();
         bowserSource.clip = effectList[2];
         bowserSource.Play();

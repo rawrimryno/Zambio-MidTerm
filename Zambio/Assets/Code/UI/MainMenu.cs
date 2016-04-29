@@ -103,16 +103,16 @@ public class MainMenu : MonoBehaviour {
             keyDown = false;
         }
 
-        //Debug Code
-        if (Input.GetKeyUp("p"))
-        {
-            bossBarOBJ.SetActive(true);
-        }
-        if (Input.GetKeyUp("t"))
-        {
-            onDeath();
-            creditsOBJ.GetComponent<Credits>().setStart();
-        }
+        ////Debug Code
+        //if (Input.GetKeyUp("p"))
+        //{
+        //    bossBarOBJ.SetActive(true);
+        //}
+        //if (Input.GetKeyUp("t"))
+        //{
+        //    onDeath();
+        //    creditsOBJ.GetComponent<Credits>().setStart();
+        //}
 	}
 
     void OnApplicationFocus(bool focusStatus)
