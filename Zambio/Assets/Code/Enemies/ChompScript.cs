@@ -39,6 +39,7 @@ public class ChompScript : MonoBehaviour {
 
         if (ec.health <= 0 && anim.GetCurrentAnimatorStateInfo(0).IsName("Flatten"))
         {
+            Destroy(ec.gameObject.GetComponentInChildren<SphereCollider>());
             StartCoroutine("Die");
         }
 	}

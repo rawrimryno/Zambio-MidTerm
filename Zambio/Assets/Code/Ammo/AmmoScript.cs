@@ -166,7 +166,6 @@ public class AmmoScript : MonoBehaviour
                 gc.sc.registerDeadEnemy();
                 if (cInfo.gameObject.name == "Bowser")
                 {
-                    gc.setBossDead();
                     FindObjectOfType<Bowser>().PlayDeathSequence();
                 }
                 else {

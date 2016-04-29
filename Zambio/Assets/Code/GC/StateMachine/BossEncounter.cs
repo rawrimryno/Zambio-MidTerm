@@ -15,6 +15,10 @@ public class BossEncounter : IState {
         clone.name = Boss.name;
         gc = GameControllerSingleton.get();
         gc.setBossSpawned();
+        if (gc.isBossDead())
+        {
+            gc.setBossDead();
+        }
         sm = FindObjectOfType<StateMachine>();
 
 

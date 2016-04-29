@@ -14,30 +14,33 @@ public class Bowser : MonoBehaviour {
     private float[] attackTimers;
     BossSubject bossSub;
     EnemyController ec;
-    int currHealth;
+    public int currHealth;
     AudioSource bowserSource;
     bool hasPlayedDeathSound = false;
     Rigidbody rb;
     StateMachine sm;
-
+    void Awake()
+    {
+        ec = GetComponent<EnemyController>();
+        sm = GameObject.Find("_GameStateMachine").GetComponent<StateMachine>();
+        ec.health *= sm.Round;
+        currHealth = ec.health;
+        Debug.Log("Bowser Health: " + currHealth);
+    }
 
 	// Use this for initialization
 	void Start () {
-        bossBar = GameObject.Find("BossHealth"); //Zach Edit
-        bossBar.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1); //Zach Edit
+        
         attackTimers = new float[3];
         for(int i = 0; i < 2; i++)
         {
             attackTimers[i] = 0f;
         }
         bossSub = new BossSubject();
-        ec = GetComponent<EnemyController>();
-        bossSub.SetState(ec);
-        sm = GameObject.Find("_GameStateMachine").GetComponent<StateMachine>();
-        currHealth = ec.health*sm.Round;
-        Debug.Log("Bowser Health: " + currHealth);
+        
         UImain = FindObjectOfType<MainMenu>();
         //UImain.bossObserver().attach(bossSub);
+        bossSub.SetState(ec);
         bossSub.Notify();
 
         // Audio Source Acquisition - Todd
@@ -46,7 +49,10 @@ public class Bowser : MonoBehaviour {
         bowserSource.Play();
 
         rb = GetComponent<Rigidbody>();
-	}
+
+        bossBar = GameObject.Find("BossHealth"); //Zach Edit
+        bossBar.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1); //Zach Edit
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -65,8 +71,6 @@ public class Bowser : MonoBehaviour {
             {
                 bossBar.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0); //Zach Edit
                 gameObject.SetActive(false);
-                Destroy(gameObject);
-                
             }
         }
 

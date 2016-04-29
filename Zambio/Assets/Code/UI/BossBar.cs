@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class BossBar : MonoBehaviour {
+public class BossBar : MonoBehaviour
+{
 
     //public GameObject bossBar;
     //public RectTransform bossBarOBJ;
@@ -10,6 +11,7 @@ public class BossBar : MonoBehaviour {
     //public RectTransform healthBarPrevOBJ;
     //public Text bossNameOBJ;
     //public string bossNameTXT;
+    GameControllerSingleton gc;
 
     private int healthBase = 0;
     private int healthCur = 0;
@@ -17,62 +19,81 @@ public class BossBar : MonoBehaviour {
     private int smoothHp = 0;
 
     private EnemyController ec;
+    private Bowser bs;
     private bool summoned = false;
 
-    void Start ()
+    void Start()
     {
         summoned = false;
+        gc = GameControllerSingleton.get();
+        bs = GameObject.Find("Bowser").GetComponent<Bowser>();
     }
-	
-	void Update ()
+
+    void Update()
     {
 
         //print("GameObject: " + GameObject.Find("Bowser").activeInHierarchy != null);
         //print("Summoned: " + summoned);
 
-        if (GameObject.Find("Bowser") != null && !summoned) //On Summoned
+        if (gc.hasBossSpawned() && !summoned) //On Summoned
         {
+            Debug.Log("Logging Birth");
             ec = GameObject.Find("Bowser").GetComponent<EnemyController>();
             healthBase = ec.health;
             healthCur = healthBase;
-            InvokeRepeating("summonBoss", 0, 0.01f);
+            Debug.Log("CurHealth - " + healthCur);
+            Debug.Log("BaseHealth - " + healthBase);
+            //InvokeRepeating("summonBoss", 0, 0.01f);
+
+            healthBarOBJ.localScale = new Vector3(1, 1, 1);
+            healthBarOBJ.gameObject.transform.localScale = new Vector3(1, 1, 1);
             summoned = true;
         }
-        else if(GameObject.Find("Bowser") == null && summoned) //On Death
+
+        if (gc.isBossDead() && summoned) //On Death
         {
+            Debug.Log("Logging Death");
+            healthBarOBJ.localScale = new Vector3(0, 0, 0);
+            GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0); //Zach Edit
             summoned = false;
-            if (IsInvoking("smoothHealth"))
-                CancelInvoke("smoothHealth");
-            if (IsInvoking("summonBoss"))
-                CancelInvoke("summonBoss");
+            //if (IsInvoking("smoothHealth"))
+            //    CancelInvoke("smoothHealth");
+            //if (IsInvoking("summonBoss"))
+            //    CancelInvoke("summonBoss");
             healthBase = 0;
             healthCur = 0;
             smoothHp = 0;
-            healthBarOBJ.localScale = new Vector3(0, 0, 0);
+
         }
 
-        if (summoned && ec.health != healthCur && healthCur > 0) //Summoned & On Hit & Not Dead
+        if (ec != null && ec.health != healthCur && healthCur > 0)
         {
-            if (IsInvoking("smoothHealth"))
-            {
-                CancelInvoke("smoothHealth");
-            }
-            else if (IsInvoking("summonBoss"))
-            {
-                CancelInvoke("summonBoss");
-            }
-            healthBarOBJ.localScale = new Vector3((float)healthCur / healthBase, 1, 1);
+            //Summoned & On Hit & Not Dead
+            //{
+            //    if (IsInvoking("smoothHealth"))
+            //    {
+            //        CancelInvoke("smoothHealth");
+            //    }
+            //    else if (IsInvoking("summonBoss"))
+            //    {
+            //        CancelInvoke("summonBoss");
+            //    }
+            float percentHealth = (float)healthCur / healthBase;
+            Debug.Log("Percent Health - " + percentHealth);
+            healthBarOBJ.localScale = new Vector3(percentHealth, 1, 1);
             healthCur = ec.health;
-            if(healthCur > 0)
+            if (healthCur > 0)
             {
-                smoothHp = healthCur * 100;
-                InvokeRepeating("smoothHealth", 0, 0.01f);
+                //smoothHp = healthCur * 100;
+                //InvokeRepeating("smoothHealth", 0, 0.01f);
             }
             else
             {
                 healthBarOBJ.localScale = new Vector3(0, 0, 0);
             }
         }
+    }
+}
 
         //Debug Code
         //if (Input.GetKeyUp("i"))
@@ -91,33 +112,32 @@ public class BossBar : MonoBehaviour {
         //{
         //    setBossInfo(-5);
         //}
-    }
+    
+    //public void smoothHealth()
+    //{
+    //    if(smoothHp > (ec.health * 100))
+    //    {
+    //        smoothHp--;
+    //        healthBarOBJ.localScale = new Vector3((float)smoothHp / (healthBase * 100), 1, 1);
+    //    }
+    //    else
+    //    {
+    //        CancelInvoke("smoothHealth");
+    //    }
+    //}
 
-    public void smoothHealth()
-    {
-        if(smoothHp > (ec.health * 100))
-        {
-            smoothHp--;
-            healthBarOBJ.localScale = new Vector3((float)smoothHp / (healthBase * 100), 1, 1);
-        }
-        else
-        {
-            CancelInvoke("smoothHealth");
-        }
-    }
-
-    public void summonBoss()
-    {
-        if (smoothHp < (healthBase * 100))
-        {
-            smoothHp++;
-            healthBarOBJ.localScale = new Vector3((float)smoothHp / (healthBase * 100), 1, 1);
-        }
-        else
-        {
-            CancelInvoke("summonBoss");
-        }
-    }
+    //public void summonBoss()
+    //{
+    //    if (smoothHp < (healthBase * 100))
+    //    {
+    //        smoothHp++;
+    //        healthBarOBJ.localScale = new Vector3((float)smoothHp / (healthBase * 100), 1, 1);
+    //    }
+    //    else
+    //    {
+    //        CancelInvoke("summonBoss");
+    //    }
+    //}
 
     //public void setBossName()
     //{
@@ -218,5 +238,4 @@ public class BossBar : MonoBehaviour {
     //        bossBar.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
     //    }
     //}
-
-}
+    

@@ -194,7 +194,14 @@ public class GameControllerSingleton : ScriptableObject
 
     public void setBossSpawned()
     {
-        bossSpawned = true;
+        if (bossSpawned)
+        {
+            bossSpawned = false;
+        }
+        else
+        {
+            bossSpawned = true;
+        }
     }
 
     public bool hasBossSpawned()
@@ -204,7 +211,13 @@ public class GameControllerSingleton : ScriptableObject
 
     public void setBossDead()
     {
-        bossDead = true;
+        if (bossDead)
+        {
+            bossDead = false;
+        }else
+        {
+            bossDead = true;
+        }
     }
     public bool isBossDead()
     {

@@ -24,7 +24,7 @@ public class NavAgentGoToTransform : MonoBehaviour
             {
                 agent.SetDestination(target.position);
                 //   transform.LookAt(new Vector3 (target.position.x, gc.pc.GetComponentInChildren<Camera>().transform.position.y, target.position.z));
-                transform.LookAt(new Vector3(target.position.x, 0, target.position.z));
+                transform.LookAt(new Vector3(target.position.x, 3, target.position.z));
             }
         }
     }

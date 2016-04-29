@@ -6,6 +6,7 @@ public class EnemyAnimator : MonoBehaviour {
     Animator anim;
     //Animation animation;
     EnemyController ec;
+    GameControllerSingleton gc;
     //AmmoScript dummyAmmo;
     bool dead;
 	// Use this for initialization
@@ -13,6 +14,7 @@ public class EnemyAnimator : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         ec = GetComponent<EnemyController>();
+        gc = GameControllerSingleton.get();
        // dummyAmmo = ec.gameObject.AddComponent<AmmoScript>();
 
     }
@@ -55,6 +57,11 @@ public class EnemyAnimator : MonoBehaviour {
         Debug.Log("Starting Coroutine");
         //anim.SetInteger("Flatten", 3);
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        if (this.gameObject.name == "Bowser")
+        {
+            gc.setBossDead();
+            gc.setBossSpawned();
+        }
         ec.randomDrop();
         Destroy(ec.gameObject);
     }
