@@ -10,6 +10,7 @@ public class Homing : MonoBehaviour
     public Vector3 start, finish;
     public float startTime;
     public float timeToHit = 2;
+    private PlayerController pc;
 
 
     // Use this for initialization
@@ -41,6 +42,7 @@ public class Homing : MonoBehaviour
         else { // Fireball
             transform.position = Vector3.Lerp(start, finish, progress);
         }
+
     }
     void OnTriggerEnter(Collider tColl)
     {
@@ -48,7 +50,20 @@ public class Homing : MonoBehaviour
         {
             if (tColl.CompareTag("Player"))
             {
-                tColl.gameObject.GetComponent<PlayerController>().adjustHealth(-damage);
+                pc = tColl.gameObject.GetComponent<PlayerController>();
+                pc.adjustHealth(-damage);
+
+                if (pc.impervious == false)
+                {
+                    if (pc.myPowerUps.Contains("fireFlower"))
+                    {
+                        pc.myPowerUps.Remove("fireFlower");
+                        if (pc.myPowerUps.Contains("fireFlower"))
+                        {
+                            Debug.Log("<b>Removed, but still exists<\b>");
+                        }
+                    }
+                }
             }
             else if (tColl.CompareTag("Bowser"))
             {
